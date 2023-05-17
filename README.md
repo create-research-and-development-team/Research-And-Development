@@ -1,5 +1,3 @@
-![Logo-Recovered](vscreate_logo.png)
+Research & Development!
 
-# Eureka
-
-Basically Archimedes Ships, but with VS2 as the backend!
+Readme to be filled out later.
