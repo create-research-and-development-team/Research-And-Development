@@ -24,4 +24,4 @@ include("common")
 include("fabric")
 include("forge")
 
-rootProject.name = "vscreate-template-mod"
+rootProject.name = "research-and-development"

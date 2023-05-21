@@ -3,7 +3,7 @@ architectury {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/vscreate.accesswidener")
+    accessWidenerPath = file("src/main/resources/rnd.accesswidener")
 }
 
 test {

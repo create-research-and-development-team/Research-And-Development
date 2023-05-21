@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "vscreate",
+  "id": "rnd",
   "version": "${version}",
-  "name": "Create x Valkyrien Skies Template",
-  "description": "Create VS addon template",
+  "name": "Create: Research & Development",
+  "description": "A gameplay overhaul for MC!",
   "authors": [
-    "fluffy",
-    "potato"
+    "Potato",
+    "R&D Team"
   ],
   "contributors": [
     "ewoudje",
@@ -15,28 +15,28 @@
   ],
   "contact": {
     "homepage": "https://valkyrienskies.org/",
-    "sources": "https://github.com/ValkyrienSkies/VSCreate"
+    "sources": "https://github.com/create-research-and-development-team/Research-And-Development"
   },
   "license": "Apache-2.0",
-  "icon": "assets/vscreate/icon.png",
+  "icon": "assets/rnd/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.valkyrienskies.vscreate.fabric.VSCreateModFabric"
+      "org.valkyrienskies.rnd.fabric.VSCreateModFabric"
     ],
     "client": [
-      "org.valkyrienskies.vscreate.fabric.VSCreateModFabric${'$'}Client"
+      "org.valkyrienskies.rnd.fabric.VSCreateModFabric${'$'}Client"
     ],
     "preLaunch": [
-      "org.valkyrienskies.vscreate.fabric.ValkyrienPreLaunch"
+      "org.valkyrienskies.rnd.fabric.ValkyrienPreLaunch"
     ],
     "modmenu": [
-      "org.valkyrienskies.vscreate.fabric.VSCreateModFabric${'$'}ModMenu"
+      "org.valkyrienskies.rnd.fabric.VSCreateModFabric${'$'}ModMenu"
     ]
   },
   "mixins": [
-    "vscreate-common.mixins.json",
-    "vscreate.mixins.json"
+    "rnd-common.mixins.json",
+    "rnd.mixins.json"
   ],
   "depends": {
     "minecraft": ">=1.18.2",

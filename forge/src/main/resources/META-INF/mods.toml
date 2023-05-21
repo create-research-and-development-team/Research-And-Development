@@ -4,37 +4,37 @@ issueTrackerURL = "https://github.com/ValkyrienSkies/Valkyrien-Skies-2/issues"
 license = "Apache-2.0"
 
 [[mods]]
-modId = "vscreate"
+modId = "rnd"
 version = "${version}"
-displayName = "Create x Valkyrien Skies Template"
+displayName = "Create: Research & Development"
 authors = ["fluffy", "potato", "ewoudje"]
 description = '''
-A template mod for Create x Valkyrien Skies mods.
+A gameplay overhaul for MC!
 '''
 logoFile = "icon.png"
 
-[[dependencies.vscreate]]
+[[dependencies.rnd]]
 modId = "forge"
 mandatory = true
 versionRange = "[${forge_version},)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.vscreate]]
+[[dependencies.rnd]]
 modId = "minecraft"
 mandatory = true
 versionRange = "${minecraft_version}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.vscreate]]
+[[dependencies.rnd]]
 modId = "valkyrienskies"
 mandatory = true
 versionRange = "[2,)"
 ordering = "AFTER"
 side = "BOTH"
 
-[[dependencies.vscreate]]
+[[dependencies.rnd]]
 modId = "create"
 mandatory = true
 versionRange = "${create_version}"
