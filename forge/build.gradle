@@ -98,8 +98,8 @@ processResources {
 loom {
     forge {
         mixinConfig(
-                "vs_clockwork-common.mixins.json",
-                "vs_clockwork.mixins.json"
+                "vscreate-common.mixins.json",
+                "vscreate.mixins.json"
         )
     }
 }
