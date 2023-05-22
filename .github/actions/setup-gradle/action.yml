@@ -20,4 +20,5 @@ runs:
         restore-keys: ${{ runner.os }}-gradle
 
     - name: Setup gradlew permissions
+      shell: bash
       run: chmod +x ./gradlew
