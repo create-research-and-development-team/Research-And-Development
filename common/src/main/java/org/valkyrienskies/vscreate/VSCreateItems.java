@@ -1,5 +1,6 @@
 package org.valkyrienskies.vscreate;
 
+import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
 
@@ -22,6 +23,15 @@ public class VSCreateItems {
         return REGISTRATE.item(name, Item::new)
                 .register();
     }
+
+    private static final ItemEntry<Item> TITANIUM_INGOT = REGISTRATE.item("titanium_ingot", Item::new)
+            .register();
+
+    private static final ItemEntry<Item> TITANIUM_SHEET = REGISTRATE.item("titanium_sheet", Item::new)
+            .register();
+
+    private static final ItemEntry<SequencedAssemblyItem> DENTED_TITANIUM_SHEET = REGISTRATE.item("dented_titanium_sheet", SequencedAssemblyItem::new)
+            .register();
 
     public static void register() {
     }
