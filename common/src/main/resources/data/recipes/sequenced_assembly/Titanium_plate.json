@@ -1,10 +1,10 @@
 {
   "type": "create:sequenced_assembly",
   "ingredient": {
-    "item": "vscreate:"
+    "item": "vscreate:titanium_ingot"
   },
   "transitionalItem": {
-    "item": "create:unprocessed_obsidian_sheet"
+    "item": "vscreate:dented_titanium_ingot"
   },
   "sequence": [
     {
@@ -16,7 +16,7 @@
       ],
       "results": [
         {
-          "item": "vscreate:incomplete_titanium_sheet"
+          "item": "vscreate:dented_titanium_ingot"
         }
       ]
     },
@@ -24,12 +24,12 @@
       "type": "create:pressing",
       "ingredients": [
         {
-          "item": "create:unprocessed_obsidian_sheet"
+          "item": "vscreate:dented_titanium_ingot"
         }
       ],
       "results": [
         {
-          "item": "create:unprocessed_obsidian_sheet"
+          "item": "vscreate:dented_titanium_ingot"
         }
       ]
     },
@@ -37,12 +37,12 @@
       "type": "create:pressing",
       "ingredients": [
         {
-          "item": "create:unprocessed_obsidian_sheet"
+          "item": "vscreate:dented_titanium_ingot"
         }
       ],
       "results": [
         {
-          "item": "create:unprocessed_obsidian_sheet"
+          "item": "vscreate:dented_titanium_ingot"
         }
       ]
     }

@@ -4,6 +4,7 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.content.AllSections;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MaterialColor;
 import org.valkyrienskies.vscreate.content.contraptions.propellor.PropellorBearingBlock;
 
@@ -21,6 +22,8 @@ public class VSCreateBlocks {
         REGISTRATE.startSection(AllSections.KINETICS);
     }
 
+    public static final BlockEntry<Block> TITANIUM_BLOCK = REGISTRATE.block("titanium_block", Block::new)
+            .register();
     public static final BlockEntry<PropellorBearingBlock> PROPELLOR_BEARING =
             REGISTRATE.block("propellor_bearing", PropellorBearingBlock::new)
                     .transform(axeOrPickaxe())
