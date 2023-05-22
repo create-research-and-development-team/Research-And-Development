@@ -11,7 +11,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,6 +18,8 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import org.lwjgl.system.NonnullDefault;
 import org.valkyrienskies.vscreate.util.BacktankDamageHandler;
 import org.valkyrienskies.vscreate.util.BoundingBoxHelper;
+
+import javax.annotation.Nullable;
 
 @NonnullDefault
 public class HandheldMechanicalDrill extends PickaxeItem {
@@ -48,50 +49,80 @@ public class HandheldMechanicalDrill extends PickaxeItem {
 
         if(success && isCorrectToolForDrops(block) && !level.isClientSide){
             if(player.isCrouching()) {
-                mineTunnel(tool, level, pos, player, CROUCH_MINE_DIAMETER, CROUCH_MINE_DEPTH);
+                mineTunnel(level, pos, player, CROUCH_MINE_DIAMETER, CROUCH_MINE_DEPTH);
             } else {
-                mineTunnel(tool, level, pos, player, MINE_DIAMETER, MINE_DEPTH);
+                mineTunnel(level, pos, player, MINE_DIAMETER, MINE_DEPTH);
             }
         }
 
         return success;
     }
 
-    private void mineTunnel(ItemStack tool, Level level, BlockPos pos, LivingEntity player, int diameter, int depth) {
+    /**
+     * Mines a tunnel in the {@code direction} the player is facing at the given block.<br>
+     * The tunnel is a rectangular prism of width and height {@code diameter}, and depth {@code depth}.
+     *
+     * @param level     level to break the tunnel in
+     * @param origin       position to start the tunnel at
+     * @param player    player to simulate breaking the tunnel with
+     * @param diameter  diameter of the tunnel
+     * @param depth     depth of the tunnel
+     */
+    @SuppressWarnings("UnnecessaryLocalVariable")
+    private void mineTunnel(Level level, BlockPos origin, LivingEntity player, int diameter, int depth) {
         Direction direction = determineDirection(player);
 
-        int boundX = (int)Math.ceil(-diameter / 2f);
-        int boundY = (int)Math.ceil(-diameter / 2f);
-        int boundZ = 0;
+        int offsetX = (int)Math.ceil(-diameter / 2f);
+        int offsetY = (int)Math.ceil(-diameter / 2f);
+        int offsetZ = 0;
 
         int boundWidth = diameter;
         int boundHeight = diameter;
         int boundDepth = depth;
 
-        BoundingBox boundingBox = BoundingBoxHelper.orientBox(pos.getX(), pos.getY(), pos.getZ(), boundX, boundY, boundZ, boundWidth, boundHeight, boundDepth, direction);
+        BoundingBox boundingBox = BoundingBoxHelper.orientBox(origin, offsetX, offsetY, offsetZ, boundWidth, boundHeight, boundDepth, direction);
 
-        BlockPos.betweenClosedStream(boundingBox).forEach(testPos -> tryMine(tool, level, testPos, player));
+        BlockPos.betweenClosedStream(boundingBox).forEach(testPos -> tryMine(level, testPos, player));
     }
 
-    private void tryMine(ItemStack tool, Level level, BlockPos pos, LivingEntity livingEntity) {
+    /**
+     * Attempts to simulate mining a block. If a tool is specified, it must be breakable by that tool, and must not require a diamond tool
+     *
+     * @param level         level to break in
+     * @param pos           position to break at
+     * @param livingEntity  entity to simulate the break as (can be {@code null})
+     */
+    private void tryMine(Level level, BlockPos pos, @Nullable LivingEntity livingEntity) {
         BlockState minedBlockState = level.getBlockState(pos);
-        if(!tool.isCorrectToolForDrops(minedBlockState) || minedBlockState.getTags().anyMatch(BlockTags.NEEDS_DIAMOND_TOOL::equals)) {
+
+        if(livingEntity != null) {
+            ItemStack tool = livingEntity.getMainHandItem();
+
+            if (!tool.isCorrectToolForDrops(minedBlockState) || minedBlockState.getTags().anyMatch(BlockTags.NEEDS_DIAMOND_TOOL::equals)) {
+                return;
+            }
+
+            if (livingEntity instanceof Player player && player.hasCorrectToolForDrops(minedBlockState)) {
+                player.awardStat(Stats.BLOCK_MINED.get(minedBlockState.getBlock()));
+            }
+        }
+
+        if (level.removeBlock(pos, false))
+            minedBlockState.getBlock().destroy(level, pos, minedBlockState);
+        else {
             return;
         }
 
-        if(level.removeBlock(pos, false))
-            minedBlockState.getBlock().destroy(level, pos, minedBlockState);
-        else return;
-
-        if(!(livingEntity instanceof Player player)) return;
-
-        if(player.hasCorrectToolForDrops(minedBlockState)) {
-            player.awardStat(Stats.BLOCK_MINED.get(minedBlockState.getBlock()));
-            Block.dropResources(minedBlockState, level, pos, null, livingEntity, tool);
-        }
+        if(livingEntity == null) return;
+        Block.dropResources(minedBlockState, level, pos, null, livingEntity, livingEntity.getMainHandItem());
     }
 
-    // TODO: Move to a static helper class
+    /**
+     * Returns the player direction, with added logic for Up and Down based on {@code MINING_ANGLE_LIMIT}
+     *
+     * @param player    player direction to check
+     * @return          player direction
+     */
     private Direction determineDirection(LivingEntity player) {
         float xRot = player.getXRot();
         if (xRot <= -MINING_ANGLE_LIMIT) {
@@ -101,11 +132,6 @@ public class HandheldMechanicalDrill extends PickaxeItem {
         } else {
             return player.getDirection();
         }
-    }
-
-    @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.NONE;
     }
 
     @Override

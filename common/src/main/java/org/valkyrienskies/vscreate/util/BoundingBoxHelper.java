@@ -1,24 +1,62 @@
 package org.valkyrienskies.vscreate.util;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 
+/**
+ * Helper functions for dealing with bounding boxes
+ */
 public class BoundingBoxHelper {
-    public static BoundingBox orientBox(int structureMinX, int structureMinY, int structureMinZ, int xMin, int yMin, int zMin, int width, int height, int depth, Direction facing) {
+    /**
+     * Orient a bounding box from facing south to facing any other direction.<br>
+     * Created because the vanilla implementation doesn't support {@code UP} and {@code DOWN}.
+     *
+     * @param origin    coordinate around which rotation happens
+     * @param xOffset   x offset applied before rotation
+     * @param yOffset   y offset applied before rotation
+     * @param zOffset   z offset applied before rotation
+     * @param width     width of the bounding box
+     * @param height    height of the bounding box
+     * @param depth     depth of the bounding box
+     * @param facing    direction to rotate the bounding box to face
+     * @return rotated bounding box
+     */
+    public static BoundingBox orientBox(BlockPos origin, int xOffset, int yOffset, int zOffset, int width, int height, int depth, Direction facing) {
+        return orientBox(origin.getX(), origin.getY(), origin.getZ(), xOffset, yOffset, zOffset, width, height, depth, facing);
+    }
+
+    /**
+     * Orient a bounding box from facing south to facing any other direction.<br>
+     * Created because the vanilla implementation doesn't support {@code UP} and {@code DOWN}.
+     *
+     * @param originX   x coordinate around which rotation happens
+     * @param originY   y coordinate around which rotation happens
+     * @param originZ   z coordinate around which rotation happens
+     * @param xOffset   x offset applied before rotation
+     * @param yOffset   y offset applied before rotation
+     * @param zOffset   z offset applied before rotation
+     * @param width     width of the bounding box
+     * @param height    height of the bounding box
+     * @param depth     depth of the bounding box
+     * @param facing    direction to rotate the bounding box to face
+     * @return rotated bounding box
+     */
+    public static BoundingBox orientBox(int originX, int originY, int originZ, int xOffset, int yOffset, int zOffset, int width, int height, int depth, Direction facing) {
         switch (facing) {
             case SOUTH:
             default:
-                return new BoundingBox(structureMinX + xMin, structureMinY + yMin, structureMinZ + zMin, structureMinX + width - 1 + xMin, structureMinY + height - 1 + yMin, structureMinZ + depth - 1 + zMin);
+                return new BoundingBox(originX + xOffset, originY + yOffset, originZ + zOffset, originX + width - 1 + xOffset, originY + height - 1 + yOffset, originZ + depth - 1 + zOffset);
             case NORTH:
-                return new BoundingBox(structureMinX + xMin, structureMinY + yMin, structureMinZ - depth + 1 + zMin, structureMinX + width - 1 + xMin, structureMinY + height - 1 + yMin, structureMinZ + zMin);
+                return new BoundingBox(originX + xOffset, originY + yOffset, originZ - depth + 1 + zOffset, originX + width - 1 + xOffset, originY + height - 1 + yOffset, originZ + zOffset);
             case WEST:
-                return new BoundingBox(structureMinX - depth + 1 + zMin, structureMinY + yMin, structureMinZ + xMin, structureMinX + zMin, structureMinY + height - 1 + yMin, structureMinZ + width - 1 + xMin);
+                return new BoundingBox(originX - depth + 1 + zOffset, originY + yOffset, originZ + xOffset, originX + zOffset, originY + height - 1 + yOffset, originZ + width - 1 + xOffset);
             case EAST:
-                return new BoundingBox(structureMinX + zMin, structureMinY + yMin, structureMinZ + xMin, structureMinX + depth - 1 + zMin, structureMinY + height - 1 + yMin, structureMinZ + width - 1 + xMin);
+                return new BoundingBox(originX + zOffset, originY + yOffset, originZ + xOffset, originX + depth - 1 + zOffset, originY + height - 1 + yOffset, originZ + width - 1 + xOffset);
             case UP:
-                return new BoundingBox(structureMinX + xMin, structureMinY + zMin, structureMinZ + height - 1 + yMin, structureMinX + width - 1 + xMin, structureMinY + depth - 1 + zMin, structureMinZ + yMin);
+                return new BoundingBox(originX + xOffset, originY + zOffset, originZ + height - 1 + yOffset, originX + width - 1 + xOffset, originY + depth - 1 + zOffset, originZ + yOffset);
             case DOWN:
-                return new BoundingBox(structureMinX + xMin, structureMinY + depth - 1 + zMin, structureMinZ + yMin, structureMinX + width - 1 + xMin, structureMinY + zMin, structureMinZ + height - 1 + yMin);
+                return new BoundingBox(originX + xOffset, originY + depth - 1 + zOffset, originZ + yOffset, originX + width - 1 + xOffset, originY + zOffset, originZ + height - 1 + yOffset);
         }
     }
 }

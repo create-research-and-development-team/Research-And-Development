@@ -12,7 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -58,11 +57,6 @@ public class HandheldMechanicalSaw extends AxeItem {
         Vec3 dropPos = VecHelper.getCenterOf(blockPos);
         ItemEntity entity = new ItemEntity(level, dropPos.x, dropPos.y, dropPos.z, drop);
         level.addFreshEntity(entity);
-    }
-
-    @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.NONE;
     }
 
     @Override
