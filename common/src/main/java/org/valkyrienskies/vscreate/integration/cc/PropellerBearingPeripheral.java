@@ -6,14 +6,14 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.valkyrienskies.vscreate.content.contraptions.propellor.PropellorBearingBlockEntity;
+import org.valkyrienskies.vscreate.content.contraptions.propeller.PropellerBearingBlockEntity;
 
-public class PropellorBearingPeripheral implements IPeripheral {
+public class PropellerBearingPeripheral implements IPeripheral {
     private final Level level;
     private final BlockPos pos;
-    private final PropellorBearingBlockEntity propellor;
+    private final PropellerBearingBlockEntity propellor;
 
-    public PropellorBearingPeripheral(PropellorBearingBlockEntity be) {
+    public PropellerBearingPeripheral(PropellerBearingBlockEntity be) {
         this.propellor = be;
         this.level = be.getLevel();
         this.pos = be.getBlockPos();
@@ -27,7 +27,7 @@ public class PropellorBearingPeripheral implements IPeripheral {
 
     @Override
     public boolean equals(@Nullable IPeripheral iPeripheral) {
-        return level != null && level.getBlockEntity(pos) instanceof PropellorBearingBlockEntity;
+        return level != null && level.getBlockEntity(pos) instanceof PropellerBearingBlockEntity;
     }
 
     @LuaFunction

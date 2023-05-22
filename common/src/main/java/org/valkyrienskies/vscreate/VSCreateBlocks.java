@@ -5,7 +5,7 @@ import com.simibubi.create.content.AllSections;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.world.level.material.MaterialColor;
-import org.valkyrienskies.vscreate.content.contraptions.propellor.PropellorBearingBlock;
+import org.valkyrienskies.vscreate.content.contraptions.propeller.PropellerBearingBlock;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
@@ -21,11 +21,11 @@ public class VSCreateBlocks {
         REGISTRATE.startSection(AllSections.KINETICS);
     }
 
-    public static final BlockEntry<PropellorBearingBlock> PROPELLOR_BEARING =
-            REGISTRATE.block("propellor_bearing", PropellorBearingBlock::new)
+    public static final BlockEntry<PropellerBearingBlock> PROPELLER_BEARING =
+            REGISTRATE.block("propeller_bearing", PropellerBearingBlock::new)
                     .transform(axeOrPickaxe())
                     .properties(p -> p.color(MaterialColor.PODZOL))
-                    .transform(BuilderTransformers.bearing("propellor", "gearbox", false))
+                    .transform(BuilderTransformers.bearing("propeller", "gearbox", false))
                     .tag(AllTags.AllBlockTags.SAFE_NBT.tag)
                     .register();
 

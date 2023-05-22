@@ -1,4 +1,4 @@
-package org.valkyrienskies.vscreate.content.contraptions.propellor;
+package org.valkyrienskies.vscreate.content.contraptions.propeller;
 
 import com.simibubi.create.content.contraptions.components.structureMovement.bearing.BearingBlock;
 import com.simibubi.create.foundation.block.ITE;
@@ -19,11 +19,11 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.valkyrienskies.vscreate.VSCreateBlockEntities;
 
-public class PropellorBearingBlock extends BearingBlock implements ITE<PropellorBearingBlockEntity> {
+public class PropellerBearingBlock extends BearingBlock implements ITE<PropellerBearingBlockEntity> {
 
     public static final EnumProperty<Direction> DIRECTION = EnumProperty.create("direction", Direction.class);
 
-    public PropellorBearingBlock(Properties properties) {
+    public PropellerBearingBlock(Properties properties) {
         super(properties);
     }
 
@@ -31,8 +31,8 @@ public class PropellorBearingBlock extends BearingBlock implements ITE<Propellor
         return Couple.create(1, 16);
     }
 
-    public static PropellorBearingBlock.Direction getDirectionof(BlockState blockState) {
-        return blockState.hasProperty(PropellorBearingBlock.DIRECTION) ? blockState.getValue(PropellorBearingBlock.DIRECTION) : Direction.PULL;
+    public static PropellerBearingBlock.Direction getDirectionof(BlockState blockState) {
+        return blockState.hasProperty(PropellerBearingBlock.DIRECTION) ? blockState.getValue(PropellerBearingBlock.DIRECTION) : Direction.PULL;
 
     }
 
@@ -66,12 +66,12 @@ public class PropellorBearingBlock extends BearingBlock implements ITE<Propellor
     }
 
     @Override
-    public Class<PropellorBearingBlockEntity> getTileEntityClass() {
-        return PropellorBearingBlockEntity.class;
+    public Class<PropellerBearingBlockEntity> getTileEntityClass() {
+        return PropellerBearingBlockEntity.class;
     }
 
     @Override
-    public BlockEntityType<? extends PropellorBearingBlockEntity> getTileEntityType() {
+    public BlockEntityType<? extends PropellerBearingBlockEntity> getTileEntityType() {
         return VSCreateBlockEntities.PROPELLOR_BEARING.get();
     }
     @Override

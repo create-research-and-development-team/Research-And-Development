@@ -1,4 +1,4 @@
-package org.valkyrienskies.vscreate.content.contraptions.propellor;
+package org.valkyrienskies.vscreate.content.contraptions.propeller;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.joml.Vector3dc;
@@ -7,7 +7,7 @@ import org.joml.Vector3ic;
 import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class PropellorPhysData {
+public class PropellerPhysData {
     public final Vector3dc bearingPos;
     public final Vector3dc bearingAxis;
     public final List<Vector3ic> propellorPositions;
@@ -18,13 +18,13 @@ public class PropellorPhysData {
 
     // Default constructor for Jackson, should never be invoked manually
     @Deprecated
-    public PropellorPhysData() {
+    public PropellerPhysData() {
         this.bearingPos = null;
         this.bearingAxis = null;
         this.propellorPositions = null;
     }
 
-    public PropellorPhysData(Vector3dc bearingPos, Vector3dc bearingAxis, double bearingAngle, double bearingSpeed, List<Vector3ic> propellorPositions, boolean inverted) {
+    public PropellerPhysData(Vector3dc bearingPos, Vector3dc bearingAxis, double bearingAngle, double bearingSpeed, List<Vector3ic> propellorPositions, boolean inverted) {
         this.bearingPos = bearingPos;
         this.bearingAxis = bearingAxis;
         this.bearingAngle = bearingAngle;

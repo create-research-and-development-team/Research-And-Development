@@ -1,13 +1,12 @@
 package org.valkyrienskies.vscreate;
 
 import com.simibubi.create.content.contraptions.components.structureMovement.ContraptionType;
-import org.valkyrienskies.vscreate.content.contraptions.propellor.PropellorContraption;
+import org.valkyrienskies.vscreate.content.contraptions.propeller.PropellerContraption;
 
 public class VSCreateContraptions {
     public static final ContraptionType
-            PROPELLOR = ContraptionType.register(VSCreateMod.asResource("propellor").toString(), PropellorContraption::new);
+            PROPELLER = ContraptionType.register(VSCreateMod.asResource("propeller").toString(), PropellerContraption::new);
 
     public static void init() {
     }
-
 }

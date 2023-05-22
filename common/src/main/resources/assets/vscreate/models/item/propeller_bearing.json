@@ -1,5 +1,5 @@
 {
-  "parent": "vscreate:block/propellor_bearing/item",
+  "parent": "vscreate:block/propeller_bearing/item",
   "textures": {
     "1": "create:block/mechanical_bearing_side",
     "2": "create:block/bearing_top",

@@ -1,4 +1,4 @@
-package org.valkyrienskies.vscreate.content.contraptions.propellor;
+package org.valkyrienskies.vscreate.content.contraptions.propeller;
 
 import com.simibubi.create.AllTags;
 import com.simibubi.create.content.contraptions.components.structureMovement.AssemblyException;
@@ -20,20 +20,20 @@ import org.valkyrienskies.vscreate.VSCreateContraptions;
 import java.util.Queue;
 import java.util.Set;
 
-public class PropellorContraption extends Contraption {
+public class PropellerContraption extends Contraption {
 
     public int offset;
     protected int sailBlocks;
     protected Direction facing;
 
-    public PropellorContraption() {}
+    public PropellerContraption() {}
 
-    public PropellorContraption(Direction facing) {
+    public PropellerContraption(Direction facing) {
         this.facing = facing;
     }
 
-    public static PropellorContraption assembleProp(Level world, BlockPos pos, Direction direction) throws AssemblyException {
-        PropellorContraption contraption = new PropellorContraption();
+    public static PropellerContraption assembleProp(Level world, BlockPos pos, Direction direction) throws AssemblyException {
+        PropellerContraption contraption = new PropellerContraption();
         int flapBlocks = 0;
 
         contraption.facing = direction;
@@ -83,7 +83,7 @@ public class PropellorContraption extends Contraption {
 
     @Override
     protected ContraptionType getType() {
-        return VSCreateContraptions.PROPELLOR;
+        return VSCreateContraptions.PROPELLER;
     }
 
     @Override

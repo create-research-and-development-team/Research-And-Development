@@ -9,7 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
-import org.valkyrienskies.vscreate.content.contraptions.propellor.PropellorBearingBlockEntity;
+import org.valkyrienskies.vscreate.content.contraptions.propeller.PropellerBearingBlockEntity;
 import org.valkyrienskies.vscreate.integration.cc.*;
 
 public class VSCreateForgePeripheralProviders {
@@ -22,8 +22,8 @@ public class VSCreateForgePeripheralProviders {
         @Override
         public LazyOptional<IPeripheral> getPeripheral(@NotNull Level level, @NotNull BlockPos blockPos, @NotNull Direction direction) {
             BlockEntity be = level.getBlockEntity(blockPos);
-            if (be instanceof PropellorBearingBlockEntity propellor)
-                return LazyOptional.of(() -> new PropellorBearingPeripheral(propellor));
+            if (be instanceof PropellerBearingBlockEntity propellor)
+                return LazyOptional.of(() -> new PropellerBearingPeripheral(propellor));
             return LazyOptional.empty();
         }
     }

@@ -10,9 +10,9 @@ import org.joml.Quaterniondc;
 import org.joml.Vector3d;
 import org.joml.Vector3dc;
 import org.joml.Vector3ic;
-import org.valkyrienskies.vscreate.content.contraptions.propellor.PropellorCreatePhysData;
-import org.valkyrienskies.vscreate.content.contraptions.propellor.PropellorPhysData;
-import org.valkyrienskies.vscreate.content.contraptions.propellor.PropellorUpdatePhysData;
+import org.valkyrienskies.vscreate.content.contraptions.propeller.PropellerCreatePhysData;
+import org.valkyrienskies.vscreate.content.contraptions.propeller.PropellerPhysData;
+import org.valkyrienskies.vscreate.content.contraptions.propeller.PropellerUpdatePhysData;
 import org.valkyrienskies.core.api.ships.PhysShip;
 import org.valkyrienskies.core.api.ships.ServerShip;
 import org.valkyrienskies.core.api.ships.properties.ShipTransform;
@@ -28,22 +28,22 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class PropellorController implements ShipForcesInducer {
-    private final HashMap<Integer, PropellorPhysData> propellorPhysData = new HashMap<>();
-    private final ConcurrentHashMap<Integer, PropellorUpdatePhysData> propellorUpdatePhysData = new ConcurrentHashMap<>();
-    private final ConcurrentLinkedQueue<Pair<Integer, PropellorCreatePhysData>> createdProps = new ConcurrentLinkedQueue<>();
+public class PropellerController implements ShipForcesInducer {
+    private final HashMap<Integer, PropellerPhysData> propellorPhysData = new HashMap<>();
+    private final ConcurrentHashMap<Integer, PropellerUpdatePhysData> propellorUpdatePhysData = new ConcurrentHashMap<>();
+    private final ConcurrentLinkedQueue<Pair<Integer, PropellerCreatePhysData>> createdProps = new ConcurrentLinkedQueue<>();
     private final ConcurrentLinkedQueue<Integer> removedProps = new ConcurrentLinkedQueue<>();
     private int nextPropID = 0;
 
     @Override
     public void applyForces(@NotNull PhysShip physShip) {
         while (!createdProps.isEmpty()) {
-            final Pair<Integer, PropellorCreatePhysData> createData = createdProps.remove();
+            final Pair<Integer, PropellerCreatePhysData> createData = createdProps.remove();
             ShipInertiaDataImpl propInertiaData = ShipInertiaDataImpl.Companion.newEmptyShipInertiaData();
             for (Vector3ic i : createData.component2().propellorPositions()) {
                 propInertiaData.onSetBlock(i.x(), i.y(), i.z(), 0, 100);
             }
-            propellorPhysData.put(createData.component1(), new PropellorPhysData(
+            propellorPhysData.put(createData.component1(), new PropellerPhysData(
                     createData.component2().bearingPos(),
                     createData.component2().bearingAxis(),
                     createData.component2().bearingAngle(),
@@ -58,7 +58,7 @@ public class PropellorController implements ShipForcesInducer {
         }
 
         propellorUpdatePhysData.forEach((id, data) -> {
-            PropellorPhysData physData = propellorPhysData.get(id);
+            PropellerPhysData physData = propellorPhysData.get(id);
             if (physData == null) {
                 return;
             }
@@ -73,7 +73,7 @@ public class PropellorController implements ShipForcesInducer {
         Vector3d netForce = new Vector3d();
         Vector3d netTorque = new Vector3d();
 
-        for (PropellorPhysData physData : propellorPhysData.values()) {
+        for (PropellerPhysData physData : propellorPhysData.values()) {
             Pair<Vector3dc, Vector3dc> forceTorque = computeForce(physShip.getTransform(), physData, ((PhysShipImpl) physShip).getPoseVel().getVel(), ((PhysShipImpl) physShip).getPoseVel().getOmega(), ((PhysShipImpl) physShip));
             netForce.add(forceTorque.component1());
             netTorque.add(forceTorque.component2());
@@ -90,7 +90,7 @@ public class PropellorController implements ShipForcesInducer {
 
     }
 
-    private Pair<Vector3dc, Vector3dc> computeForce(ShipTransform physTransform, PropellorPhysData physProp, Vector3dc vel, Vector3dc omega, PhysShipImpl physShip) {
+    private Pair<Vector3dc, Vector3dc> computeForce(ShipTransform physTransform, PropellerPhysData physProp, Vector3dc vel, Vector3dc omega, PhysShipImpl physShip) {
         final double modifiedSpeed = physProp.bearingSpeed;
         Vector3dc bearingVector = new Vector3d(physProp.bearingPos).add(0.5, 0.5, 0.5);
         Vector3dc axis = physProp.bearingAxis.mul(Math.signum(modifiedSpeed), new Vector3d());
@@ -137,7 +137,7 @@ public class PropellorController implements ShipForcesInducer {
         return new Pair<>(netForce, netTorque);
     }
 
-    private Vector3dc conserveMomentum(PhysShipImpl physShip, PropellorPhysData physProp, Vector3dc furthestTip, Vector3dc angVel) {
+    private Vector3dc conserveMomentum(PhysShipImpl physShip, PropellerPhysData physProp, Vector3dc furthestTip, Vector3dc angVel) {
         Vector3dc prevAngMomentumRelProp = new Vector3d();
         if (physProp.getPrevAngularMomentum() != null) {
             prevAngMomentumRelProp = physProp.getPrevAngularMomentum();
@@ -186,7 +186,7 @@ public class PropellorController implements ShipForcesInducer {
         return vel;
     }
 
-    public int addPropellor(PropellorCreatePhysData data) {
+    public int addPropellor(PropellerCreatePhysData data) {
         int id = nextPropID++;
         createdProps.add(new Pair<>(id, data));
         return id;
@@ -196,15 +196,15 @@ public class PropellorController implements ShipForcesInducer {
         removedProps.add(id);
     }
 
-    public void updatePropellor(int id, PropellorUpdatePhysData data) {
+    public void updatePropellor(int id, PropellerUpdatePhysData data) {
         propellorUpdatePhysData.put(id, data);
     }
 
-    public static PropellorController getOrCreate(ServerShip ship) {
-        if (ship.getAttachment(PropellorController.class) == null) {
-            ship.saveAttachment(PropellorController.class, new PropellorController());
+    public static PropellerController getOrCreate(ServerShip ship) {
+        if (ship.getAttachment(PropellerController.class) == null) {
+            ship.saveAttachment(PropellerController.class, new PropellerController());
         }
-        return ship.getAttachment(PropellorController.class);
+        return ship.getAttachment(PropellerController.class);
     }
 
     public static <T> boolean areQueuesEqual(final Queue<T> left, final Queue<T> right) {
@@ -216,7 +216,7 @@ public class PropellorController implements ShipForcesInducer {
         // self check
         if (this == other) {
             return true;
-        } else if (!(other instanceof final PropellorController otherPropeller)) {
+        } else if (!(other instanceof final PropellerController otherPropeller)) {
             return false;
         } else {
             return Objects.equals(propellorPhysData, otherPropeller.propellorPhysData)

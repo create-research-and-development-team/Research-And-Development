@@ -1,7 +1,7 @@
 {
   "itemGroup.vscreate.base": "VS + Create Template",
-  "block.vscreate.propellor_bearing": "Propellor Bearing",
-  "item.vscreate.propellor_bearing": "Propellor Bearing",
+  "block.vscreate.propeller_bearing": "Propeller Bearing",
+  "item.vscreate.propeller_bearing": "Propeller Bearing",
   "item.vscreate.bluuguu": "Bluu Guu",
   "item.vscreate.bluperglue": "Bluperglue",
   "item.vscreate.gravitron": "Gravitron",

@@ -1,4 +1,4 @@
-package org.valkyrienskies.vscreate.content.contraptions.propellor;
+package org.valkyrienskies.vscreate.content.contraptions.propeller;
 
 import com.jozufozu.flywheel.core.PartialModel;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -16,9 +16,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public class PropellorBearingRenderer extends KineticTileEntityRenderer {
+public class PropellerBearingRenderer extends KineticTileEntityRenderer {
 
-    public PropellorBearingRenderer(BlockEntityRendererProvider.Context context) {
+    public PropellerBearingRenderer(BlockEntityRendererProvider.Context context) {
         super(context);
     }
 
@@ -30,7 +30,7 @@ public class PropellorBearingRenderer extends KineticTileEntityRenderer {
 
         super.renderSafe(te, partialTicks, ms, buffer, light, overlay);
 
-        PropellorBearingBlockEntity bearingTe = (PropellorBearingBlockEntity) te;
+        PropellerBearingBlockEntity bearingTe = (PropellerBearingBlockEntity) te;
         final Direction facing = te.getBlockState()
                 .getValue(BlockStateProperties.FACING);
         PartialModel top = AllBlockPartials.BEARING_TOP;

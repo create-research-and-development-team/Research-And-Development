@@ -1,4 +1,4 @@
-package org.valkyrienskies.vscreate.content.contraptions.propellor;
+package org.valkyrienskies.vscreate.content.contraptions.propeller;
 
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.AllTags;
@@ -28,9 +28,9 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import org.joml.Vector3d;
 import org.joml.Vector3dc;
 import org.joml.Vector3ic;
-import org.valkyrienskies.vscreate.content.contraptions.propellor.stream.IPropStreamSource;
-import org.valkyrienskies.vscreate.content.contraptions.propellor.stream.PropStream;
-import org.valkyrienskies.vscreate.content.forces.PropellorController;
+import org.valkyrienskies.vscreate.content.contraptions.propeller.stream.IPropStreamSource;
+import org.valkyrienskies.vscreate.content.contraptions.propeller.stream.PropStream;
+import org.valkyrienskies.vscreate.content.forces.PropellerController;
 import org.valkyrienskies.vscreate.platform.api.Propellor;
 import org.valkyrienskies.core.api.ships.LoadedServerShip;
 import org.valkyrienskies.mod.common.VSGameUtilsKt;
@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class PropellorBearingBlockEntity extends KineticTileEntity implements Propellor, IPropStreamSource, IBearingTileEntity {
+public class PropellerBearingBlockEntity extends KineticTileEntity implements Propellor, IPropStreamSource, IBearingTileEntity {
 
     public PropStream propStream;
     public List<BlockPos> sailPositions;
@@ -71,7 +71,7 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
     private boolean inverted = false;
     private Integer physPropId = null;
 
-    public PropellorBearingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public PropellerBearingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         sailPositions = new ArrayList<>();
         propStream = new PropStream(this);
@@ -145,9 +145,9 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
         }
 
         if (rotspeed < 0) {
-            setBlockDirection(PropellorBearingBlock.Direction.PULL);
+            setBlockDirection(PropellerBearingBlock.Direction.PULL);
         } else {
-            setBlockDirection(PropellorBearingBlock.Direction.PUSH);
+            setBlockDirection(PropellerBearingBlock.Direction.PUSH);
         }
         if (speedChanged) {
             onSpeedChanged(prevSpeed);
@@ -182,8 +182,8 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
             if (server) {
                 final LoadedServerShip ship = VSGameUtilsKt.getShipObjectManagingPos((ServerLevel) level, getBlockPos());
                 if (ship != null) {
-                    final PropellorUpdatePhysData data = new PropellorUpdatePhysData(getAngularSpeed(), angle, inverted);
-                    PropellorController.getOrCreate(ship).updatePropellor(physPropId, data);
+                    final PropellerUpdatePhysData data = new PropellerUpdatePhysData(getAngularSpeed(), angle, inverted);
+                    PropellerController.getOrCreate(ship).updatePropellor(physPropId, data);
                 }
             }
         }
@@ -409,11 +409,11 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
 
     @Override
     public void attach(ControlledContraptionEntity contraption) {
-        if (!(contraption.getContraption() instanceof PropellorContraption cc))
+        if (!(contraption.getContraption() instanceof PropellerContraption cc))
             return;
 
         setChanged();
-        Direction facing = getBlockState().getValue(PropellorBearingBlock.FACING);
+        Direction facing = getBlockState().getValue(PropellerBearingBlock.FACING);
         BlockPos anchor = worldPosition.relative(facing, cc.offset + 1);
 
         this.movedContraption = contraption;
@@ -427,9 +427,9 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
 
     private void onDirectionChanged() {
         BlockState state = getBlockState();
-        PropellorBearingBlock.Direction previouslyPowered = state.getValue(PropellorBearingBlock.DIRECTION);
-        if (previouslyPowered == PropellorBearingBlock.Direction.PULL)
-            level.setBlock(getBlockPos(), state.cycle(PropellorBearingBlock.DIRECTION), 2);
+        PropellerBearingBlock.Direction previouslyPowered = state.getValue(PropellerBearingBlock.DIRECTION);
+        if (previouslyPowered == PropellerBearingBlock.Direction.PULL)
+            level.setBlock(getBlockPos(), state.cycle(PropellerBearingBlock.DIRECTION), 2);
         if (!running)
             return;
     }
@@ -439,15 +439,15 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
         return false;
     }
 
-    public PropellorBearingBlock.Direction getDirectonFromBlock() {
-        return PropellorBearingBlock.getDirectionof(getBlockState());
+    public PropellerBearingBlock.Direction getDirectonFromBlock() {
+        return PropellerBearingBlock.getDirectionof(getBlockState());
     }
 
-    protected void setBlockDirection(PropellorBearingBlock.Direction direction) {
-        PropellorBearingBlock.Direction inBlockState = getDirectonFromBlock();
+    protected void setBlockDirection(PropellerBearingBlock.Direction direction) {
+        PropellerBearingBlock.Direction inBlockState = getDirectonFromBlock();
         if (inBlockState == direction)
             return;
-        level.setBlockAndUpdate(worldPosition, getBlockState().setValue(PropellorBearingBlock.DIRECTION, direction));
+        level.setBlockAndUpdate(worldPosition, getBlockState().setValue(PropellerBearingBlock.DIRECTION, direction));
         notifyUpdate();
     }
 
@@ -484,7 +484,7 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
 
     @Override
     public BlockPos getStreamPos() {
-        return worldPosition.offset(this.getBlockState().getValue(PropellorBearingBlock.FACING).getNormal());
+        return worldPosition.offset(this.getBlockState().getValue(PropellerBearingBlock.FACING).getNormal());
     }
 
     @Override
@@ -512,7 +512,7 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
         Vector3d distance = new Vector3d(1, 1, 1);
 
         //facing Z
-        if (this.getBlockState().getValue(PropellorBearingBlock.FACING) == Direction.NORTH || this.getBlockState().getValue(PropellorBearingBlock.FACING) == Direction.SOUTH) {
+        if (this.getBlockState().getValue(PropellerBearingBlock.FACING) == Direction.NORTH || this.getBlockState().getValue(PropellerBearingBlock.FACING) == Direction.SOUTH) {
 
             sailPositions.forEach(pos -> {
                 if (Math.abs(pos.getX()) > Math.abs(this.worldPosition.getX())) {
@@ -527,7 +527,7 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
                 }
             });
 
-        } else if (this.getBlockState().getValue(PropellorBearingBlock.FACING) == Direction.WEST || this.getBlockState().getValue(PropellorBearingBlock.FACING) == Direction.EAST) {
+        } else if (this.getBlockState().getValue(PropellerBearingBlock.FACING) == Direction.WEST || this.getBlockState().getValue(PropellerBearingBlock.FACING) == Direction.EAST) {
             sailPositions.forEach(pos -> {
                 if (Math.abs(pos.getZ()) > Math.abs(this.worldPosition.getZ())) {
                     if (Math.abs(pos.getZ()) > distance.z) {
@@ -540,7 +540,7 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
                     }
                 }
             });
-        } else if (this.getBlockState().getValue(PropellorBearingBlock.FACING) == Direction.UP || this.getBlockState().getValue(PropellorBearingBlock.FACING) == Direction.DOWN) {
+        } else if (this.getBlockState().getValue(PropellerBearingBlock.FACING) == Direction.UP || this.getBlockState().getValue(PropellerBearingBlock.FACING) == Direction.DOWN) {
             sailPositions.forEach(pos -> {
                 if (Math.abs(pos.getZ()) > Math.abs(this.worldPosition.getZ())) {
                     if (Math.abs(pos.getZ()) > distance.x) {
@@ -581,14 +581,14 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
 
     public void assemble() {
         if (!(level.getBlockState(worldPosition)
-                .getBlock() instanceof PropellorBearingBlock))
+                .getBlock() instanceof PropellerBearingBlock))
             return;
 
-        Direction direction = getBlockState().getValue(PropellorBearingBlock.FACING);
-        PropellorContraption contraption;
+        Direction direction = getBlockState().getValue(PropellerBearingBlock.FACING);
+        PropellerContraption contraption;
 
         try {
-            contraption = PropellorContraption.assembleProp(level, worldPosition, direction);
+            contraption = PropellerContraption.assembleProp(level, worldPosition, direction);
             lastException = null;
         } catch (AssemblyException e) {
             lastException = e;
@@ -620,12 +620,12 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
         List<Vector3ic> sailVecs = sailPositions.stream().map(v -> (Vector3ic) VectorConversionsMCKt.toJOML(v)).toList();
         Vector3dc axis = VectorConversionsMCKt.toJOMLD(getBlockState().getValue(BlockStateProperties.FACING).getNormal());
         Vector3dc vecpos = VectorConversionsMCKt.toJOMLD(getBlockPos());
-        PropellorCreatePhysData data = new PropellorCreatePhysData(vecpos, axis, angle, getAngularSpeed(), sailVecs, inverted);
+        PropellerCreatePhysData data = new PropellerCreatePhysData(vecpos, axis, angle, getAngularSpeed(), sailVecs, inverted);
 
         if (!level.isClientSide) {
             final LoadedServerShip ship = VSGameUtilsKt.getShipObjectManagingPos((ServerLevel) level, getBlockPos());
             if (ship != null) {
-                physPropId = PropellorController.getOrCreate(ship).addPropellor(data);
+                physPropId = PropellerController.getOrCreate(ship).addPropellor(data);
             }
         }
         sendData();
@@ -677,7 +677,7 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
             if (!level.isClientSide) {
                 final LoadedServerShip ship = VSGameUtilsKt.getShipObjectManagingPos((ServerLevel) level, getBlockPos());
                 if (ship != null) {
-                    PropellorController.getOrCreate(ship).removePropellor(physPropId);
+                    PropellerController.getOrCreate(ship).removePropellor(physPropId);
                 }
             }
         }
@@ -713,7 +713,7 @@ public class PropellorBearingBlockEntity extends KineticTileEntity implements Pr
 
     @Override
     public boolean isAttachedTo(AbstractContraptionEntity contraption) {
-        if (!(contraption.getContraption() instanceof PropellorContraption cc))
+        if (!(contraption.getContraption() instanceof PropellerContraption cc))
             return false;
 
         return this.movedContraption == contraption;

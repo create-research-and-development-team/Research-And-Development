@@ -1,4 +1,4 @@
-package org.valkyrienskies.vscreate.content.contraptions.propellor.stream;
+package org.valkyrienskies.vscreate.content.contraptions.propeller.stream;
 
 import com.simibubi.create.foundation.config.AllConfigs;
 import com.simibubi.create.foundation.config.CKinetics;
