@@ -32,15 +32,13 @@ public class VSCreateMod {
     public static void init() {
         VSCreateContraptions.init();
         VSCreatePackets.init();
+    }
+
+    public static void initClient() {
         skipSwingItems.addAll(List.of(
                 VSCreateItems.HANDHELD_MECHANICAL_DRILL.get(),
                 VSCreateItems.HANDHELD_MECHANICAL_SAW.get()
         ));
-    }
-
-    public static void initClient() {
-
-
     }
 
     private static final Set<Item> skipSwingItems = new HashSet<>();
