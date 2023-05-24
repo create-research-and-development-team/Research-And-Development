@@ -4,7 +4,7 @@ import com.simibubi.create.content.curiosities.armor.BackTankUtil;
 import com.simibubi.create.foundation.utility.AbstractBlockBreakQueue;
 import com.simibubi.create.foundation.utility.TreeCutter;
 import com.simibubi.create.foundation.utility.VecHelper;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -17,20 +17,18 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.lwjgl.system.NonnullDefault;
-import org.valkyrienskies.vscreate.util.BacktankDamageHandler;
+import org.valkyrienskies.vscreate.util.SimpleBackTankHelper;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 
 @NonnullDefault
 public class HandheldMechanicalSaw extends AxeItem {
     public static final int MAX_DAMAGE = 2048;
-    private static final int MAX_BACKTANK_USES = 1000;
+    public static final int MAX_BACKTANK_USES = 1000;
 
     public HandheldMechanicalSaw(Tier tier, float attackBonus, float attackSpeedBonus, Properties properties) {
-        super(tier, attackBonus, attackSpeedBonus, ((FabricItemSettings)properties)
-                .maxDamage(MAX_DAMAGE)
-                .customDamage(new BacktankDamageHandler(MAX_BACKTANK_USES))
-        );
+        super(tier, attackBonus, attackSpeedBonus, SimpleBackTankHelper.getProperties(properties, MAX_DAMAGE, MAX_BACKTANK_USES));
     }
 
     @Override
@@ -70,5 +68,14 @@ public class HandheldMechanicalSaw extends AxeItem {
     @Override
     public int getBarColor(ItemStack stack) {
         return BackTankUtil.getBarColor(stack, MAX_BACKTANK_USES);
+    }
+
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        return getItemDamage(stack, amount, entity, onBroken);
+    }
+
+    @ExpectPlatform
+    public static <T extends LivingEntity> int getItemDamage(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        return amount;
     }
 }

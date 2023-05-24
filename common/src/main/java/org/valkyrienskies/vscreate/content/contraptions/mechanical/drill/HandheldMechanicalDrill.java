@@ -1,7 +1,7 @@
 package org.valkyrienskies.vscreate.content.contraptions.mechanical.drill;
 
 import com.simibubi.create.content.curiosities.armor.BackTankUtil;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.stats.Stats;
@@ -16,16 +16,17 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import org.lwjgl.system.NonnullDefault;
-import org.valkyrienskies.vscreate.util.BacktankDamageHandler;
 import org.valkyrienskies.vscreate.util.BoundingBoxHelper;
+import org.valkyrienskies.vscreate.util.SimpleBackTankHelper;
 
 import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 @NonnullDefault
 public class HandheldMechanicalDrill extends PickaxeItem {
     // Constants
-    private static final int MAX_DAMAGE = 2048;
-    private static final int MAX_BACKTANK_USES = 1000;
+    protected static final int MAX_DAMAGE = 2048;
+    protected static final int MAX_BACKTANK_USES = 1000;
 
     // Mining Constants
     private static final int MINING_ANGLE_LIMIT = 55;
@@ -37,10 +38,7 @@ public class HandheldMechanicalDrill extends PickaxeItem {
     private static final int CROUCH_MINE_DEPTH = 3;
 
     public HandheldMechanicalDrill(Tier tier, int attackBonus, float attackSpeedBonus, Properties properties) {
-        super(tier, attackBonus, attackSpeedBonus, ((FabricItemSettings)properties)
-                .maxDamage(MAX_DAMAGE)
-                .customDamage(new BacktankDamageHandler(MAX_BACKTANK_USES))
-        );
+        super(tier, attackBonus, attackSpeedBonus, SimpleBackTankHelper.getProperties(properties, MAX_DAMAGE, MAX_BACKTANK_USES));
     }
 
     @Override
@@ -145,5 +143,14 @@ public class HandheldMechanicalDrill extends PickaxeItem {
     @Override
     public int getBarColor(ItemStack stack) {
         return BackTankUtil.getBarColor(stack, MAX_BACKTANK_USES);
+    }
+
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        return getItemDamage(stack, amount, entity, onBroken);
+    }
+
+    @ExpectPlatform
+    public static <T extends LivingEntity> int getItemDamage(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        return amount;
     }
 }
