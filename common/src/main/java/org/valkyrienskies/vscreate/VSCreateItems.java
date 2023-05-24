@@ -39,10 +39,10 @@ public class VSCreateItems {
                 .register();
     }
 
-    private static final ItemEntry<Item> TITANIUM_INGOT = REGISTRATE.item("titanium_ingot", Item::new)
+    public static final ItemEntry<Item> TITANIUM_INGOT = REGISTRATE.item("titanium_ingot", Item::new)
             .register();
 
-    private static final ItemEntry<Item> TITANIUM_SHEET = REGISTRATE.item("titanium_sheet", Item::new)
+    public static final ItemEntry<Item> TITANIUM_SHEET = REGISTRATE.item("titanium_sheet", Item::new)
             .register();
 
     public static final ItemEntry<SequencedAssemblyItem>

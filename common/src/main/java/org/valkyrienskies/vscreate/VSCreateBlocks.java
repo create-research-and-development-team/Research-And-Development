@@ -24,6 +24,7 @@ public class VSCreateBlocks {
 
     public static final BlockEntry<Block> TITANIUM_BLOCK = REGISTRATE.block("titanium_block", Block::new)
             .register();
+
     public static final BlockEntry<PropellerBearingBlock> PROPELLER_BEARING =
             REGISTRATE.block("propeller_bearing", PropellerBearingBlock::new)
                     .transform(axeOrPickaxe())

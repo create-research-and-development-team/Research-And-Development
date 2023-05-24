@@ -26,6 +26,7 @@ public class VSCreateModFabric implements ModInitializer {
     }
 
     public static void gatherData(FabricDataGenerator gen, ExistingFileHelper helper) {
+        gen.addProvider(new VSCreateLang(gen));
         gen.addProvider(VSCreateFabricSounds.provider(gen));
     }
 

@@ -9,7 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.valkyrienskies.vscreate.content.contraptions.propeller.PropellerBearingBlockEntity;
-import org.valkyrienskies.vscreate.integration.cc.*;
+import org.valkyrienskies.vscreate.integration.cc.PropellerBearingPeripheral;
 
 public class VSCreateFabricPeripheralProviders {
     public static void register() {
