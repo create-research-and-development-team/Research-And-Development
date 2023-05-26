@@ -21,6 +21,9 @@
   "icon": "assets/vscreate/icon.png",
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "org.valkyrienskies.vscreate.fabric.VSCreateFabricData"
+    ],
     "main": [
       "org.valkyrienskies.vscreate.fabric.VSCreateModFabric"
     ],

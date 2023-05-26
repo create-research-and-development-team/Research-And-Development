@@ -36,3 +36,23 @@ jobs:
         uses: ValkyrienSkies/Minecraft-Architectury-Testing@v1.9
         with:
           serverType: ${{ matrix.serverType }}
+
+  test-datagen:
+    name: Test Datagen
+    strategy:
+      matrix:
+        serverType: [ 'fabric' ] # TODO: Add forge to this once forge actually runs at all
+    runs-on: ubuntu-latest
+    timeout-minutes: 20 # Fail after 20 minutes
+    steps:
+      - name: Shallow Clone (--recurse-submodules)
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Setup Gradle & Caches
+        uses: "./.github/actions/setup-gradle"
+
+      - name: Test Datagen
+        shell: sh
+        run: ./gradlew runDatagenClient
