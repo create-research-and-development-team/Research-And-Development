@@ -1,11 +1,12 @@
-package org.valkyrienskies.vscreate.content.contraptions.mechanical.saw.forge;
+package org.valkyrienskies.vscreate.content.contraptions.tools.saw.forge;
 
-import com.simibubi.create.content.curiosities.armor.BackTankUtil;
+
+import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import org.lwjgl.system.NonnullDefault;
-import org.valkyrienskies.vscreate.content.contraptions.mechanical.saw.HandheldMechanicalSaw;
+import org.valkyrienskies.vscreate.content.contraptions.tools.saw.HandheldMechanicalSaw;
 
 import java.util.function.Consumer;
 
@@ -16,7 +17,7 @@ public class HandheldMechanicalSawImpl extends HandheldMechanicalSaw {
     }
 
     public static <T extends LivingEntity> int getItemDamage(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
-        if(BackTankUtil.canAbsorbDamage(entity, MAX_BACKTANK_USES)) {
+        if(BacktankUtil.canAbsorbDamage(entity, MAX_BACKTANK_USES)) {
             return 0;
         } else {
             return amount;

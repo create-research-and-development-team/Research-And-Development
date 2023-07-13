@@ -1,6 +1,6 @@
-package org.valkyrienskies.vscreate.content.contraptions.mechanical.saw;
+package org.valkyrienskies.vscreate.content.contraptions.tools.saw;
 
-import com.simibubi.create.content.curiosities.armor.BackTankUtil;
+import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.utility.AbstractBlockBreakQueue;
 import com.simibubi.create.foundation.utility.TreeCutter;
 import com.simibubi.create.foundation.utility.VecHelper;
@@ -59,15 +59,15 @@ public class HandheldMechanicalSaw extends AxeItem {
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
-        return BackTankUtil.isBarVisible(stack, MAX_BACKTANK_USES);
+        return BacktankUtil.isBarVisible(stack, MAX_BACKTANK_USES);
     }
     @Override
     public int getBarWidth(ItemStack stack) {
-        return BackTankUtil.getBarWidth(stack, MAX_BACKTANK_USES);
+        return BacktankUtil.getBarWidth(stack, MAX_BACKTANK_USES);
     }
     @Override
     public int getBarColor(ItemStack stack) {
-        return BackTankUtil.getBarColor(stack, MAX_BACKTANK_USES);
+        return BacktankUtil.getBarColor(stack, MAX_BACKTANK_USES);
     }
 
     public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {

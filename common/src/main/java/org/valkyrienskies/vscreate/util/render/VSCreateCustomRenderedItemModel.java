@@ -6,7 +6,7 @@ import org.valkyrienskies.vscreate.VSCreateMod;
 
 public abstract class VSCreateCustomRenderedItemModel extends CustomRenderedItemModel {
     public VSCreateCustomRenderedItemModel(BakedModel template, String basePath) {
-        super(template, VSCreateMod.MOD_ID, basePath);
+        super(template);
     }
 
 }

@@ -1,6 +1,6 @@
-package org.valkyrienskies.vscreate.content.contraptions.mechanical.drill;
+package org.valkyrienskies.vscreate.content.contraptions.tools.drill;
 
-import com.simibubi.create.content.curiosities.armor.BackTankUtil;
+import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -134,15 +134,15 @@ public class HandheldMechanicalDrill extends PickaxeItem {
 
     @Override
     public boolean isBarVisible(ItemStack stack) {
-        return BackTankUtil.isBarVisible(stack, MAX_BACKTANK_USES);
+        return BacktankUtil.isBarVisible(stack, MAX_BACKTANK_USES);
     }
     @Override
     public int getBarWidth(ItemStack stack) {
-        return BackTankUtil.getBarWidth(stack, MAX_BACKTANK_USES);
+        return BacktankUtil.getBarWidth(stack, MAX_BACKTANK_USES);
     }
     @Override
     public int getBarColor(ItemStack stack) {
-        return BackTankUtil.getBarColor(stack, MAX_BACKTANK_USES);
+        return BacktankUtil.getBarColor(stack, MAX_BACKTANK_USES);
     }
 
     public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {

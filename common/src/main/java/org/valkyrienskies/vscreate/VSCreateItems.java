@@ -1,14 +1,15 @@
 package org.valkyrienskies.vscreate;
 
-import com.simibubi.create.content.contraptions.itemAssembly.SequencedAssemblyItem;
+
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
-import org.valkyrienskies.vscreate.content.contraptions.mechanical.drill.HandheldMechanicalDrill;
-import org.valkyrienskies.vscreate.content.contraptions.mechanical.saw.HandheldMechanicalSaw;
+import org.valkyrienskies.vscreate.content.contraptions.tools.drill.HandheldMechanicalDrill;
+import org.valkyrienskies.vscreate.content.contraptions.tools.saw.HandheldMechanicalSaw;
 
 
-import static com.simibubi.create.content.AllSections.MATERIALS;
+
 import static org.valkyrienskies.vscreate.VSCreateMod.REGISTRATE;
 
 public class VSCreateItems {
@@ -26,9 +27,7 @@ public class VSCreateItems {
                             (p) -> new HandheldMechanicalDrill(Tiers.DIAMOND, 1, -2.8f, p))
                     .register();
 
-    static {
-        REGISTRATE.startSection(MATERIALS);
-    }
+
 
     public static final ItemEntry<Item>
 

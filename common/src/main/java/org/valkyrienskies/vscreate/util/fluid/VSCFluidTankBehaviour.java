@@ -1,8 +1,7 @@
 package org.valkyrienskies.vscreate.util.fluid;
 
-import com.simibubi.create.foundation.tileEntity.SmartTileEntity;
-import com.simibubi.create.foundation.tileEntity.TileEntityBehaviour;
-import com.simibubi.create.foundation.tileEntity.behaviour.BehaviourType;
+
+import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 import com.simibubi.create.foundation.utility.NBTHelper;
 import com.simibubi.create.foundation.utility.animation.LerpedFloat;
 import net.minecraft.nbt.CompoundTag;
@@ -18,7 +17,7 @@ import java.util.function.Consumer;
 public abstract class VSCFluidTankBehaviour extends TileEntityBehaviour {
 
     public static final BehaviourType<VSCFluidTankBehaviour>
-            TYPE = new BehaviourType<>(), INPUT = new BehaviourType<>("Input"), OUTPUT = new BehaviourType<>("Output");
+            TYPE = new BehaviourType(), INPUT = new BehaviourType("Input"), OUTPUT = new BehaviourType("Output");
 
     private static final int SYNC_RATE = 8;
 

@@ -1,6 +1,6 @@
 package org.valkyrienskies.vscreate.util.fabric;
 
-import com.simibubi.create.content.curiosities.armor.BackTankUtil;
+import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.world.entity.LivingEntity;
@@ -24,7 +24,7 @@ public class SimpleBackTankHelperImpl {
 
         @Override
         public int damage(ItemStack stack, int amount, LivingEntity entity, Consumer<LivingEntity> breakCallback) {
-            if(BackTankUtil.canAbsorbDamage(entity, this.maxBacktankUses)) return 0;
+            if(BacktankUtil.canAbsorbDamage(entity, this.maxBacktankUses)) return 0;
             return amount;
         }
     }

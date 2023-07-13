@@ -1,7 +1,7 @@
 package org.valkyrienskies.vscreate;
 
-import com.simibubi.create.content.contraptions.particle.AirFlowParticleData;
-import com.simibubi.create.content.contraptions.particle.ICustomParticleData;
+import com.simibubi.create.foundation.particle.AirParticleData;
+import com.simibubi.create.foundation.particle.ICustomParticleData;
 import com.simibubi.create.foundation.utility.Lang;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 
 public enum VSCreateParticles {
 
-    PROP_STREAM(AirFlowParticleData::new);
+    PROP_STREAM(AirParticleData::new);
     private final ParticleEntry<?> entry;
 
     <D extends ParticleOptions> VSCreateParticles(Supplier<? extends ICustomParticleData<D>> typeFactory) {

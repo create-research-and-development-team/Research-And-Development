@@ -1,7 +1,6 @@
 package org.valkyrienskies.vscreate.platform;
 
-import com.simibubi.create.foundation.tileEntity.SmartTileEntity;
-import com.simibubi.create.foundation.tileEntity.behaviour.BehaviourType;
+import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;

@@ -21,7 +21,5 @@ public class SharedValues {
     }
 
     @ExpectPlatform
-    public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer<?>> customRenderedRegisterer() {
-        throw new AssertionError();
-    }
+    public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer> customRenderedRegisterer() {throw new AssertionError();}
 }

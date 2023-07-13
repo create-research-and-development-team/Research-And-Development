@@ -1,7 +1,8 @@
 package org.valkyrienskies.vscreate.util;
 
-import com.simibubi.create.content.curiosities.zapper.ShootGadgetPacket;
-import com.simibubi.create.content.curiosities.zapper.ShootableGadgetRenderHandler;
+
+import com.simibubi.create.content.equipment.zapper.ShootGadgetPacket;
+import com.simibubi.create.content.equipment.zapper.ShootableGadgetRenderHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
