@@ -1,7 +1,9 @@
 package org.valkyrienskies.vscreate.util.fluid;
 
 
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.utility.NBTHelper;
 import com.simibubi.create.foundation.utility.animation.LerpedFloat;
 import net.minecraft.nbt.CompoundTag;
@@ -14,7 +16,7 @@ import org.valkyrienskies.vscreate.platform.PlatformUtils;
 
 import java.util.function.Consumer;
 
-public abstract class VSCFluidTankBehaviour extends TileEntityBehaviour {
+public abstract class VSCFluidTankBehaviour extends BlockEntityBehaviour {
 
     public static final BehaviourType<VSCFluidTankBehaviour>
             TYPE = new BehaviourType(), INPUT = new BehaviourType("Input"), OUTPUT = new BehaviourType("Output");
@@ -30,11 +32,11 @@ public abstract class VSCFluidTankBehaviour extends TileEntityBehaviour {
 
     private BehaviourType<VSCFluidTankBehaviour> behaviourType;
 
-    public static VSCFluidTankBehaviour single(SmartTileEntity te, long capacity) {
+    public static VSCFluidTankBehaviour single(SmartBlockEntity te, long capacity) {
         return PlatformUtils.cwFluidTank(TYPE, te, 1, capacity, false);
     }
 
-    protected VSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartTileEntity te, int tanks,
+    protected VSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks,
                                     long tankCapacity, boolean enforceVariety) {
         super(te);
         insertionAllowed = true;
@@ -121,8 +123,8 @@ public abstract class VSCFluidTankBehaviour extends TileEntityBehaviour {
 
     protected void updateFluids() {
         fluidUpdateCallback.run();
-        tileEntity.sendData();
-        tileEntity.setChanged();
+        blockEntity.sendData();
+        blockEntity.setChanged();
     }
 
     @Override
@@ -188,12 +190,12 @@ public abstract class VSCFluidTankBehaviour extends TileEntityBehaviour {
         }
 
         public void onFluidChanged() {
-            if (!tileEntity.hasLevel())
+            if (!blockEntity.hasLevel())
                 return;
             fluidLevel.chase(tank.getCurrentAmount() / (float) tank.getTotalCapacity(), .25, LerpedFloat.Chaser.EXP);
             if (!getWorld().isClientSide)
                 sendDataLazily();
-            if (tileEntity.isVirtual() && !tank.isEmpty())
+            if (blockEntity.isVirtual() && !tank.isEmpty())
                 renderedFluid = tank.getFluidType();
         }
 

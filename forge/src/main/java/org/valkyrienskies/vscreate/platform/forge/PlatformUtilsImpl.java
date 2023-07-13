@@ -1,6 +1,5 @@
 package org.valkyrienskies.vscreate.platform.forge;
 
-import com.simibubi.create.foundation.tileEntity.SmartTileEntity;
 import com.simibubi.create.foundation.tileEntity.behaviour.BehaviourType;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
@@ -123,7 +122,7 @@ public class PlatformUtilsImpl {
 //    public static BlockEntityType<? extends CombustionEngineBlockEntity> getCombustionEngineTileEntityType() {throw new AssertionError();}
 
 
-    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartTileEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
+    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
         return new ForgeVSCFluidTankBehaviour(type, te, tanks, tankCapacity, enforceVariety);
     }
 

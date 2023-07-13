@@ -1,5 +1,6 @@
 package org.valkyrienskies.vscreate.platform;
 
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.network.protocol.Packet;
@@ -23,7 +24,7 @@ public class PlatformUtils {
         throw new AssertionError();
     }
     @ExpectPlatform
-    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartTileEntity te, int tanks, long tankCapacity, boolean enforceVariety) {throw new AssertionError();}
+    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {throw new AssertionError();}
     @ExpectPlatform
     public static boolean isModLoaded(String modId) {throw new AssertionError();}
 }

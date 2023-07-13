@@ -1,6 +1,7 @@
 package org.valkyrienskies.vscreate.util.builder;
 
 import com.simibubi.create.CreateClient;
+import com.simibubi.create.foundation.item.render.CustomRenderedItemModel;
 import com.simibubi.create.foundation.item.render.CustomRenderedItemModelRenderer;
 import com.simibubi.create.foundation.utility.RegisteredObjects;
 import com.tterrag.registrate.builders.ItemBuilder;
@@ -33,9 +34,8 @@ public class VSCreateRegistrate {
     @Environment(EnvType.CLIENT)
     private static void registerCustomRenderedItem(VSCItem entry, CustomRenderedItemModelRenderer renderer) {
         CreateClient.MODEL_SWAPPER.getCustomItemModels()
-                .register(RegisteredObjects.getKeyOrThrow(entry), renderer::render);
+                .register(RegisteredObjects.getKeyOrThrow(entry), CustomRenderedItemModel::new);
     }
-
     @Environment(EnvType.CLIENT)
     private record CustomRendererRegistrationHelper(
             Supplier<Supplier<CustomRenderedItemModelRenderer>> supplier) implements NonNullConsumer<VSCItem> {

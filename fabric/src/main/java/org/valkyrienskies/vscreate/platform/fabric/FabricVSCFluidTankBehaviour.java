@@ -1,7 +1,6 @@
 package org.valkyrienskies.vscreate.platform.fabric;
 
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
-import com.simibubi.create.foundation.tileEntity.SmartTileEntity;
 import com.simibubi.create.foundation.tileEntity.behaviour.BehaviourType;
 import io.github.fabricators_of_create.porting_lib.util.FluidStack;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -15,7 +14,7 @@ import java.util.function.Consumer;
 public class FabricVSCFluidTankBehaviour extends VSCFluidTankBehaviour {
     private InternalFluidHandler capability;
 
-    protected FabricVSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartTileEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
+    protected FabricVSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
         super(type, te, tanks, tankCapacity, enforceVariety);
         Storage<FluidVariant>[] handlers = new Storage[tanks];
         for (int i = 0; i < tanks; i++) {

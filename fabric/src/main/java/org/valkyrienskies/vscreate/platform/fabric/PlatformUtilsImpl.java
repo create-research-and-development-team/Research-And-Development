@@ -1,7 +1,7 @@
 package org.valkyrienskies.vscreate.platform.fabric;
 
+
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
-import com.simibubi.create.foundation.tileEntity.SmartTileEntity;
 import com.simibubi.create.foundation.tileEntity.behaviour.BehaviourType;
 import com.simibubi.create.foundation.tileEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import io.github.fabricators_of_create.porting_lib.entity.ExtraSpawnDataEntity;
@@ -115,7 +115,7 @@ public class PlatformUtilsImpl {
         tank.getPrimaryHandler().getFluid().shrink(amount);
     }
 
-    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartTileEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
+    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmarBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
         return new FabricVSCFluidTankBehaviour(type, te, tanks, tankCapacity, enforceVariety);
     }
 

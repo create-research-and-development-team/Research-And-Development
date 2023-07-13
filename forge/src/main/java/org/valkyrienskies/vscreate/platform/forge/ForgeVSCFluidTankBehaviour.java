@@ -1,7 +1,6 @@
 package org.valkyrienskies.vscreate.platform.forge;
 
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
-import com.simibubi.create.foundation.tileEntity.SmartTileEntity;
 import com.simibubi.create.foundation.tileEntity.behaviour.BehaviourType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.util.LazyOptional;
@@ -15,7 +14,7 @@ import java.util.function.Consumer;
 public class ForgeVSCFluidTankBehaviour extends VSCFluidTankBehaviour {
     private LazyOptional<? extends IFluidHandler> capability;
 
-    protected ForgeVSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartTileEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
+    protected ForgeVSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
         super(type, te, tanks, tankCapacity, enforceVariety);
 
         IFluidHandler[] handlers = new IFluidHandler[tanks];
