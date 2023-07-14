@@ -20,6 +20,9 @@ public class sculkthruster_block extends Block {
 
     }
 
+
+    // stepOn is dogshit, but it's gonna use sculk shit eventually anyway
+    // so it doesn't matter
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
 
