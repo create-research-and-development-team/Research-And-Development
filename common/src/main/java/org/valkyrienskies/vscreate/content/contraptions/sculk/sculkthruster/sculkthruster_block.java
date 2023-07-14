@@ -27,7 +27,7 @@ public class sculkthruster_block extends Block {
             cooldown = 10;
             Vec3 startPos = entity.position();
             for (int i = 0; i < 180; i += 2) {
-                level.addParticle(ParticleTypes.END_ROD, startPos.x, startPos.y + 0.1, startPos.z, Math.cos(i) * 0.2 * Math.random(), 0.1, Math.sin(i) * 0.2 * Math.random());
+                level.addParticle(ParticleTypes.END_ROD, startPos.x , startPos.y - 0.1, startPos.z, Math.cos(i) * 0.2 * Math.random(), 0.1, Math.sin(i) * 0.2 * Math.random());
             }
 
             entity.push(0, 2, 0);
@@ -42,7 +42,7 @@ public class sculkthruster_block extends Block {
     // make a cooldown. Ticking shit bad for lag and all that
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
-        System.out.println(cooldown);
+
         if (cooldown>0) {
             cooldown-=1;
         }
