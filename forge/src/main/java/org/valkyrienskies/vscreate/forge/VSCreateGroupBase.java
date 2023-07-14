@@ -1,6 +1,6 @@
 package org.valkyrienskies.vscreate.forge;
 
-import com.simibubi.create.content.AllSections;
+
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -58,24 +58,13 @@ public abstract class VSCreateGroupBase extends CreativeModeTab {
     }
 
     protected Collection<RegistryEntry<Block>> getBlocks() {
-        return getSections().stream()
-                .flatMap(s -> VSCreateMod.REGISTRATE
-                        .getAll(s, Registry.BLOCK_REGISTRY)
-                        .stream())
-                .collect(Collectors.toList());
+        return null;
     }
 
     protected Collection<RegistryEntry<Item>> getItems() {
-        return getSections().stream()
-                .flatMap(s -> VSCreateMod.REGISTRATE
-                        .getAll(s, Registry.ITEM_REGISTRY)
-                        .stream())
-                .collect(Collectors.toList());
+        return null;
     }
 
-    protected EnumSet<AllSections> getSections() {
-        return EnumSet.allOf(AllSections.class);
-    }
 }
 //    public static final CreativeModeTab GROUP = new CreativeModeTab(MOD_ID) {
 //        @Override

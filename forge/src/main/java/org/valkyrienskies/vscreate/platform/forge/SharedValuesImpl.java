@@ -22,7 +22,7 @@ public class SharedValuesImpl {
         return CHANNEL;
     }
 
-    public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer<?>> customRenderedRegisterer() {
+    public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer> customRenderedRegisterer() {
         return (item, renderer) -> ((ItemAccessor) item).setRenderProperties(SimpleCustomRenderer.create(item, renderer));
     }
 

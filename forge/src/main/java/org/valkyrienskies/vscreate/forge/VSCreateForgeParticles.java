@@ -1,6 +1,7 @@
 package org.valkyrienskies.vscreate.forge;
 
-import com.simibubi.create.content.contraptions.particle.ICustomParticleData;
+
+import com.simibubi.create.foundation.particle.ICustomParticleData;
 import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleEngine;

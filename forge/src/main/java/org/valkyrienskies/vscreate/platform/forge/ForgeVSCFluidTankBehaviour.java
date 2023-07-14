@@ -1,7 +1,8 @@
 package org.valkyrienskies.vscreate.platform.forge;
 
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 import com.simibubi.create.foundation.fluid.CombinedTankWrapper;
-import com.simibubi.create.foundation.tileEntity.behaviour.BehaviourType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
@@ -25,6 +26,8 @@ public class ForgeVSCFluidTankBehaviour extends VSCFluidTankBehaviour {
 
         this.capability = LazyOptional.of(() -> new InternalFluidHandler(handlers, enforceVariety));
     }
+
+
 
     @Override
     protected VSCFluidTank makeFluidTank(long capacity, Consumer<Fluid> updateCallback) {

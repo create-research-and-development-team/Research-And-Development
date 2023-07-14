@@ -1,6 +1,6 @@
 package org.valkyrienskies.vscreate.forge;
 
-import com.simibubi.create.content.AllSections;
+
 import org.valkyrienskies.vscreate.VSCreateMod;
 //import org.valkyrienskies.clockwork.forge.content.contraptions.combustion_engine.ForgeCombustionEngineBlock;
 
@@ -15,9 +15,7 @@ public class VSCreateForgeBlocks {
 
     //////// Propellor Bearing ////////
 
-    static {
-        REGISTRATE.startSection(AllSections.KINETICS);
-    }
+
 
 //    public static final BlockEntry<ForgeCombustionEngineBlock> COMBUSTION_ENGINE =
 //            REGISTRATE.block("combustion_engine", ForgeCombustionEngineBlock::new)
