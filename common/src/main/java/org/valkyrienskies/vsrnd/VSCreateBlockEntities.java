@@ -22,7 +22,7 @@ public class VSCreateBlockEntities {
             .register();
 
     public static final BlockEntityEntry<CocoonBlockEntity> COCOON_BLOCK_ENTITY = Create.REGISTRATE
-            .blockEntity("cacoon_entity", CocoonBlockEntity::new)
+            .blockEntity("cocoon_entity", CocoonBlockEntity::new)
             .instance(() -> CacoonBlockEntityInstance::new, false)
             .validBlocks(VSCreateBlocks.COCOON)
             .renderer(() -> CocoonBlockEntityRenderer::new)

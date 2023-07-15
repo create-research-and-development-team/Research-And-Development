@@ -54,7 +54,7 @@ public class VSCreateBlocks {
             .build()
             .register();
 
-    public static final BlockEntry<CocoonBlock> COCOON = REGISTRATE.block("cacoon", CocoonBlock::new)
+    public static final BlockEntry<CocoonBlock> COCOON = REGISTRATE.block("cocoon", CocoonBlock::new)
             .initialProperties(SharedProperties::stone)
             .properties(p -> p.color(MaterialColor.METAL))
             .transform(BlockStressDefaults.setImpact(1))
