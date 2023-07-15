@@ -1,4 +1,4 @@
-package org.valkyrienskies.vscreate.content.contraptions.sculk.sculkthruster;
+package org.valkyrienskies.vsrnd.content.sculk.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -10,11 +10,11 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.Random;
 
-public class sculkthruster_block extends Block {
+public class SculkThrusterBlock extends Block {
 
     public int cooldown = 0;
 
-    public sculkthruster_block(Properties properties) {
+    public SculkThrusterBlock(Properties properties) {
 
         super(properties);
 
