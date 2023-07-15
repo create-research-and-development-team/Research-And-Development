@@ -18,7 +18,7 @@ import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlock;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankGenerator;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
-import org.valkyrienskies.vsrnd.content.sculk.blocks.Cacoon.CacoonBlock;
+import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
 import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
@@ -54,7 +54,7 @@ public class VSCreateBlocks {
             .build()
             .register();
 
-    public static final BlockEntry<CacoonBlock> CACOON = REGISTRATE.block("cacoon", CacoonBlock::new)
+    public static final BlockEntry<CocoonBlock> COCOON = REGISTRATE.block("cacoon", CocoonBlock::new)
             .initialProperties(SharedProperties::stone)
             .properties(p -> p.color(MaterialColor.METAL))
             .transform(BlockStressDefaults.setImpact(1))

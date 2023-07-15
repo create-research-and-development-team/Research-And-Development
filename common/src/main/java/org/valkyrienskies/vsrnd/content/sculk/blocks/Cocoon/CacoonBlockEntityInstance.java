@@ -1,22 +1,17 @@
-package org.valkyrienskies.vsrnd.content.sculk.blocks.Cacoon;
+package org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon;
 
 import com.jozufozu.flywheel.api.Instancer;
 import com.jozufozu.flywheel.api.MaterialManager;
-import com.jozufozu.flywheel.util.transform.TransformStack;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
-import com.simibubi.create.AllPartialModels;
 
 import com.simibubi.create.content.kinetics.base.SingleRotatingInstance;
 import com.simibubi.create.content.kinetics.base.flwdata.RotatingData;
 
 
-import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 
-public class CacoonBlockEntityInstance  extends SingleRotatingInstance<CacoonBlockEntity> {
-    public CacoonBlockEntityInstance(MaterialManager materialManager, CacoonBlockEntity blockEntity) {
+public class CacoonBlockEntityInstance  extends SingleRotatingInstance<CocoonBlockEntity> {
+    public CacoonBlockEntityInstance(MaterialManager materialManager, CocoonBlockEntity blockEntity) {
         super(materialManager, blockEntity);
     }
     protected RotatingData additionalShaft;
@@ -69,7 +64,7 @@ public class CacoonBlockEntityInstance  extends SingleRotatingInstance<CacoonBlo
         //super.update();
         if (additionalShaft != null) {
             updateRotation(additionalShaft);
-            additionalShaft.setRotationOffset(CacoonBlockEntityRenderer.getShaftAngleOffset(axis, pos));
+            additionalShaft.setRotationOffset(CocoonBlockEntityRenderer.getShaftAngleOffset(axis, pos));
         }
     }
 

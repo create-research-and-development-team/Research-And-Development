@@ -1,26 +1,20 @@
-package org.valkyrienskies.vsrnd.content.sculk.blocks.Cacoon;
+package org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon;
 
 import java.util.function.Predicate;
 
 import com.google.common.base.Predicates;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllShapes;
-import com.simibubi.create.content.decoration.encasing.EncasableBlock;
-import com.simibubi.create.content.decoration.girder.GirderEncasedShaftBlock;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
-import com.simibubi.create.content.kinetics.simpleRelays.AbstractShaftBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.AbstractSimpleShaftBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.ShaftBlock;
 import com.simibubi.create.content.kinetics.steamEngine.PoweredShaftBlock;
-import com.simibubi.create.foundation.placement.IPlacementHelper;
-import com.simibubi.create.foundation.placement.PlacementHelpers;
 import com.simibubi.create.foundation.placement.PlacementOffset;
 import com.simibubi.create.foundation.placement.PoleHelper;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -37,8 +31,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.valkyrienskies.vsrnd.VSCreateBlockEntities;
 import org.valkyrienskies.vsrnd.VSCreateBlocks;
 
-public class CacoonBlock extends AbstractSimpleShaftBlock {
-    public CacoonBlock(Properties properties) {
+public class CocoonBlock extends AbstractSimpleShaftBlock {
+    public CocoonBlock(Properties properties) {
         super(properties);
     }
 
@@ -50,12 +44,12 @@ public class CacoonBlock extends AbstractSimpleShaftBlock {
 
     @Override
     public BlockEntityType<? extends KineticBlockEntity> getBlockEntityType() {
-        return VSCreateBlockEntities.CACOON_BLOCK_ENTITY.get();
+        return VSCreateBlockEntities.COCOON_BLOCK_ENTITY.get();
     }
 
 
     public static boolean isShaft(BlockState state) {
-        return VSCreateBlocks.CACOON.has(state);
+        return VSCreateBlocks.COCOON.has(state);
     }
 
     @Override
@@ -103,7 +97,7 @@ public class CacoonBlock extends AbstractSimpleShaftBlock {
 
         @Override
         public Predicate<BlockState> getStatePredicate() {
-            return Predicates.or(AllBlocks.SHAFT::has, AllBlocks.POWERED_SHAFT::has, VSCreateBlocks.CACOON::has);
+            return Predicates.or(AllBlocks.SHAFT::has, AllBlocks.POWERED_SHAFT::has, VSCreateBlocks.COCOON::has);
         }
 
         @Override
