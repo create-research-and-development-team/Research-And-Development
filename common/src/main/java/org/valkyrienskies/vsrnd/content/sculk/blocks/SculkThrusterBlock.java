@@ -40,8 +40,9 @@ public class SculkThrusterBlock extends Block {
     }
 
 
-    // TODO: Make Cooldown less shit, I refuse to believe this is the best way to
-    // make a cooldown. Ticking shit bad for lag and all that
+    // TODO: Make Cooldown less shit
+    // I refuse to believe this is the best way to make a cooldown.
+    // Ticking shit bad for lag and all that
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
 

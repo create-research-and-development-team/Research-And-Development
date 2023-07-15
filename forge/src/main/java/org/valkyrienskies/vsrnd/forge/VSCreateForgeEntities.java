@@ -40,6 +40,7 @@ public class VSCreateForgeEntities {
                 .renderer(renderer);
     }
 
+
     public static void register() {
     }
 }

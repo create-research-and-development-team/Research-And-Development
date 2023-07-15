@@ -27,6 +27,7 @@ public class VSCreateForgeBlocks {
 //                    .transform(customItemModel())
 //                    .register();
 
+
     public static void register() {
     }
 }
