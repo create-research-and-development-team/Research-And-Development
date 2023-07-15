@@ -1,6 +1,0 @@
-{
-  "parent": "vscreate:item/titanium_ingot",
-  "textures": {
-    "layer0": "vscreate:item/titanium_ingot"
-  }
-}

@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "org.valkyrienskies.vscreate.fabric.mixin",
+  "package": "org.valkyrienskies.vsrnd.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],

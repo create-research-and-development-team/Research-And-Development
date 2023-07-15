@@ -1,8 +1,8 @@
 {
   "required": true,
-  "package": "org.valkyrienskies.vscreate.mixin",
+  "package": "org.valkyrienskies.vsrnd.mixin",
   "compatibilityLevel": "JAVA_17",
-  "plugin": "org.valkyrienskies.vscreate.mixin.CommonMixinConfigPlugin",
+  "plugin": "org.valkyrienskies.vsrnd.mixin.CommonMixinConfigPlugin",
   "mixins": [
     "HandheldMechanicalToolSwingMixin",
     "accessors.FluidAccessor"
