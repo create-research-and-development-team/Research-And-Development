@@ -80,15 +80,16 @@ public class TitaniumTankItem extends FluidTankItem {
             for (int zOffset = 0; zOffset < width; zOffset++) {
                 BlockPos offsetPos = startPos.offset(xOffset, 0, zOffset);
                 BlockState blockState = world.getBlockState(offsetPos);
-                if (TitaniumTankBlock.isTank(blockState))
+                if (TitaniumTankBlock.isTank(blockState)) {
                     continue;
+                }
                 BlockPlaceContext context = BlockPlaceContext.at(ctx, offsetPos, face);
 
                 // No clue what this does btw, but .getPersistentData() seemingly doesn't exist?
 
                 //player.getPersistentData()
                 //        .putBoolean("SilenceTankSound", true);
-                //super.place(context);
+                super.place(context);
                 //player.getPersistentData()
                 //        .remove("SilenceTankSound");
             }

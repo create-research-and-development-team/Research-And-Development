@@ -1,4 +1,4 @@
-package org.valkyrienskies.vsrnd.content.sculk.blocks;
+package org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;

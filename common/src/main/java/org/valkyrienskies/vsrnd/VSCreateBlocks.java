@@ -1,6 +1,9 @@
 package org.valkyrienskies.vsrnd;
 
 
+import com.simibubi.create.content.kinetics.BlockStressDefaults;
+import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockModel;
+import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 
@@ -10,11 +13,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 
+import net.minecraft.world.level.material.MaterialColor;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlock;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankGenerator;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
-import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThrusterBlock;
+import org.valkyrienskies.vsrnd.content.sculk.blocks.Cacoon.CacoonBlock;
+import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
 import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
 
@@ -49,7 +54,14 @@ public class VSCreateBlocks {
             .build()
             .register();
 
-
+    public static final BlockEntry<CacoonBlock> CACOON = REGISTRATE.block("cacoon", CacoonBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.color(MaterialColor.METAL))
+            .transform(BlockStressDefaults.setImpact(1))
+            .blockstate(BlockStateGen.axisBlockProvider(false))
+            .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
+            .simpleItem()
+            .register();
     public static void register() {
     }
 }
