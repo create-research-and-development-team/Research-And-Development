@@ -6,15 +6,20 @@ import com.simibubi.create.content.fluids.tank.FluidTankItem;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.ApiStatus;
 import org.valkyrienskies.vsrnd.VSCreateBlockEntities;
 
 public class TitaniumTankItem extends FluidTankItem {
+    @ApiStatus.Internal
+    public static boolean IS_PLACING_NBT = false;
     public TitaniumTankItem(Block p_i48527_1_, Properties p_i48527_2_) {
         super(p_i48527_1_, p_i48527_2_);
     }
@@ -81,18 +86,36 @@ public class TitaniumTankItem extends FluidTankItem {
                 BlockPos offsetPos = startPos.offset(xOffset, 0, zOffset);
                 BlockState blockState = world.getBlockState(offsetPos);
                 if (TitaniumTankBlock.isTank(blockState)) {
-                    continue;
+                    BlockPlaceContext context = BlockPlaceContext.at(ctx, offsetPos, face);
+
+                    // No clue what this does btw, but .getPersistentData() seemingly doesn't exist?
+
+                    //player.getPersistentData()
+                    //        .putBoolean("SilenceTankSound", true);
+                    super.place(context);
+                    //player.getPersistentData()
+                    //        .remove("SilenceTankSound");
                 }
-                BlockPlaceContext context = BlockPlaceContext.at(ctx, offsetPos, face);
 
-                // No clue what this does btw, but .getPersistentData() seemingly doesn't exist?
 
-                //player.getPersistentData()
-                //        .putBoolean("SilenceTankSound", true);
-                super.place(context);
-                //player.getPersistentData()
-                //        .remove("SilenceTankSound");
+
             }
         }
+    }
+
+
+    public static boolean checkPlacingNbt(BlockPlaceContext ctx) {
+        ItemStack item = ctx.getItemInHand();
+        return BlockItem.getBlockEntityData(item) != null;
+    }
+    @Override
+    public InteractionResult place(BlockPlaceContext ctx) {
+        IS_PLACING_NBT = TitaniumTankItem.checkPlacingNbt(ctx);
+        InteractionResult initialResult = super.place(ctx);
+        IS_PLACING_NBT = false;
+        if (!initialResult.consumesAction())
+            return initialResult;
+        tryMultiPlace(ctx);
+        return initialResult;
     }
 }
