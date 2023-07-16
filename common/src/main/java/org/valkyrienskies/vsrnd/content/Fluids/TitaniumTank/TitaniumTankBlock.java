@@ -4,7 +4,6 @@ import java.util.function.Consumer;
 
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
-import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
 import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
 import com.simibubi.create.foundation.advancement.AdvancementBehaviour;
@@ -58,7 +57,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.valkyrienskies.vsrnd.VSCreateBlockEntities;
 
-public class TitaniumTankBlock extends Block implements IWrenchable, IBE<FluidTankBlockEntity>, CustomSoundTypeBlock {
+public class TitaniumTankBlock extends Block implements IWrenchable, IBE<TitaniumTankBlockEntity>, CustomSoundTypeBlock {
 
     public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
@@ -130,7 +129,7 @@ public class TitaniumTankBlock extends Block implements IWrenchable, IBE<FluidTa
 
     @Override
     public InteractionResult onWrenched(BlockState state, UseOnContext context) {
-        withBlockEntityDo(context.getLevel(), context.getClickedPos(), FluidTankBlockEntity::toggleWindows);
+        withBlockEntityDo(context.getLevel(), context.getClickedPos(), TitaniumTankBlockEntity::toggleWindows);
         return InteractionResult.SUCCESS;
     }
 
@@ -152,8 +151,8 @@ public class TitaniumTankBlock extends Block implements IWrenchable, IBE<FluidTa
     @Override
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState,
                                   LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
-        if (pDirection == Direction.DOWN && pNeighborState.getBlock() != this)
-            withBlockEntityDo(pLevel, pCurrentPos, FluidTankBlockEntity::updateBoilerTemperature);
+        //if (pDirection == Direction.DOWN && pNeighborState.getBlock() != this)
+        //     withBlockEntityDo(pLevel, pCurrentPos, TitaniumTankBlockEntity);
         return pState;
     }
 
@@ -215,7 +214,7 @@ public class TitaniumTankBlock extends Block implements IWrenchable, IBE<FluidTa
 
         if (soundevent != null && !onClient) {
             float pitch = Mth
-                    .clamp(1 - (1f * fluidInTank.getAmount() / (FluidTankBlockEntity.getCapacityMultiplier() * 16)), 0, 1);
+                    .clamp(1 - (1f * fluidInTank.getAmount() / (TitaniumTankBlockEntity.getCapacityMultiplier() * 16)), 0, 1);
             pitch /= 1.5f;
             pitch += .5f;
             pitch += (world.random.nextFloat() - .5f) / 4f;
