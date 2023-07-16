@@ -16,7 +16,7 @@ public class VSCreateBlockEntities {
     // Kinetics
 
     public static final BlockEntityEntry<TitaniumTankBlockEntity> TITANIUM_TANK = REGISTRATE
-            .blockEntity("fluid_tank", TitaniumTankBlockEntity::new)
+            .blockEntity("titanium_tank", TitaniumTankBlockEntity::new)
             .validBlocks(VSCreateBlocks.TITANIUM_TANK)
             .renderer(() -> TitaniumTankRenderer::new)
             .register();
