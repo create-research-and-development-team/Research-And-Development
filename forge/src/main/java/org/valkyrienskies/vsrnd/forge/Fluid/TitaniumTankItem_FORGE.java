@@ -81,7 +81,7 @@ public class TitaniumTankItem_FORGE extends TitaniumTankItem {
 
         for (int xOffset = 0; xOffset < width; xOffset++) {
             for (int zOffset = 0; zOffset < width; zOffset++) {
-                BlockPos offsetPos = startPos.offset(xOffset, 0, zOffset);
+                BlockPos offsetPos = startPos.offset(xOffset, -1, zOffset);
                 BlockState blockState = world.getBlockState(offsetPos);
                 if (TitaniumTankBlock_FORGE.isTank(blockState))
 
@@ -100,13 +100,12 @@ public class TitaniumTankItem_FORGE extends TitaniumTankItem {
 
         for (int xOffset = 0; xOffset < width; xOffset++) {
             for (int zOffset = 0; zOffset < width; zOffset++) {
-                BlockPos offsetPos = startPos.offset(xOffset, 0, zOffset);
+                BlockPos offsetPos = startPos.offset(xOffset, -1, zOffset);
                 BlockState blockState = world.getBlockState(offsetPos);
+                System.out.println(offsetPos);
                 if (TitaniumTankBlock_FORGE.isTank(blockState)) {
-                    System.out.println(offsetPos);
+
                     BlockPlaceContext context = BlockPlaceContext.at(ctx, offsetPos, face);
-
-
 
                     player.getPersistentData()
                             .putBoolean("SilenceTankSound", true);
