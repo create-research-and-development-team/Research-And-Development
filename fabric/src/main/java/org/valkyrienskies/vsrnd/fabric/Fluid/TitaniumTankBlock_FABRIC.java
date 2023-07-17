@@ -6,6 +6,7 @@ import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
 import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
 import com.simibubi.create.foundation.fluid.FluidHelper;
 import com.simibubi.create.foundation.fluid.FluidHelper.FluidExchange;
+import io.github.fabricators_of_create.porting_lib.block.CustomSoundTypeBlock;
 import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
 import io.github.fabricators_of_create.porting_lib.util.FluidStack;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -36,7 +37,7 @@ import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlock;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlockEntity;
 import org.valkyrienskies.vsrnd.fabric.VSCreateFabricBlockEntities;
 // uhhh
-public class TitaniumTankBlock_FABRIC extends TitaniumTankBlock {
+public class TitaniumTankBlock_FABRIC extends TitaniumTankBlock implements CustomSoundTypeBlock {
 
 
     public static TitaniumTankBlock_FABRIC regular(Properties p_i48440_1_) {
@@ -54,18 +55,7 @@ public class TitaniumTankBlock_FABRIC extends TitaniumTankBlock {
     }
 
 
-    public static final SoundType SILENCED_METAL =
-            new ForgeSoundType(0.1F, 1.5F, () -> SoundEvents.METAL_BREAK, () -> SoundEvents.METAL_STEP,
-                    () -> SoundEvents.METAL_PLACE, () -> SoundEvents.METAL_HIT, () -> SoundEvents.METAL_FALL);
 
-    @Override
-    public SoundType getSoundType(BlockState state, LevelReader world, BlockPos pos, Entity entity) {
-        SoundType soundType = super.getSoundType(state, world, pos, entity);
-        if (entity != null && entity.getPersistentData()
-                .contains("SilenceTankSound"))
-            return SILENCED_METAL;
-        return soundType;
-    }
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
@@ -165,4 +155,19 @@ public class TitaniumTankBlock_FABRIC extends TitaniumTankBlock {
     public static boolean isTank(BlockState state) {
         return state.getBlock() instanceof TitaniumTankBlock_FABRIC;
     }
+
+    public static final SoundType SILENCED_METAL =
+            new SoundType(0.1F, 1.5F, SoundEvents.METAL_BREAK, SoundEvents.METAL_STEP,
+                    SoundEvents.METAL_PLACE, SoundEvents.METAL_HIT, SoundEvents.METAL_FALL);
+
+    @Override
+    public SoundType getSoundType(BlockState state, LevelReader world, BlockPos pos, Entity entity) {
+        SoundType soundType = getSoundType(state);
+        if (entity != null && entity.getExtraCustomData()
+                .contains("SilenceTankSound"))
+            return SILENCED_METAL;
+        return soundType;
+    }
+
+
 }
