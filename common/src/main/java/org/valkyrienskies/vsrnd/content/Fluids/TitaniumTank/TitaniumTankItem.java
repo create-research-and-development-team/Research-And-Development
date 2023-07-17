@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.ApiStatus;
 import org.valkyrienskies.vsrnd.VSCreateBlockEntities;
 
-public class TitaniumTankItem extends FluidTankItem {
+public class TitaniumTankItem extends BlockItem {
     @ApiStatus.Internal
     public static boolean IS_PLACING_NBT = false;
     public TitaniumTankItem(Block p_i48527_1_, Properties p_i48527_2_) {

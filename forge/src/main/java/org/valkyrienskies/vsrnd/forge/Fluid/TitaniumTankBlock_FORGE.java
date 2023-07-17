@@ -161,7 +161,7 @@ public class TitaniumTankBlock_FORGE extends TitaniumTankBlock {
 
                         Vec3 vec = ray.getLocation();
                         vec = new Vec3(vec.x, controllerBE.getBlockPos()
-                                .getY() + level * (controllerBE.height - .5f) + .25f, vec.z);
+                                .getY() + level * (controllerBE.getHeight() - .5f) + .25f, vec.z);
                         Vec3 motion = player.position()
                                 .subtract(vec)
                                 .scale(1 / 20f);
@@ -196,5 +196,9 @@ public class TitaniumTankBlock_FORGE extends TitaniumTankBlock {
                 .contains("SilenceTankSound"))
             return SILENCED_METAL;
         return soundType;
+    }
+
+    public static boolean isTank(BlockState state) {
+        return state.getBlock() instanceof TitaniumTankBlock_FORGE;
     }
 }

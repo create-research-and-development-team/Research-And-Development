@@ -3,6 +3,7 @@ package org.valkyrienskies.vsrnd.forge.Fluid;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlockEntity;
@@ -15,4 +16,13 @@ public class TitaniumTankBlockEntity_FORGE extends TitaniumTankBlockEntity {
     }
 
 
+    @Override
+    public TitaniumTankBlockEntity_FORGE getControllerBE() {
+        if (isController())
+            return this;
+        BlockEntity blockEntity = level.getBlockEntity(controller);
+        if (blockEntity instanceof TitaniumTankBlockEntity)
+            return (TitaniumTankBlockEntity_FORGE) blockEntity;
+        return null;
+    }
 }

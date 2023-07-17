@@ -15,20 +15,11 @@ import java.util.List;
 public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
 
 
-    private static final int MAX_SIZE = 3;
 
-    protected boolean forceFluidLevelUpdate;
-
-    //protected BlockPos controller;
-    protected BlockPos lastKnownPos;
-    protected boolean updateConnectivity;
-    protected boolean window;
-    protected int luminosity;
-    public int width;
-    public int height;
     protected SmartFluidTank tankInventory;
     public TitaniumTankBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
+
     }
 
     @Override
