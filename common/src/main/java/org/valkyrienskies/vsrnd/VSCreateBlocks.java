@@ -42,17 +42,17 @@ public class VSCreateBlocks {
             .register();
 
 
-    public static final BlockEntry<TitaniumTankBlock> TITANIUM_TANK = REGISTRATE.block("titanium_tank", TitaniumTankBlock::regular)
-            .initialProperties(SharedProperties::copperMetal)
-            .properties(BlockBehaviour.Properties::noOcclusion)
-            .properties(p -> p.isRedstoneConductor((p1, p2, p3) -> true))
-            .blockstate(new TitaniumTankGenerator()::generate)
-            .onRegister(CreateRegistrate.blockModel(() -> TitaniumTankModel::standard))
-            .addLayer(() -> RenderType::cutoutMipped)
-            .item(TitaniumTankItem::new)
-            .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
-            .build()
-            .register();
+//    public static final BlockEntry<TitaniumTankBlock> TITANIUM_TANK = REGISTRATE.block("titanium_tank", TitaniumTankBlock::regular)
+//            .initialProperties(SharedProperties::copperMetal)
+//            .properties(BlockBehaviour.Properties::noOcclusion)
+//            .properties(p -> p.isRedstoneConductor((p1, p2, p3) -> true))
+//            .blockstate(new TitaniumTankGenerator()::generate)
+//            .onRegister(CreateRegistrate.blockModel(() -> TitaniumTankModel::standard))
+//            .addLayer(() -> RenderType::cutoutMipped)
+//            .item(TitaniumTankItem::new)
+//            .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
+//            .build()
+//            .register();
 
     public static final BlockEntry<CocoonBlock> COCOON = REGISTRATE.block("cocoon", CocoonBlock::new)
             .initialProperties(SharedProperties::stone)

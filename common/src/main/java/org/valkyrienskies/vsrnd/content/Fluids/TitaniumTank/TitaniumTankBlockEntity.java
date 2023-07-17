@@ -4,9 +4,12 @@ import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.List;
 
 
 public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
@@ -16,13 +19,13 @@ public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
 
     protected boolean forceFluidLevelUpdate;
 
-    protected BlockPos controller;
+    //protected BlockPos controller;
     protected BlockPos lastKnownPos;
     protected boolean updateConnectivity;
     protected boolean window;
     protected int luminosity;
-    protected int width;
-    protected int height;
+    public int width;
+    public int height;
     protected SmartFluidTank tankInventory;
     public TitaniumTankBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -53,4 +56,13 @@ public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
             return;
         ConnectivityHandler.formMulti(this);
     }
+
+//    @Override
+//    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+//        TitaniumTankBlockEntity controllerBE = getControllerBE();
+//        if (controllerBE == null)
+//            return false;
+//        return containedFluidTooltip(tooltip, isPlayerSneaking,
+//                controllerBE.getFluidStorage(null));
+//    }
 }

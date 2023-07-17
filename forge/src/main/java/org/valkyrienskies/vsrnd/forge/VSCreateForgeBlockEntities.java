@@ -7,6 +7,14 @@ package org.valkyrienskies.vsrnd.forge;
 //import org.valkyrienskies.clockwork.content.contraptions.combustion_engine.CombustionEngineRenderer;
 //import org.valkyrienskies.clockwork.forge.content.contraptions.combustion_engine.ForgeCombustionEngineBlockEntity;
 
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import org.valkyrienskies.vsrnd.VSCreateBlocks;
+import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlockEntity;
+import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankRenderer;
+import org.valkyrienskies.vsrnd.forge.Fluid.TitaniumTankBlockEntity_FORGE;
+
+import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
+
 public class VSCreateForgeBlockEntities {
 
 
@@ -19,6 +27,11 @@ public class VSCreateForgeBlockEntities {
 //            .renderer(() -> CombustionEngineRenderer::new)
 //            .register();
 
+    public static final BlockEntityEntry<TitaniumTankBlockEntity_FORGE> TITANIUM_TANK = REGISTRATE
+            .blockEntity("titanium_tank", TitaniumTankBlockEntity_FORGE::new)
+            .validBlocks(VSCreateForgeBlocks.TITANIUM_TANK_FORGE)
+            .renderer(() -> TitaniumTankRenderer::new)
+            .register();
     public static void register() {
     }
 }
