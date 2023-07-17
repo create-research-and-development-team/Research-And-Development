@@ -66,7 +66,6 @@ public class TitaniumTankItem_FORGE extends TitaniumTankItem {
             return;
 
         int width = controllerBE.getWidth();
-        System.out.println(width);
         if (width == 1)
             return;
 
@@ -102,7 +101,6 @@ public class TitaniumTankItem_FORGE extends TitaniumTankItem {
             for (int zOffset = 0; zOffset < width; zOffset++) {
                 BlockPos offsetPos = startPos.offset(xOffset, -1, zOffset);
                 BlockState blockState = world.getBlockState(offsetPos);
-                System.out.println(offsetPos);
                 if (TitaniumTankBlock_FORGE.isTank(blockState)) {
 
                     BlockPlaceContext context = BlockPlaceContext.at(ctx, offsetPos, face);
@@ -146,7 +144,6 @@ public class TitaniumTankItem_FORGE extends TitaniumTankItem {
 
     @Override
     public InteractionResult place(BlockPlaceContext ctx) {
-        System.out.println("Place");
         InteractionResult initialResult = super.place(ctx);
         if (!initialResult.consumesAction())
             return initialResult;
