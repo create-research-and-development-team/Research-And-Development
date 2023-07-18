@@ -160,8 +160,8 @@ public class FermentingTankBlock_FORGE extends FermentingTankBlock {
 
 
     public static final SoundType SILENCED_METAL =
-            new ForgeSoundType(0.1F, 1.5F, () -> SoundEvents.METAL_BREAK, () -> SoundEvents.METAL_STEP,
-                    () -> SoundEvents.METAL_PLACE, () -> SoundEvents.METAL_HIT, () -> SoundEvents.METAL_FALL);
+            new ForgeSoundType(0.1F, 1.5F, () -> SoundEvents.WOOD_BREAK, () -> SoundEvents.WOOD_STEP,
+                    () -> SoundEvents.WOOD_PLACE, () -> SoundEvents.WOOD_HIT, () -> SoundEvents.WOOD_FALL);
 
     @Override
     public SoundType getSoundType(BlockState state, LevelReader world, BlockPos pos, Entity entity) {
