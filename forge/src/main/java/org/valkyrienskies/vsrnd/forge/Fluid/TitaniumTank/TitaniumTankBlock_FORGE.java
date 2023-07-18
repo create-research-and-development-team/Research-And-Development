@@ -1,23 +1,14 @@
-package org.valkyrienskies.vsrnd.forge.Fluid;
+package org.valkyrienskies.vsrnd.forge.Fluid.TitaniumTank;
 
-import org.valkyrienskies.vsrnd.VSCreateBlockEntities;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlock;
 
-import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
-import com.simibubi.create.content.equipment.wrench.IWrenchable;
-import com.simibubi.create.content.fluids.tank.CreativeFluidTankBlockEntity.CreativeSmartFluidTank;
 import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
 import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
-import com.simibubi.create.foundation.advancement.AdvancementBehaviour;
-import com.simibubi.create.foundation.block.IBE;
-import com.simibubi.create.foundation.blockEntity.ComparatorUtil;
 import com.simibubi.create.foundation.fluid.FluidHelper;
 import com.simibubi.create.foundation.fluid.FluidHelper.FluidExchange;
-import com.simibubi.create.foundation.utility.Lang;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
@@ -25,34 +16,19 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition.Builder;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidAttributes;
@@ -69,7 +45,7 @@ public class TitaniumTankBlock_FORGE extends TitaniumTankBlock {
         return new TitaniumTankBlock_FORGE(p_i48440_1_, false);
     }
     protected TitaniumTankBlock_FORGE(Properties p_i48440_1_, boolean creative) {
-        super(p_i48440_1_, creative);
+        super(p_i48440_1_);
     }
 
     @Override
@@ -146,7 +122,7 @@ public class TitaniumTankBlock_FORGE extends TitaniumTankBlock {
 
         if (!fluidInTank.isFluidStackIdentical(prevFluidInTank)) {
             if (be instanceof TitaniumTankBlockEntity) {
-                TitaniumTankBlockEntity controllerBE = ((TitaniumTankBlockEntity) be).getControllerBE();
+                TitaniumTankBlockEntity_FORGE controllerBE = ((TitaniumTankBlockEntity_FORGE) be).getControllerBE();
                 if (controllerBE != null) {
                     if (fluidState != null && onClient) {
                         BlockParticleOption blockParticleData =
@@ -180,7 +156,7 @@ public class TitaniumTankBlock_FORGE extends TitaniumTankBlock {
     }
 
     @Override
-    public BlockEntityType<? extends TitaniumTankBlockEntity> getBlockEntityType() {
+    public BlockEntityType<? extends TitaniumTankBlockEntity_FORGE> getBlockEntityType() {
         return VSCreateForgeBlockEntities.TITANIUM_TANK.get();
     }
 

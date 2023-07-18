@@ -1,28 +1,24 @@
-package org.valkyrienskies.vsrnd.forge.Fluid;
+package org.valkyrienskies.vsrnd.forge.Fluid.FermentingTank;
 
-import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlockEntity;
 
-import java.util.List;
-
-public class TitaniumTankBlockEntity_FORGE extends TitaniumTankBlockEntity {
-    public TitaniumTankBlockEntity_FORGE(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+public class FermentingTankBlockEntity_FORGE extends TitaniumTankBlockEntity {
+    public FermentingTankBlockEntity_FORGE(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
 
     @Override
-    public TitaniumTankBlockEntity_FORGE getControllerBE() {
+    public FermentingTankBlockEntity_FORGE getControllerBE() {
         if (isController())
             return this;
         BlockEntity blockEntity = level.getBlockEntity(controller);
         if (blockEntity instanceof TitaniumTankBlockEntity)
-            return (TitaniumTankBlockEntity_FORGE) blockEntity;
+            return (FermentingTankBlockEntity_FORGE) blockEntity;
         return null;
     }
 }

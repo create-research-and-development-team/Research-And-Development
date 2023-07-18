@@ -27,16 +27,6 @@ public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
     }
 
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public TitaniumTankBlockEntity getControllerBE() {
-        if (isController())
-            return this;
-        BlockEntity blockEntity = level.getBlockEntity(controller);
-        if (blockEntity instanceof TitaniumTankBlockEntity)
-            return (TitaniumTankBlockEntity) blockEntity;
-        return null;
-    }
 
     protected void updateConnectivity() {
         updateConnectivity = false;

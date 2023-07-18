@@ -1,4 +1,4 @@
-package org.valkyrienskies.vsrnd.forge.Fluid;
+package org.valkyrienskies.vsrnd.forge.Fluid.TitaniumTank;
 
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import net.minecraft.core.BlockPos;
@@ -11,23 +11,11 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import org.valkyrienskies.vsrnd.VSCreateBlockEntities;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
 import org.valkyrienskies.vsrnd.forge.VSCreateForgeBlockEntities;
 
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidStack;
 public class TitaniumTankItem_FORGE extends TitaniumTankItem {
     public TitaniumTankItem_FORGE(Block p_i48527_1_, Properties p_i48527_2_) {

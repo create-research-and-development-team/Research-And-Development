@@ -20,15 +20,7 @@ public class FermentingTankBlockEntity extends FluidTankBlockEntity {
 
 
     @SuppressWarnings("unchecked")
-    @Override
-    public FermentingTankBlockEntity getControllerBE() {
-        if (isController())
-            return this;
-        BlockEntity blockEntity = level.getBlockEntity(controller);
-        if (blockEntity instanceof FermentingTankBlockEntity)
-            return (FermentingTankBlockEntity) blockEntity;
-        return null;
-    }
+
 
     protected void updateConnectivity() {
         updateConnectivity = false;

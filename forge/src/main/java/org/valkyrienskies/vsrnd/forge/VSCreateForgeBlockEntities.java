@@ -8,10 +8,8 @@ package org.valkyrienskies.vsrnd.forge;
 //import org.valkyrienskies.clockwork.forge.content.contraptions.combustion_engine.ForgeCombustionEngineBlockEntity;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
-import org.valkyrienskies.vsrnd.VSCreateBlocks;
-import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlockEntity;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankRenderer;
-import org.valkyrienskies.vsrnd.forge.Fluid.TitaniumTankBlockEntity_FORGE;
+import org.valkyrienskies.vsrnd.forge.Fluid.TitaniumTank.TitaniumTankBlockEntity_FORGE;
 
 import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
 
