@@ -16,7 +16,6 @@ public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
 
 
 
-    protected SmartFluidTank tankInventory;
     public TitaniumTankBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
 
@@ -56,4 +55,7 @@ public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
 //        return containedFluidTooltip(tooltip, isPlayerSneaking,
 //                controllerBE.getFluidStorage(null));
 //    }
+
+
+
 }

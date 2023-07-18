@@ -27,7 +27,7 @@ public class BaseTankBlock extends Block {
 
     public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
-    public static final EnumProperty<Shape> SHAPE = EnumProperty.create("shape", BaseTankBlock.Shape.class);
+    public static final EnumProperty<Shape> SHAPE = EnumProperty.create("shape", Shape.class);
     public static final IntegerProperty LIGHT_LEVEL = IntegerProperty.create("light_level", 0, 15);
     static final VoxelShape CAMPFIRE_SMOKE_CLIP = Block.box(0, 4, 0, 16, 16, 16);
 
@@ -44,9 +44,6 @@ public class BaseTankBlock extends Block {
         return properties.lightLevel(state -> state.getValue(LIGHT_LEVEL));
     }
 
-    public static boolean isTank(BlockState state) {
-        return state.getBlock() instanceof BaseTankBlock;
-    }
 
     @Override
     public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
@@ -87,108 +84,9 @@ public class BaseTankBlock extends Block {
     @Override
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState,
                                   LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
-//        if (pDirection == Direction.DOWN && pNeighborState.getBlock() != this)
-//             withBlockEntityDo(pLevel, pCurrentPos, TitaniumTankBlockEntity);
         return pState;
     }
 
-    //@Override
-    //public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
-    //                             BlockHitResult ray) {
-    //    ItemStack heldItem = player.getItemInHand(hand);
-    //    boolean onClient = world.isClientSide;
-//
-//        if (heldItem.isEmpty())
-//            return InteractionResult.PASS;
-//
-//
-//        FluidExchange exchange = null;
-//        TitaniumTankBlockEntity be = ConnectivityHandler.partAt(getBlockEntityType(), world, pos);
-//        if (be == null)
-//            return InteractionResult.FAIL;
-//
-//        Direction direction = ray.getDirection();
-//        Storage<FluidVariant> fluidTank = be.getFluidStorage(direction);
-//        if (fluidTank == null)
-//            return InteractionResult.PASS;
-//
-//        FluidStack prevFluidInTank = TransferUtil.firstCopyOrEmpty(fluidTank);
-//
-//        if (FluidHelper.tryEmptyItemIntoBE(world, player, hand, heldItem, be, direction))
-//            exchange = FluidExchange.ITEM_TO_TANK;
-//        else if (FluidHelper.tryFillItemFromBE(world, player, hand, heldItem, be, direction))
-//            exchange = FluidExchange.TANK_TO_ITEM;
-//
-//        if (exchange == null) {
-//            if (GenericItemEmptying.canItemBeEmptied(world, heldItem)
-//                    || GenericItemFilling.canItemBeFilled(world, heldItem))
-//                return InteractionResult.SUCCESS;
-//            return InteractionResult.PASS;
-//        }
-//
-//        SoundEvent soundevent = null;
-//        BlockState fluidState = null;
-//        FluidStack fluidInTank = TransferUtil.firstOrEmpty(fluidTank);
-//
-//        if (exchange == FluidExchange.ITEM_TO_TANK) {
-//
-//
-//            Fluid fluid = fluidInTank.getFluid();
-//            fluidState = fluid.defaultFluidState()
-//                    .createLegacyBlock();
-//            soundevent = FluidVariantAttributes.getEmptySound(FluidVariant.of(fluid));
-//        }
-//
-//        if (exchange == FluidExchange.TANK_TO_ITEM) {
-//
-//
-//            Fluid fluid = prevFluidInTank.getFluid();
-//            fluidState = fluid.defaultFluidState()
-//                    .createLegacyBlock();
-//            soundevent = FluidVariantAttributes.getFillSound(FluidVariant.of(fluid));
-//        }
-//
-//        if (soundevent != null && !onClient) {
-//            float pitch = Mth
-//                    .clamp(1 - (1f * fluidInTank.getAmount() / (TitaniumTankBlockEntity.getCapacityMultiplier() * 16)), 0, 1);
-//            pitch /= 1.5f;
-//            pitch += .5f;
-//            pitch += (world.random.nextFloat() - .5f) / 4f;
-//            world.playSound(null, pos, soundevent, SoundSource.BLOCKS, .5f, pitch);
-//        }
-//
-//        if (!fluidInTank.isFluidEqual(prevFluidInTank)) {
-//            if (be instanceof TitaniumTankBlockEntity) {
-//                TitaniumTankBlockEntity controllerBE = ((TitaniumTankBlockEntity) be).getControllerBE();
-//                if (controllerBE != null) {
-//                    if (fluidState != null && onClient) {
-//                        BlockParticleOption blockParticleData =
-//                                new BlockParticleOption(ParticleTypes.BLOCK, fluidState);
-//                        float level = (float) fluidInTank.getAmount() / TransferUtil.firstCapacity(fluidTank);
-//
-//                        boolean reversed = FluidVariantAttributes.isLighterThanAir(fluidInTank.getType());
-//                        if (reversed)
-//                            level = 1 - level;
-//
-//                        Vec3 vec = ray.getLocation();
-//                        vec = new Vec3(vec.x, controllerBE.getBlockPos()
-//                                .getY() + level * (controllerBE.height - .5f) + .25f, vec.z);
-//                        Vec3 motion = player.position()
-//                                .subtract(vec)
-//                                .scale(1 / 20f);
-//                        vec = vec.add(motion);
-//                        world.addParticle(blockParticleData, vec.x, vec.y, vec.z, motion.x, motion.y, motion.z);
-//                        return InteractionResult.SUCCESS;
-//                    }
-//
-//                    controllerBE.sendDataImmediately();
-//                    controllerBE.setChanged();
-//                }
-//            }
-//        }
-//
-//        return InteractionResult.SUCCESS;
-//    }
 
 
     @Override
@@ -239,19 +137,6 @@ public class BaseTankBlock extends Block {
         return true;
     }
 
-    // Tanks are less noisy when placed in batch
-//    public static final SoundType SILENCED_METAL =
-//            new SoundType(0.1F, 1.5F, SoundEvents.METAL_BREAK, SoundEvents.METAL_STEP,
-//                    SoundEvents.METAL_PLACE, SoundEvents.METAL_HIT, SoundEvents.METAL_FALL);
-
-    //@Override
-    //public SoundType getSoundType(BlockState state, LevelReader world, BlockPos pos, Entity entity) {
-    //    SoundType soundType = getSoundType(state);
-    //    if (entity != null && entity.getExtraCustomData()
-    //            .method_10545("SilenceTankSound"))
-    //        return SILENCED_METAL;
-    //    return soundType;
-    //}
 
     public enum Shape implements StringRepresentable {
         PLAIN, WINDOW, WINDOW_NW, WINDOW_SW, WINDOW_NE, WINDOW_SE;
