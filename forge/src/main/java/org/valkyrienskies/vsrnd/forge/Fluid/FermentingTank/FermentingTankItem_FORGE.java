@@ -13,9 +13,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidStack;
-import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
+import org.valkyrienskies.vsrnd.content.Fluids.FermentingTank.FermentingTankItem;
 import org.valkyrienskies.vsrnd.forge.VSCreateForgeBlockEntities;
-public class FermentingTankItem_FORGE extends TitaniumTankItem {
+public class FermentingTankItem_FORGE extends FermentingTankItem {
     public FermentingTankItem_FORGE(Block p_i48527_1_, Properties p_i48527_2_) {
         super(p_i48527_1_, p_i48527_2_);
     }
@@ -42,7 +42,7 @@ public class FermentingTankItem_FORGE extends TitaniumTankItem {
         if (!FermentingTankBlock_FORGE.isTank(placedOnState))
             return;
 
-        FermentingTankBlockEntity_FORGE tankAt = ConnectivityHandler.partAt(VSCreateForgeBlockEntities.TITANIUM_TANK.get(), world, placedOnPos
+        FermentingTankBlockEntity_FORGE tankAt = ConnectivityHandler.partAt(VSCreateForgeBlockEntities.FERMENTING_TANK.get(), world, placedOnPos
         );
         if (tankAt == null)
             return;

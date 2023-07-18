@@ -7,6 +7,8 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import org.valkyrienskies.vsrnd.VSCreateMod;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankGenerator;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
+import org.valkyrienskies.vsrnd.forge.Fluid.FermentingTank.FermentingTankBlock_FORGE;
+import org.valkyrienskies.vsrnd.forge.Fluid.FermentingTank.FermentingTankItem_FORGE;
 import org.valkyrienskies.vsrnd.forge.Fluid.TitaniumTank.TitaniumTankBlock_FORGE;
 
 import net.minecraft.client.renderer.RenderType;
@@ -35,6 +37,17 @@ public class VSCreateForgeBlocks {
             .onRegister(CreateRegistrate.blockModel(() -> TitaniumTankModel::standard))
             .addLayer(() -> RenderType::cutoutMipped)
             .item(TitaniumTankItem_FORGE::new)
+            .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
+            .build()
+            .register();
+    public static final BlockEntry<FermentingTankBlock_FORGE> FERMENTING_TANK_FORGE = REGISTRATE.block("titanium_tank", FermentingTankBlock_FORGE::regular)
+            .initialProperties(SharedProperties::wooden)
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            //.properties(p -> p.isRedstoneConductor((p1, p2, p3) -> true))
+            .blockstate(new TitaniumTankGenerator()::generate)
+            .onRegister(CreateRegistrate.blockModel(() -> TitaniumTankModel::standard))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item(FermentingTankItem_FORGE::new)
             .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
             .build()
             .register();

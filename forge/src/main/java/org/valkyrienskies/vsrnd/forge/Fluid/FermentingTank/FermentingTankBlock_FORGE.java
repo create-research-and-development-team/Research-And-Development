@@ -32,11 +32,11 @@ import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlock;
-import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlockEntity;
+import org.valkyrienskies.vsrnd.content.Fluids.FermentingTank.FermentingTankBlock;
+import org.valkyrienskies.vsrnd.content.Fluids.FermentingTank.FermentingTankBlockEntity;
 import org.valkyrienskies.vsrnd.forge.VSCreateForgeBlockEntities;
 
-public class FermentingTankBlock_FORGE extends TitaniumTankBlock {
+public class FermentingTankBlock_FORGE extends FermentingTankBlock {
 
 
     public static FermentingTankBlock_FORGE regular(Properties p_i48440_1_) {
@@ -56,7 +56,7 @@ public class FermentingTankBlock_FORGE extends TitaniumTankBlock {
             return InteractionResult.PASS;
 
         FluidExchange exchange = null;
-        TitaniumTankBlockEntity be = ConnectivityHandler.partAt(getBlockEntityType(), world, pos);
+        FermentingTankBlockEntity_FORGE be = ConnectivityHandler.partAt(getBlockEntityType(), world, pos);
         if (be == null)
             return InteractionResult.FAIL;
 
@@ -111,7 +111,7 @@ public class FermentingTankBlock_FORGE extends TitaniumTankBlock {
 
         if (soundevent != null && !onClient) {
             float pitch = Mth
-                    .clamp(1 - (1f * fluidInTank.getAmount() / (TitaniumTankBlockEntity.getCapacityMultiplier() * 16)), 0, 1);
+                    .clamp(1 - (1f * fluidInTank.getAmount() / (FermentingTankBlockEntity_FORGE.getCapacityMultiplier() * 16)), 0, 1);
             pitch /= 1.5f;
             pitch += .5f;
             pitch += (world.random.nextFloat() - .5f) / 4f;
@@ -119,7 +119,7 @@ public class FermentingTankBlock_FORGE extends TitaniumTankBlock {
         }
 
         if (!fluidInTank.isFluidStackIdentical(prevFluidInTank)) {
-            if (be instanceof TitaniumTankBlockEntity) {
+            if (be instanceof FermentingTankBlockEntity_FORGE) {
                 FermentingTankBlockEntity_FORGE controllerBE = ((FermentingTankBlockEntity_FORGE) be).getControllerBE();
                 if (controllerBE != null) {
                     if (fluidState != null && onClient) {
@@ -155,7 +155,7 @@ public class FermentingTankBlock_FORGE extends TitaniumTankBlock {
 
     @Override
     public BlockEntityType<? extends FermentingTankBlockEntity_FORGE> getBlockEntityType() {
-        return VSCreateForgeBlockEntities.TITANIUM_TANK.get();
+        return VSCreateForgeBlockEntities.FERMENTING_TANK.get();
     }
 
 
