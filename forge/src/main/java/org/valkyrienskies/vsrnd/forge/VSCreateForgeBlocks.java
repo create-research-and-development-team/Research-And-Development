@@ -40,7 +40,7 @@ public class VSCreateForgeBlocks {
             .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
             .build()
             .register();
-    public static final BlockEntry<FermentingTankBlock_FORGE> FERMENTING_TANK_FORGE = REGISTRATE.block("titanium_tank", FermentingTankBlock_FORGE::regular)
+    public static final BlockEntry<FermentingTankBlock_FORGE> FERMENTING_TANK_FORGE = REGISTRATE.block("fermenting_tank", FermentingTankBlock_FORGE::regular)
             .initialProperties(SharedProperties::wooden)
             .properties(BlockBehaviour.Properties::noOcclusion)
             //.properties(p -> p.isRedstoneConductor((p1, p2, p3) -> true))
