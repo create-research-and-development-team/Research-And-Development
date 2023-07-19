@@ -77,10 +77,6 @@ public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
                         result.setAmount(super.tankInventory.getFluidAmount());
                         super.tankInventory.setFluid(result);
                     }
-                }
-
-
-
                 } else {
                     FermentedTicks = 0;
                 }
