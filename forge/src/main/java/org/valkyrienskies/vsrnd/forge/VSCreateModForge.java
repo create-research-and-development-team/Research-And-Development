@@ -57,7 +57,7 @@ public class VSCreateModForge {
         // TODO forge sounds
 
         VSCreateForgeParticles.init(modEventBus);
-        AllRecipeTypes.register(modEventBus);
+        VSCreateForgeRecipes.register(modEventBus);
 
         VSCreateMod.init();
         VSCreatePackets.init();
