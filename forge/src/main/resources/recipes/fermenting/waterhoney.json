@@ -1,0 +1,16 @@
+{
+  "type": "vsrnd:fermenting",
+  "ingredients": [
+    {
+      "fluid": "minecraft:water",
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "fluid": "create:honey",
+      "amount": 1000
+    }
+  ],
+  "heatRequirement": "heated"
+}
