@@ -105,19 +105,21 @@ public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
             recipe = null;
         }
 
-        if (oldFluid.isFluidEqual(newFluidStack)) {
-            int mult;
-            if (oldFluid.getAmount()==0) {
-                mult = 1;
+        if (oldFluid!=null) {
+            if (oldFluid.isFluidEqual(newFluidStack)) {
+                int mult;
+                if (oldFluid.getAmount() == 0) {
+                    mult = 1;
+                } else {
+                    mult = Math.max(1 - (newFluidStack.getAmount() / oldFluid.getAmount()), 0);
+                }
+
+                FermentedTicks *= mult;
             } else {
-                mult = Math.max(1-(newFluidStack.getAmount()/oldFluid.getAmount()),0);
+                FermentedTicks = 0;
             }
 
-            FermentedTicks *= mult;
-        } else {
-            FermentedTicks = 0;
+            oldFluid = newFluidStack;
         }
-
-        oldFluid = newFluidStack;
     }
 }
