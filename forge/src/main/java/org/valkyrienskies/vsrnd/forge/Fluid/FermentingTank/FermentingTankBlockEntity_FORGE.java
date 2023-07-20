@@ -3,13 +3,17 @@ package org.valkyrienskies.vsrnd.forge.Fluid.FermentingTank;
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import com.simibubi.create.foundation.recipe.RecipeFinder;
+import com.simibubi.create.foundation.utility.Lang;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.common.crafting.conditions.FalseCondition;
 import net.minecraftforge.fluids.FluidStack;
 import org.valkyrienskies.vsrnd.content.Fluids.FermentingTank.FermentingTankBlockEntity;
 import org.valkyrienskies.vsrnd.forge.VSCreateForgeRecipes;
@@ -22,14 +26,15 @@ import java.util.stream.Collectors;
 
 public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
 
-    private FermentingTankRecipe_FORGE recipe;
+    public FermentingTankRecipe_FORGE recipe;
     private static final Object FermentingRecipesKey = new Object();
     protected Object getRecipeCacheKey() {
         return FermentingRecipesKey;
     }
-    private int FermentedTicks = 0;
+    public int FermentedTicks = 0;
 
-    private FluidStack oldFluid;
+    private net.minecraft.world.level.material.Fluid oldFluid;
+    private int oldAmount;
     public FermentingTankBlockEntity_FORGE(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
@@ -62,7 +67,7 @@ public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
         if (isController())
             return this;
         BlockEntity blockEntity = level.getBlockEntity(controller);
-        if (blockEntity instanceof FermentingTankBlockEntity)
+        if (blockEntity instanceof FermentingTankBlockEntity_FORGE)
             return (FermentingTankBlockEntity_FORGE) blockEntity;
         return null;
     }
@@ -98,28 +103,71 @@ public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
     protected void onFluidStackChanged(FluidStack newFluidStack) {
         super.onFluidStackChanged(newFluidStack);
 
-        List<Recipe<?>> recipes = getMatchingRecipes();
-        if (!recipes.isEmpty()) {
-            recipe = (FermentingTankRecipe_FORGE) recipes.get(0);
-        } else {
-            recipe = null;
-        }
 
-        if (oldFluid!=null) {
-            if (oldFluid.isFluidEqual(newFluidStack)) {
-                int mult;
-                if (oldFluid.getAmount() == 0) {
-                    mult = 1;
-                } else {
-                    mult = Math.max(1 - (newFluidStack.getAmount() / oldFluid.getAmount()), 0);
-                }
-
-                FermentedTicks *= mult;
+        if (isController()) {
+            List<Recipe<?>> recipes = getMatchingRecipes();
+            if (!recipes.isEmpty()) {
+                recipe = (FermentingTankRecipe_FORGE) recipes.get(0);
             } else {
-                FermentedTicks = 0;
+                recipe = null;
             }
 
-            oldFluid = newFluidStack;
+            // TODO: FIX fluid mult shit
+//            if (oldFluid != null) {
+//                if (newFluidStack.getFluid() == oldFluid) {
+//                    float mult;
+//                    if (oldAmount == 0) {
+//                        mult = 1f;
+//                    } else {
+//                        float A = newFluidStack.getAmount();
+//                        float B = oldAmount;
+//                        float C = A/B;
+//                        System.out.println(A);
+//                        System.out.println(B);
+//                        System.out.println(A/B);
+//                        System.out.println(C);
+//                        System.out.println("//////////");
+//                        mult = Math.max(1f-C, 0f);
+//                    }
+//
+//                    FermentedTicks *= mult;
+//                } else {
+//                    FermentedTicks = 0;
+//                }
+//
+//
+//            }
+//            oldFluid = newFluidStack.getFluid();
+//            oldAmount = newFluidStack.getAmount();
         }
+
+    }
+
+    @Override
+    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+        super.addToGoggleTooltip(tooltip,isPlayerSneaking);
+
+        FermentingTankBlockEntity_FORGE contr = getControllerBE();
+        if (contr != null && contr.recipe != null) {
+
+
+            Lang.text("Fermentation Process")
+                    .style(ChatFormatting.GRAY)
+                    .forGoggles(tooltip, 1);
+
+            int max = contr.recipe.getProcessingDuration();
+            if (max==0) {
+                max = 200;
+            }
+            float percentage = 100*contr.FermentedTicks/max ;
+
+
+            String amount = percentage + "%";
+            Lang.text(amount)
+                    .style(ChatFormatting.LIGHT_PURPLE)
+                    .forGoggles(tooltip, 1);
+        }
+        return true;
+
     }
 }
