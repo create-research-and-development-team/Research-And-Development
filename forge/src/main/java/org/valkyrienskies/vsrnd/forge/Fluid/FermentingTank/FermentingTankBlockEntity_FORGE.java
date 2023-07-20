@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,7 +26,6 @@ import java.util.stream.Collectors;
 
 
 public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
-
     public FermentingTankRecipe_FORGE recipe;
     private static final Object FermentingRecipesKey = new Object();
     protected Object getRecipeCacheKey() {

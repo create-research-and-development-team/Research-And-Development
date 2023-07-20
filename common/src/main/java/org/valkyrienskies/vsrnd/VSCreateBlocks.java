@@ -18,6 +18,7 @@ import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlock;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankGenerator;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
+import org.valkyrienskies.vsrnd.content.Plants.Yeast;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
@@ -41,6 +42,10 @@ public class VSCreateBlocks {
             .simpleItem()
             .register();
 
+
+    public static final BlockEntry<Yeast> YEAST = REGISTRATE.block("yeast", Yeast::new)
+            .simpleItem()
+            .register();
 
 //    public static final BlockEntry<TitaniumTankBlock> TITANIUM_TANK = REGISTRATE.block("titanium_tank", TitaniumTankBlock::regular)
 //            .initialProperties(SharedProperties::copperMetal)

@@ -1,6 +1,6 @@
 {
-  "parent": "vscreate:item/titanium_sheet",
+  "parent": "item/generated",
   "textures": {
-    "layer0": "vscreate:item/titanium_sheet"
+    "layer0": "vsrnd:item/titanium_sheet"
   }
 }
