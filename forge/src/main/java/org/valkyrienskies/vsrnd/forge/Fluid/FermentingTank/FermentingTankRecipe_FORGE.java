@@ -58,6 +58,10 @@ public class FermentingTankRecipe_FORGE extends ProcessingRecipe<SmartInventory>
         return 1;
     }
 
+    @Override
+    protected boolean canRequireHeat() {
+        return false;
+    }
 
     @Override
     public boolean matches(SmartInventory container, Level level) {

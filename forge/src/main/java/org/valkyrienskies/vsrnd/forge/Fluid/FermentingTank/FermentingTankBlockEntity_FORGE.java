@@ -22,11 +22,14 @@ import java.util.stream.Collectors;
 
 public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
 
+    private FermentingTankRecipe_FORGE recipe;
     private static final Object FermentingRecipesKey = new Object();
     protected Object getRecipeCacheKey() {
         return FermentingRecipesKey;
     }
     private int FermentedTicks = 0;
+
+    private FluidStack oldFluid;
     public FermentingTankBlockEntity_FORGE(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
@@ -68,21 +71,47 @@ public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
     public void tick() {
         super.tick();
         if (isController()) {
-                List<Recipe<?>> recipes = getMatchingRecipes();
-                if (!recipes.isEmpty()) {
-                    FermentedTicks += 1;
-                    if (FermentedTicks >= 200) {
-                        FermentingTankRecipe_FORGE recipe = (FermentingTankRecipe_FORGE) recipes.get(0);
-                        FluidStack result = recipe.getFluidResults().get(0);
-                        result.setAmount(super.tankInventory.getFluidAmount());
-                        super.tankInventory.setFluid(result);
-                    }
-                } else {
-                    FermentedTicks = 0;
+
+            if (recipe != null) {
+                FermentedTicks += 1;
+                int duration =  recipe.getProcessingDuration();
+                if (duration==0) {
+                    duration = 200;
                 }
+
+                if (FermentedTicks >= duration) {
+                    FermentedTicks = 0;
+                    FluidStack result = recipe.getFluidResults().get(0);
+                    result.setAmount(super.tankInventory.getFluidAmount());
+                    super.tankInventory.setFluid(result);
+                }
+            } else {
+                FermentedTicks = 0;
+            }
             //System.out.println(super.tankInventory.getFluid().getTranslationKey());
 
 
         }
+    }
+
+    @Override
+    protected void onFluidStackChanged(FluidStack newFluidStack) {
+        super.onFluidStackChanged(newFluidStack);
+
+        List<Recipe<?>> recipes = getMatchingRecipes();
+        if (!recipes.isEmpty()) {
+            recipe = (FermentingTankRecipe_FORGE) recipes.get(0);
+        } else {
+            recipe = null;
+        }
+
+        if (oldFluid==newFluidStack) {
+            int mult = Math.max(1-(newFluidStack.getAmount()/oldFluid.getAmount()),0) ;
+            FermentedTicks *= mult;
+        } else {
+            FermentedTicks = 0;
+        }
+
+        oldFluid = newFluidStack;
     }
 }
