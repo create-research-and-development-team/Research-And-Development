@@ -72,8 +72,9 @@ dependencies {
     implementation(forgeRuntimeLibrary('curse.maven:kotlinforforge-351264:3925887'))
 
 
-    // if you would like to add integration with JEI, uncomment this line.
-//    modCompileOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}:api")
+    // JEI
+    modCompileOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}:api")
+    runtimeOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}")
 
     // CC Tweaked
     modCompileOnly("curse.maven:cctweaked-282001:4061947")
@@ -155,6 +156,18 @@ publishing {
                     password = System.getenv("GITHUB_TOKEN")
                 }
             }
+        }
+
+        // JEI
+        maven {
+            // location of the maven that hosts JEI files
+            name = "Progwml6maven"
+            url = "https://dvs1.progwml6.com/files/maven/"
+        }
+        maven {
+            // location of a maven mirror for JEI files, as a fallback
+            name = "ModMaven"
+            url = "https://modmaven.dev"
         }
     }
 }
