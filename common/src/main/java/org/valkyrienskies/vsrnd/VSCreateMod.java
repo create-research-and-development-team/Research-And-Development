@@ -5,12 +5,9 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.valkyrienskies.vsrnd.content.Plants.YeastDecorator;
 import org.valkyrienskies.vsrnd.platform.SharedValues;
-import org.valkyrienskies.vsrnd.mixin.TreeDecoratorInvoker;
 
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +29,6 @@ public class VSCreateMod {
     public static final Logger MIXIN_LOGGER = LoggerFactory.getLogger("VSCreateMixins");
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public static final TreeDecoratorType<YeastDecorator> YEAST_DECORATOR = TreeDecoratorInvoker.callRegister("vsrnd:yeast_decorator", YeastDecorator.CODEC);
     public static void init() {
         VSCreateContraptions.init();
         VSCreatePackets.init();
