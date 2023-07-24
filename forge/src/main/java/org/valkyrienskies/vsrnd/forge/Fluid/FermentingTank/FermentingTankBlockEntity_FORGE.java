@@ -113,32 +113,27 @@ public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
             }
 
             // TODO: FIX fluid mult shit
-//            if (oldFluid != null) {
-//                if (newFluidStack.getFluid() == oldFluid) {
-//                    float mult;
-//                    if (oldAmount == 0) {
-//                        mult = 1f;
-//                    } else {
-//                        float A = newFluidStack.getAmount();
-//                        float B = oldAmount;
-//                        float C = A/B;
-//                        System.out.println(A);
-//                        System.out.println(B);
-//                        System.out.println(A/B);
-//                        System.out.println(C);
-//                        System.out.println("//////////");
-//                        mult = Math.max(1f-C, 0f);
-//                    }
-//
-//                    FermentedTicks *= mult;
-//                } else {
-//                    FermentedTicks = 0;
-//                }
-//
-//
-//            }
-//            oldFluid = newFluidStack.getFluid();
-//            oldAmount = newFluidStack.getAmount();
+            if (oldFluid != null) {
+                if (newFluidStack.getFluid() == oldFluid) {
+                    float mult;
+                    if (oldAmount == 0) {
+                        mult = 1f;
+                    } else {
+                        float A = newFluidStack.getAmount();
+                        float B = oldAmount;
+                        float C = (A-B)/B;
+                        mult = Math.max(1f-C, 0f);
+                    }
+
+                    FermentedTicks *= mult;
+                } else {
+                    FermentedTicks = 0;
+                }
+
+
+            }
+            oldFluid = newFluidStack.getFluid();
+            oldAmount = newFluidStack.getAmount();
         }
 
     }
