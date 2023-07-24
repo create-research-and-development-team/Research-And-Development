@@ -1,24 +1,19 @@
-package org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank;
+package org.valkyrienskies.vsrnd.content.Fluids.FermentingTank;
 
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.List;
+
+public class FermentingTankBlockEntity extends FluidTankBlockEntity {
 
 
-public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
-
-
-
-    public TitaniumTankBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public FermentingTankBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
-
     }
 
     @Override
@@ -26,6 +21,8 @@ public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
         return;
     }
 
+
+    @SuppressWarnings("unchecked")
 
 
     protected void updateConnectivity() {
@@ -36,15 +33,6 @@ public class TitaniumTankBlockEntity extends FluidTankBlockEntity {
             return;
         ConnectivityHandler.formMulti(this);
     }
-
-//    @Override
-//    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
-//        TitaniumTankBlockEntity controllerBE = getControllerBE();
-//        if (controllerBE == null)
-//            return false;
-//        return containedFluidTooltip(tooltip, isPlayerSneaking,
-//                controllerBE.getFluidStorage(null));
-//    }
 
 
 

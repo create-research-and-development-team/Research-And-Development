@@ -1,6 +1,6 @@
 {
-  "parent": "vscreate:item/dented_titanium_ingot",
+  "parent": "item/generated",
   "textures": {
-    "layer0": "vscreate:item/dented_titanium_ingot"
+    "layer0": "vsrnd:item/dented_titanium_ingot"
   }
 }

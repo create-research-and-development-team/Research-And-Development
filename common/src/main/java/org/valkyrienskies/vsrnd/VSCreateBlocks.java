@@ -18,6 +18,7 @@ import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlock;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankGenerator;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
+import org.valkyrienskies.vsrnd.content.Plants.Yeast;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
@@ -42,17 +43,21 @@ public class VSCreateBlocks {
             .register();
 
 
-    public static final BlockEntry<TitaniumTankBlock> TITANIUM_TANK = REGISTRATE.block("titanium_tank", TitaniumTankBlock::regular)
-            .initialProperties(SharedProperties::copperMetal)
-            .properties(BlockBehaviour.Properties::noOcclusion)
-            .properties(p -> p.isRedstoneConductor((p1, p2, p3) -> true))
-            .blockstate(new TitaniumTankGenerator()::generate)
-            .onRegister(CreateRegistrate.blockModel(() -> TitaniumTankModel::standard))
-            .addLayer(() -> RenderType::cutoutMipped)
-            .item(TitaniumTankItem::new)
-            .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
-            .build()
+    public static final BlockEntry<Yeast> YEAST = REGISTRATE.block("yeast", Yeast::new)
+            .simpleItem()
             .register();
+
+//    public static final BlockEntry<TitaniumTankBlock> TITANIUM_TANK = REGISTRATE.block("titanium_tank", TitaniumTankBlock::regular)
+//            .initialProperties(SharedProperties::copperMetal)
+//            .properties(BlockBehaviour.Properties::noOcclusion)
+//            .properties(p -> p.isRedstoneConductor((p1, p2, p3) -> true))
+//            .blockstate(new TitaniumTankGenerator()::generate)
+//            .onRegister(CreateRegistrate.blockModel(() -> TitaniumTankModel::standard))
+//            .addLayer(() -> RenderType::cutoutMipped)
+//            .item(TitaniumTankItem::new)
+//            .model(AssetLookup.customBlockItemModel("_", "block_single_window"))
+//            .build()
+//            .register();
 
     public static final BlockEntry<CocoonBlock> COCOON = REGISTRATE.block("cocoon", CocoonBlock::new)
             .initialProperties(SharedProperties::stone)

@@ -1,7 +1,7 @@
 package org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank;
 
 
-import com.simibubi.create.content.fluids.tank.FluidTankBlock.Shape;
+import org.valkyrienskies.vsrnd.content.Fluids.BaseTankBlock.Shape;
 import com.simibubi.create.content.fluids.tank.FluidTankGenerator;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.tterrag.registrate.providers.DataGenContext;
