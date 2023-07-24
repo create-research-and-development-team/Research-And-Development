@@ -5,7 +5,8 @@
   "plugin": "org.valkyrienskies.vsrnd.mixin.CommonMixinConfigPlugin",
   "mixins": [
     "HandheldMechanicalToolSwingMixin",
-    "accessors.FluidAccessor"
+    "accessors.FluidAccessor",
+    "TreeDecoratorInvoker"
   ],
   "client": [
   ],
