@@ -20,6 +20,7 @@ import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
 import org.valkyrienskies.vsrnd.content.Plants.Yeast;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
+import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkCore.SculkCoreBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
 import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
@@ -39,6 +40,10 @@ public class VSCreateBlocks {
             .register();
 
     public static final BlockEntry<SculkThrusterBlock> SCULK_THRUSTER = REGISTRATE.block("sculk_thruster", SculkThrusterBlock::new)
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<SculkCoreBlock> SCULK_CORE = REGISTRATE.block("sculk_core", SculkCoreBlock::new)
             .simpleItem()
             .register();
 

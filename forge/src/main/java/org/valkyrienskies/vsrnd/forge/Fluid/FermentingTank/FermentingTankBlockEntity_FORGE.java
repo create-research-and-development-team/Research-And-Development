@@ -112,7 +112,7 @@ public class FermentingTankBlockEntity_FORGE extends FermentingTankBlockEntity {
                 recipe = null;
             }
 
-            // TODO: FIX fluid mult shit
+
             if (oldFluid != null) {
                 if (newFluidStack.getFluid() == oldFluid) {
                     float mult;
