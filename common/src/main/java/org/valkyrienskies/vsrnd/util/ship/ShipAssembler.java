@@ -48,6 +48,11 @@ public class ShipAssembler {
 
     public ServerShip assemble(BlockPos Helm) {
         this.blocks.add(Helm.getX(),Helm.getY(),Helm.getZ());
+        for (int x = -3; x < 3; x++) {
+            for (int z = -3; z < 3; z++) {
+                this.blocks.add(Helm.getX()+x,Helm.getY(),Helm.getZ()+z);
+            }
+        }
         return ShipAssemblyKt.createNewShipWithBlocks(this.centerPos, this.blocks, this.level);
     }
 

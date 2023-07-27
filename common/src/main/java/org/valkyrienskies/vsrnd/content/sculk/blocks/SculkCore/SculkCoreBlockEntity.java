@@ -11,7 +11,7 @@ import org.valkyrienskies.vsrnd.VSCreateBlockEntities;
 import org.valkyrienskies.vsrnd.util.ship.ShipAssembler;
 
 public class SculkCoreBlockEntity extends BlockEntity {
-    private ServerShip ship = null;
+    private ServerShip selfShip = null;
     public SculkCoreBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
@@ -22,10 +22,13 @@ public class SculkCoreBlockEntity extends BlockEntity {
     }
 
     public void assemble() {
-        if (ship==null) {
+        System.out.println(this.selfShip);
+        System.out.println(this.selfShip==null);
+        if (this.selfShip==null) {
             ShipAssembler shipAssembler = new ShipAssembler(this.getBlockPos(), this.getLevel());
-            this.ship = shipAssembler.assemble(this.getBlockPos());
-
+            this.selfShip = shipAssembler.assemble(this.getBlockPos());
+            System.out.println(this.selfShip);
         }
+        System.out.println("/////////////");
     }
 }
