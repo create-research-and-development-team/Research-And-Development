@@ -24,7 +24,7 @@ public class SculkCoreBlockEntity extends BlockEntity {
 
     @Override
     public BlockEntityType<?> getType() {
-        return VSCreateBlockEntities.SCULKCORE_BLOCK_ENTITY.get();
+        return VSCreateBlockEntities.SCULK_CORE_BLOCK_ENTITY.get();
     }
 
 

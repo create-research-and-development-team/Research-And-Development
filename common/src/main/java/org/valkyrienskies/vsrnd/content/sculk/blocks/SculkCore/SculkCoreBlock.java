@@ -44,6 +44,6 @@ public class SculkCoreBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new SculkCoreBlockEntity(VSCreateBlockEntities.SCULKCORE_BLOCK_ENTITY.get(),pos,state);
+        return new SculkCoreBlockEntity(VSCreateBlockEntities.SCULK_CORE_BLOCK_ENTITY.get(),pos,state);
     }
 }

@@ -22,6 +22,7 @@ import org.valkyrienskies.vsrnd.content.Plants.Yeast;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkCore.SculkCoreBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
+import org.valkyrienskies.vsrnd.content.sculk.blocks.StomachCore.StomachCoreBlock;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
 import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
 
@@ -50,6 +51,16 @@ public class VSCreateBlocks {
 
     public static final BlockEntry<Yeast> YEAST = REGISTRATE.block("yeast", Yeast::new)
             .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> STOMACH_LINING = REGISTRATE.block("stomach_lining", Block::new)
+            .simpleItem()
+            .lang("Stomach Lining")
+            .register();
+
+    public static final BlockEntry<StomachCoreBlock> STOMACH_CORE = REGISTRATE.block("stomach_core", StomachCoreBlock::new)
+            .simpleItem()
+            .lang("Stomach Core")
             .register();
 
 //    public static final BlockEntry<TitaniumTankBlock> TITANIUM_TANK = REGISTRATE.block("titanium_tank", TitaniumTankBlock::regular)
