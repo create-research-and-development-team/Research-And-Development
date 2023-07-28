@@ -14,10 +14,13 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.system.CallbackI;
 import org.valkyrienskies.vsrnd.VSCreateBlockEntities;
 import org.valkyrienskies.vsrnd.util.ship.ShipAssembler;
 
 public class SculkCoreBlock extends BaseEntityBlock {
+
+
 
 
     public SculkCoreBlock(Properties properties) {
@@ -26,11 +29,13 @@ public class SculkCoreBlock extends BaseEntityBlock {
 
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         SculkCoreBlockEntity entity = (SculkCoreBlockEntity) level.getBlockEntity(pos);
-        if (entity!=null && !level.isClientSide() && player.getUseItem() == ItemStack.EMPTY) {
+        if (entity!=null && !level.isClientSide() && player.getItemInHand(hand) == ItemStack.EMPTY) {
+            System.out.println(player.getUseItem());
 
-
-            entity.assemble();
-            return InteractionResult.CONSUME;
+            boolean attempt = entity.assemble();
+            if (attempt) {
+                return InteractionResult.CONSUME;
+            }
         }
         return InteractionResult.PASS;
     }
