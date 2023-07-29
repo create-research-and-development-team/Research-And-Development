@@ -1,4 +1,4 @@
-package org.valkyrienskies.vsrnd.util.ship;
+package org.valkyrienskies.vsrnd.foundation.ship;
 
 
 import net.minecraft.client.multiplayer.ClientLevel;
