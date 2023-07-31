@@ -62,6 +62,8 @@ public class VSCreateModForge {
         VSCreateMod.init();
         VSCreatePackets.init();
 
+        VSCreateForgeMobEffects.register(modEventBus);
+
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             FMLJavaModLoadingContext.get()
                     .getModEventBus().addListener(VSCreateForgeParticles::register);
