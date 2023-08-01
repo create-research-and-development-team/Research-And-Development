@@ -1,0 +1,16 @@
+{
+  "type": "vsrnd:distilling",
+  "ingredients": [
+    {
+      "fluid": "create:honey",
+      "amount": 5
+    }
+  ],
+  "results": [
+    {
+      "fluid": "minecraft:water",
+      "amount": 1
+    }
+  ],
+  "processingTime": 20
+}

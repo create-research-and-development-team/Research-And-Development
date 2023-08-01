@@ -30,12 +30,13 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.valkyrienskies.vsrnd.VSCreateMod;
+import org.valkyrienskies.vsrnd.forge.Fluid.Distillery.DistilleryTankRecipe_FORGE;
 import org.valkyrienskies.vsrnd.forge.Fluid.FermentingTank.FermentingTankRecipe_FORGE;
 
 public enum VSCreateForgeRecipes implements IRecipeTypeInfo {
 
-    FERMENTING(FermentingTankRecipe_FORGE::new);
-
+    FERMENTING(FermentingTankRecipe_FORGE::new),
+    DISTILLING(DistilleryTankRecipe_FORGE::new);
 
     private final ResourceLocation id;
     private final RegistryObject<RecipeSerializer<?>> serializerObject;

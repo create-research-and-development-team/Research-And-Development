@@ -83,6 +83,9 @@ public class VSCreateBlocks {
             .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
             .simpleItem()
             .register();
+
+
+
     public static void register() {
     }
 }

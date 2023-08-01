@@ -7,8 +7,13 @@ package org.valkyrienskies.vsrnd.forge;
 //import org.valkyrienskies.clockwork.content.contraptions.combustion_engine.CombustionEngineRenderer;
 //import org.valkyrienskies.clockwork.forge.content.contraptions.combustion_engine.ForgeCombustionEngineBlockEntity;
 
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.Create;
 import com.simibubi.create.content.fluids.tank.FluidTankRenderer;
+import com.simibubi.create.content.processing.basin.BasinBlockEntity;
+import com.simibubi.create.content.processing.basin.BasinRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import org.valkyrienskies.vsrnd.content.Fluids.Distillery.DistilleryBlockEntity;
 import org.valkyrienskies.vsrnd.content.Fluids.FermentingTank.FermentingTankBlockEntity;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankRenderer;
 import org.valkyrienskies.vsrnd.forge.Fluid.FermentingTank.FermentingTankBlockEntity_FORGE;
@@ -39,6 +44,12 @@ public class VSCreateForgeBlockEntities {
             .blockEntity("fermenting_tank", FermentingTankBlockEntity_FORGE::new)
             .validBlocks(VSCreateForgeBlocks.FERMENTING_TANK_FORGE)
             .renderer(() -> FluidTankRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<DistilleryBlockEntity> BASIN = Create.REGISTRATE
+            .blockEntity("distillery", DistilleryBlockEntity::new)
+            .validBlocks(VSCreateForgeBlocks.DISTILLERY)
+            .renderer(() -> BasinRenderer::new)
             .register();
     public static void register() {
     }

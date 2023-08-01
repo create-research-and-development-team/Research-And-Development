@@ -10,6 +10,7 @@ import com.simibubi.create.foundation.item.SmartInventory;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.valkyrienskies.vsrnd.forge.Fluid.Distillery.DistilleryTankRecipe_FORGE;
 import org.valkyrienskies.vsrnd.forge.VSCreateForgeRecipes;
 
 public class FermentingTankRecipe_FORGE extends ProcessingRecipe<SmartInventory> {
@@ -18,8 +19,8 @@ public class FermentingTankRecipe_FORGE extends ProcessingRecipe<SmartInventory>
 
     static public boolean match(FermentingTankBlockEntity_FORGE fermentTank, Recipe<?> recipe) {
 
-        if (recipe instanceof FermentingTankRecipe_FORGE) {
-            return  ((FermentingTankRecipe_FORGE)recipe).getFluidIngredients().get(0).test(fermentTank.getTankInventory().getFluid());
+        if (recipe instanceof DistilleryTankRecipe_FORGE) {
+            return  ((DistilleryTankRecipe_FORGE)recipe).getFluidIngredients().get(0).test(fermentTank.getTankInventory().getFluid());
         }
 
        return false;
