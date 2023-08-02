@@ -80,6 +80,7 @@ public class DistilleryBlockEntity_FORGE extends DistilleryBlockEntity {
             recipe = TempRecipe;
         }
 
+        System.out.println(recipe);
         if (recipe != null) {
             DistilledTicks += 1;
             int duration =  recipe.getProcessingDuration();
@@ -94,12 +95,12 @@ public class DistilleryBlockEntity_FORGE extends DistilleryBlockEntity {
                 FluidIngredient input = recipe.getFluidIngredients().get(0);
 
                 IFluidHandler availableFluids = (IFluidHandler)this.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY);
-                FluidIngredient ingredient = recipe.getFluidIngredients().get(0);
 
                 if (availableFluids != null) {
                     for(int tank = 0; tank < availableFluids.getTanks(); ++tank) {
+                        System.out.println("DONE");
                         FluidStack fluidStack = availableFluids.getFluidInTank(tank);
-                        if (ingredient.test(fluidStack) && ingredient.getRequiredAmount()<=fluidStack.getAmount()) {
+                        if (input.test(fluidStack) && input.getRequiredAmount()<=fluidStack.getAmount()) {
                             availableFluids.drain(tank, IFluidHandler.FluidAction.SIMULATE);
                         }
                     }
