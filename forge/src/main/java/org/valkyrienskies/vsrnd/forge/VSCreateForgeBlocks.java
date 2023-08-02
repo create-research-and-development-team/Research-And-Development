@@ -1,8 +1,6 @@
 package org.valkyrienskies.vsrnd.forge;
 
 
-import com.simibubi.create.Create;
-import com.simibubi.create.content.processing.basin.BasinBlock;
 import com.simibubi.create.content.processing.basin.BasinGenerator;
 import com.simibubi.create.content.processing.basin.BasinMovementBehaviour;
 import com.simibubi.create.foundation.data.CreateRegistrate;
@@ -11,7 +9,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MaterialColor;
 import org.valkyrienskies.vsrnd.VSCreateMod;
-import org.valkyrienskies.vsrnd.content.Fluids.Distillery.DistilleyBlock;
+import org.valkyrienskies.vsrnd.content.Fluids.Distillery.DistilleryBlock;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankGenerator;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
 import org.valkyrienskies.vsrnd.forge.Fluid.FermentingTank.FermentingTankBlock_FORGE;
@@ -26,7 +24,6 @@ import org.valkyrienskies.vsrnd.foundation.AssetLookup;
 
 import static com.simibubi.create.AllMovementBehaviours.movementBehaviour;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
-import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
 
 public class VSCreateForgeBlocks {
@@ -71,7 +68,7 @@ public class VSCreateForgeBlocks {
 //                    .transform(customItemModel())
 //                    .register();
 
-    public static final BlockEntry<DistilleyBlock> DISTILLERY = REGISTRATE.block("distillery", DistilleyBlock::new)
+    public static final BlockEntry<DistilleryBlock> DISTILLERY = REGISTRATE.block("distillery", DistilleryBlock::new)
             .initialProperties(SharedProperties::stone)
             .properties(p -> p.color(MaterialColor.COLOR_GRAY))
             .properties(p -> p.sound(SoundType.NETHERITE_BLOCK))

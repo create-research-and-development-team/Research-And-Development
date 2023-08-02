@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "vsrnd:block/fish/block"
+    },
+    "facing=south": {
+      "model": "vsrnd:block/fish/block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "vsrnd:block/fish/block",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "vsrnd:block/fish/block",
+      "y": 90
+    }
+  }
+}

@@ -1,9 +1,14 @@
 package org.valkyrienskies.vsrnd;
 
 
+import com.simibubi.create.Create;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
+import com.simibubi.create.content.kinetics.clock.CuckooClockBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockModel;
+import com.simibubi.create.content.redstone.displayLink.source.StopWatchDisplaySource;
+import com.simibubi.create.content.redstone.displayLink.source.TimeOfDayDisplaySource;
 import com.simibubi.create.foundation.data.BlockStateGen;
+import com.simibubi.create.foundation.data.BuilderTransformers;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 
@@ -19,11 +24,15 @@ import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankGenerato
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
 import org.valkyrienskies.vsrnd.content.Plants.Yeast;
+import org.valkyrienskies.vsrnd.content.contraptions.fish.FishBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkCore.SculkCoreBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.StomachCore.StomachCoreBlock;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
+
+import static com.simibubi.create.content.redstone.displayLink.AllDisplayBehaviours.assignDataBehaviour;
+import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
 
 
@@ -83,6 +92,13 @@ public class VSCreateBlocks {
             .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
             .simpleItem()
             .register();
+
+    public static final BlockEntry<FishBlock> FISHBLOCK = REGISTRATE.block("fishblock", FishBlock::new)
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .simpleItem()
+            .register();
+
+
 
 
 

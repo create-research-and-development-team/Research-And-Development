@@ -2,6 +2,8 @@ package org.valkyrienskies.vsrnd.forge;
 
 import com.simibubi.create.AllParticleTypes;
 import com.simibubi.create.AllRecipeTypes;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -90,6 +92,9 @@ public class VSCreateModForge {
         happendClientSetup = true;
 
         VSCreateMod.initClient();
+
+
+        ItemBlockRenderTypes.setRenderLayer(VSCreateBlocks.FISHBLOCK.get(), RenderType.cutout());
     }
 
     void entityRenderers(final EntityRenderersEvent.RegisterRenderers event) {

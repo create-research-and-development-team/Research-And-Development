@@ -1,0 +1,51 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "vsrnd:block/fish"
+	},
+	"elements": [
+		{
+			"from": [0, 4, 11.5],
+			"to": [3, 6, 13.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4, 4, 12]},
+			"faces": {
+				"north": {"uv": [10, 11, 11.5, 12], "texture": "#0"},
+				"east": {"uv": [6.5, 12, 7.5, 13], "texture": "#0"},
+				"south": {"uv": [11, 10, 12.5, 11], "texture": "#0"},
+				"west": {"uv": [7.5, 12, 8.5, 13], "texture": "#0"},
+				"up": {"uv": [13, 12, 11.5, 11], "texture": "#0"},
+				"down": {"uv": [1.5, 12, 0, 13], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 3, 11.5],
+			"to": [3, 4, 13.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4, 4, 12]},
+			"faces": {
+				"north": {"uv": [10.5, 12, 12, 12.5], "texture": "#0"},
+				"east": {"uv": [12.5, 10, 13.5, 10.5], "texture": "#0"},
+				"south": {"uv": [12, 12, 13.5, 12.5], "texture": "#0"},
+				"west": {"uv": [10.5, 12.5, 11.5, 13], "texture": "#0"},
+				"up": {"uv": [3, 13, 1.5, 12], "texture": "#0"},
+				"down": {"uv": [6.5, 12, 5, 13], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "head",
+			"origin": [-4, 7, 4.5],
+			"color": 0,
+			"children": [
+				0,
+				{
+					"name": "jaw",
+					"origin": [-4, 7, 4.5],
+					"color": 0,
+					"children": [1]
+				}
+			]
+		}
+	]
+}

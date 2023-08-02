@@ -2,6 +2,7 @@ package org.valkyrienskies.vsrnd;
 
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -39,6 +40,9 @@ public class VSCreateMod {
                 VSCreateItems.HANDHELD_MECHANICAL_DRILL.get(),
                 VSCreateItems.HANDHELD_MECHANICAL_SAW.get()
         ));
+
+
+
     }
 
     private static final Set<Item> skipSwingItems = new HashSet<>();

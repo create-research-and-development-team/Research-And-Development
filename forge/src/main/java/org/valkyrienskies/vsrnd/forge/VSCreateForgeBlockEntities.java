@@ -46,7 +46,7 @@ public class VSCreateForgeBlockEntities {
             .renderer(() -> FluidTankRenderer::new)
             .register();
 
-    public static final BlockEntityEntry<DistilleryBlockEntity> BASIN = Create.REGISTRATE
+    public static final BlockEntityEntry<DistilleryBlockEntity> DISTILLERY = REGISTRATE
             .blockEntity("distillery", DistilleryBlockEntity::new)
             .validBlocks(VSCreateForgeBlocks.DISTILLERY)
             .renderer(() -> BasinRenderer::new)
