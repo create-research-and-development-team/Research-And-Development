@@ -1,0 +1,37 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "vsrnd:block/fish"
+	},
+	"elements": [
+		{
+			"from": [13, 2, 12.5],
+			"to": [19, 6, 12.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, -3, 8]},
+			"faces": {
+				"north": {"uv": [8, 9, 11, 11], "texture": "#0"},
+				"east": {"uv": [13, 14, 13, 16], "texture": "#0"},
+				"south": {"uv": [0, 10, 3, 12], "texture": "#0"},
+				"west": {"uv": [16, 14, 16, 16], "texture": "#0"},
+				"up": {"uv": [16, 14, 13, 14], "texture": "#0"},
+				"down": {"uv": [16, 14, 13, 14], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "fish",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [
+				{
+					"name": "tail",
+					"origin": [5, 7, 4.5],
+					"color": 0,
+					"children": [0]
+				}
+			]
+		}
+	]
+}

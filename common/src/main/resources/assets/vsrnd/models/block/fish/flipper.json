@@ -1,0 +1,43 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "vsrnd:block/fish"
+	},
+	"elements": [
+		{
+			"from": [3, 3, 9],
+			"to": [5, 3, 11],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [4, 3, 11]},
+			"faces": {
+				"north": {"uv": [15, 16, 16, 16], "texture": "#0"},
+				"east": {"uv": [15, 16, 16, 16], "texture": "#0"},
+				"south": {"uv": [15, 16, 16, 16], "texture": "#0"},
+				"west": {"uv": [15, 16, 16, 16], "texture": "#0"},
+				"up": {"uv": [9.5, 13, 8.5, 12], "texture": "#0"},
+				"down": {"uv": [10.5, 12, 9.5, 13], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "fish",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [
+				{
+					"name": "tail",
+					"origin": [5, 7, 4.5],
+					"color": 0,
+					"children": []
+				},
+				{
+					"name": "flipper",
+					"origin": [-4, 6, 3],
+					"color": 0,
+					"children": [0]
+				}
+			]
+		}
+	]
+}

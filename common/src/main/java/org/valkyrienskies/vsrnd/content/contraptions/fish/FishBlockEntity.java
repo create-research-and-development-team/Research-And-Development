@@ -19,6 +19,9 @@ public class FishBlockEntity extends KineticBlockEntity {
 
 
         compound.putFloat("VSrnd$headangle",HeadTarget);
+        compound.putFloat("VSrnd$tailangle",TailTarget);
+        compound.putFloat("VSrnd$flipperangle",FlipperTarget);
+        compound.putFloat("VSrnd$jawangle",JawTarget);
         super.write(compound, clientPacket);
 
     }
@@ -28,12 +31,20 @@ public class FishBlockEntity extends KineticBlockEntity {
         super.read(compound, clientPacket);
         if (compound.contains("VSrnd$headangle")) {
             HeadTarget = compound.getFloat("VSrnd$headangle");
+            TailTarget = compound.getFloat("VSrnd$tailangle");
+            FlipperTarget = compound.getFloat("VSrnd$flipperangle");
+            JawTarget = compound.getFloat("VSrnd$jawangle");
         }
     }
 
     public LerpedFloat Head = LerpedFloat.angular();
-
+    public LerpedFloat Tail = LerpedFloat.angular();
+    public LerpedFloat Flipper = LerpedFloat.angular();
+    public LerpedFloat Jaw = LerpedFloat.angular();
     protected float HeadTarget = 0;
+    protected float TailTarget = 0;
+    protected float FlipperTarget = 0;
+    protected float JawTarget = 0;
     public FishBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
@@ -47,15 +58,32 @@ public class FishBlockEntity extends KineticBlockEntity {
         HeadTarget = angle;
     }
 
-    public void PacketHeadAngle(double angle) {
-        SetHeadAngle((float)angle);
+    public void SetTailAngle(float angle) {
+        TailTarget = angle;
+    }
+    public void SetFlipperAngle(float angle) {
+        FlipperTarget = angle;
+    }
+    public void SetJawAngle(float angle) {
+        JawTarget = angle;
+    }
+
+    public void PacketAngle() {
         VSCreatePackets.sendToNear(this.getLevel(),this.getBlockPos(),100,new FishPacket(this));
     }
 
     public float GetHeadAngle() {
         return HeadTarget;
     }
-
+    public float GetTailAngle() {
+        return TailTarget;
+    }
+    public float GetFlipperAngle() {
+        return FlipperTarget;
+    }
+    public float GetJawAngle() {
+        return JawTarget;
+    }
 
     @Override
     public void tick() {
@@ -63,7 +91,14 @@ public class FishBlockEntity extends KineticBlockEntity {
 
         if (level.isClientSide()) {
             Head.chase(HeadTarget, 0.2f, LerpedFloat.Chaser.EXP);
+            Tail.chase(TailTarget, 0.2f, LerpedFloat.Chaser.EXP);
+            Flipper.chase(FlipperTarget, 0.2f, LerpedFloat.Chaser.EXP);
+            Jaw.chase(JawTarget, 0.2f, LerpedFloat.Chaser.EXP);
+
             Head.tickChaser();
+            Tail.tickChaser();
+            Flipper.tickChaser();
+            Jaw.tickChaser();
         }
     }
 }

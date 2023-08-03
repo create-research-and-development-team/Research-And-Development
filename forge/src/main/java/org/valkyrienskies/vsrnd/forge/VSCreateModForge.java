@@ -95,6 +95,7 @@ public class VSCreateModForge {
 
 
         ItemBlockRenderTypes.setRenderLayer(VSCreateBlocks.FISHBLOCK.get(), RenderType.cutout());
+
     }
 
     void entityRenderers(final EntityRenderersEvent.RegisterRenderers event) {

@@ -95,6 +95,7 @@ public class VSCreateBlocks {
 
     public static final BlockEntry<FishBlock> FISHBLOCK = REGISTRATE.block("fishblock", FishBlock::new)
             .properties(BlockBehaviour.Properties::noOcclusion)
+            .addLayer(() -> RenderType::cutoutMipped)
             .simpleItem()
             .register();
 

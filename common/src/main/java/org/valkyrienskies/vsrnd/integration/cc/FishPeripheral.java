@@ -45,11 +45,45 @@ public class FishPeripheral extends SpeakerPeripheral {
 
     @LuaFunction
     public final void MoveHead(double angle) {
-        FBE.PacketHeadAngle(angle);
+        FBE.SetHeadAngle( (float) angle);
+        FBE.PacketAngle();
     }
 
     @LuaFunction
     public final float GetHead() {
         return FBE.GetHeadAngle();
+    }
+
+    @LuaFunction
+    public final void MoveTail(double angle) {
+        FBE.SetTailAngle((float) angle);
+        FBE.PacketAngle();
+    }
+
+    @LuaFunction
+    public final float GetTail() {
+        return FBE.GetTailAngle();
+    }
+
+    @LuaFunction
+    public final void MoveFlipper(double angle) {
+        FBE.SetFlipperAngle((float) angle);
+        FBE.PacketAngle();
+    }
+
+    @LuaFunction
+    public final float GetFlipper() {
+        return FBE.GetFlipperAngle();
+    }
+
+    @LuaFunction
+    public final void MoveJaw(double angle) {
+        FBE.SetJawAngle((float) angle);
+        FBE.PacketAngle();
+    }
+
+    @LuaFunction
+    public final float GetJaw() {
+        return FBE.GetJawAngle();
     }
 }

@@ -16,7 +16,7 @@ public class VSCreatePartials {
 
 
     public static final PartialModel
-            FISH_HEAD = block("fish/head")
+            FISH_HEAD = block("fish/head"), FISH_TAIL = block("fish/tail"), FISH_FLIPPER = block("fish/flipper"), FISH_JAW = block("fish/jaw")
             ;
 
     public static void init() {

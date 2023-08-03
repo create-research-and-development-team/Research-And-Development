@@ -17,6 +17,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.lwjgl.system.CallbackI;
 import org.valkyrienskies.vsrnd.VSCreatePartials;
 
 public class FishBlockRenderer extends KineticBlockEntityRenderer<FishBlockEntity>  {
@@ -42,23 +43,90 @@ public class FishBlockRenderer extends KineticBlockEntityRenderer<FishBlockEntit
         // Render Hands
 
         SuperByteBuffer Head = CachedBufferer.partial(VSCreatePartials.FISH_HEAD, blockState);
-
+        SuperByteBuffer Tail = CachedBufferer.partial(VSCreatePartials.FISH_TAIL, blockState);
+        SuperByteBuffer Flipper = CachedBufferer.partial(VSCreatePartials.FISH_FLIPPER, blockState);
+        SuperByteBuffer Jaw = CachedBufferer.partial(VSCreatePartials.FISH_JAW, blockState);
         // Doors
 
-        float angle = be.Head.getValue(partialTicks);
-        rotateHead(Head, angle, new Vec3(0,0,0),direction).light(light)
+        float Headangle =  be.Head.getValue(partialTicks);
+        float Tailangle =  be.Tail.getValue(partialTicks);
+        float Flipperangle =  be.Flipper.getValue(partialTicks);
+        float Jawangle =  be.Jaw.getValue(partialTicks);
+
+
+        Vec3 Headpivot = new Vec3(3/16f,0,12.5/16f);
+        SuperByteBuffer rotatedHead =  rotateDir(Head, Headangle,Headpivot ,direction);
+        SuperByteBuffer UpHead = rotateUp(rotatedHead, Headangle,Headpivot ,direction);
+        unrotateDir(UpHead,Headpivot).light(light)
                 .renderInto(ms, vb);
 
 
+
+        Vec3 Tailpivot = new Vec3(13/16f,4/16f,12/16f);
+        SuperByteBuffer rotatedTail =  rotateDir(Tail, Tailangle,Tailpivot ,direction);
+        SuperByteBuffer UpTail = rotateUp(rotatedTail, Tailangle,Tailpivot ,direction);
+        unrotateDir(UpTail,Tailpivot).light(light)
+                .renderInto(ms, vb);
+
+        Vec3 Flipperpivot = new Vec3(4/16f,2/16f,11/16f);
+        SuperByteBuffer rotatedFlipper =  rotateDir(Flipper, Flipperangle,Flipperpivot ,direction);
+        SuperByteBuffer EastFlipper = rotateEast(rotatedFlipper, Flipperangle,Flipperpivot ,direction);
+        unrotateDir(EastFlipper,Flipperpivot).light(light)
+                .renderInto(ms, vb);
+
+        Vec3 JawPivot = new Vec3(3/16f,4/16f,12/16f);
+        SuperByteBuffer rotatedJaw =  rotateDir(Jaw, Headangle,JawPivot ,direction);
+        SuperByteBuffer UpJaw = rotateUp(rotatedJaw, Headangle,JawPivot ,direction);
+        SuperByteBuffer NorthJaw = rotateNorth(UpJaw, Jawangle,JawPivot ,direction);
+        unrotateDir(NorthJaw,JawPivot).light(light)
+                .renderInto(ms, vb);
         // Figure
 
 
     }
 
-    private SuperByteBuffer rotateHead(SuperByteBuffer buffer, float angle, Vec3 pivot, Direction facing) {
-        //buffer.translate(pivot.x(), pivot.y(), pivot.z());
+    private SuperByteBuffer rotateDir(SuperByteBuffer buffer, float angle, Vec3 pivot, Direction facing) {
+
         //buffer.rotateCentered(Direction.UP, AngleHelper.rad(angle));
-        buffer.rotateCentered(Direction.UP, AngleHelper.rad(AngleHelper.horizontalAngle(facing.getCounterClockWise()))+AngleHelper.rad(angle+90));
+        buffer.rotateCentered(Direction.UP, AngleHelper.rad(AngleHelper.horizontalAngle(facing.getCounterClockWise())+90));
+        buffer.translate(pivot);
+
+        return buffer;
+    }
+
+    private SuperByteBuffer unrotateDir(SuperByteBuffer buffer, Vec3 pivot) {
+
+        buffer.translate(pivot.multiply(-1,-1,-1));
+        return buffer;
+    }
+
+    private SuperByteBuffer rotateUp(SuperByteBuffer buffer, float angle, Vec3 pivot, Direction facing) {
+
+        //buffer.rotateCentered(Direction.UP, AngleHelper.rad(angle));
+
+        buffer.rotate(Direction.UP, AngleHelper.rad(angle));
+
+        return buffer;
+    }
+
+
+
+    private SuperByteBuffer rotateEast(SuperByteBuffer buffer, float angle, Vec3 pivot, Direction facing) {
+
+        //buffer.rotateCentered(Direction.UP, AngleHelper.rad(angle));
+
+        buffer.rotate(Direction.EAST, AngleHelper.rad(angle));
+
+        return buffer;
+    }
+
+
+    private SuperByteBuffer rotateNorth(SuperByteBuffer buffer, float angle, Vec3 pivot, Direction facing) {
+
+        //buffer.rotateCentered(Direction.UP, AngleHelper.rad(angle));
+
+        buffer.rotate(Direction.NORTH, AngleHelper.rad(angle));
+
         return buffer;
     }
 }
