@@ -38,7 +38,7 @@ public class FishBlockRenderer extends KineticBlockEntityRenderer<FishBlockEntit
         BlockState blockState = be.getBlockState();
         Direction direction = blockState.getValue(FishBlock.FACING);
 
-        VertexConsumer vb = buffer.getBuffer(RenderType.solid());
+        VertexConsumer vb = buffer.getBuffer(RenderType.cutout());
 
         // Render Hands
 
