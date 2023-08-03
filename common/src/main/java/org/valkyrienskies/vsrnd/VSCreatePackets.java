@@ -5,6 +5,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import org.valkyrienskies.vsrnd.content.contraptions.fish.FishPacket;
 import org.valkyrienskies.vsrnd.platform.SharedValues;
 import org.valkyrienskies.vsrnd.platform.api.network.C2SVSCPacket;
 import org.valkyrienskies.vsrnd.platform.api.network.VSCPacket;
@@ -15,7 +16,7 @@ import java.util.function.Function;
 public enum VSCreatePackets {
 
     // Client to Server
-    ;
+    FISHPACKET(FishPacket.class, FishPacket::new);
 
     <T extends VSCPacket> VSCreatePackets(Class<T> type, Function<FriendlyByteBuf, T> factory) {
         SharedValues.getPacketChannel().registerPacket(type, factory);
