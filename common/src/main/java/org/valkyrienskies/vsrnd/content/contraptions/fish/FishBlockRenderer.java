@@ -75,8 +75,8 @@ public class FishBlockRenderer extends KineticBlockEntityRenderer<FishBlockEntit
                 .renderInto(ms, vb);
 
         Vec3 JawPivot = new Vec3(3/16f,4/16f,12/16f);
-        SuperByteBuffer rotatedJaw =  rotateDir(Jaw, Headangle,Headpivot ,direction);
-        SuperByteBuffer UpJaw = rotateUp(rotatedJaw, Headangle,JawPivot ,direction);
+        SuperByteBuffer rotatedJaw =  rotateDir(Jaw, Headangle,JawPivot ,direction);
+        SuperByteBuffer UpJaw = rotateUp(rotatedJaw, Headangle,Headpivot ,direction);
         SuperByteBuffer NorthJaw = rotateNorth(UpJaw, Jawangle,JawPivot ,direction);
         unrotateDir(NorthJaw,JawPivot).light(light)
                 .renderInto(ms, vb);

@@ -4,6 +4,7 @@ import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.utility.animation.LerpedFloat;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -11,6 +12,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.valkyrienskies.vsrnd.VSCreatePackets;
 
 import java.util.List;
+
+import static com.simibubi.create.foundation.utility.worldWrappers.WrappedClientWorld.mc;
 
 public class FishBlockEntity extends KineticBlockEntity {
 
@@ -90,6 +93,7 @@ public class FishBlockEntity extends KineticBlockEntity {
         super.tick();
 
         if (level.isClientSide()) {
+
             Head.chase(HeadTarget, 0.2f, LerpedFloat.Chaser.EXP);
             Tail.chase(TailTarget, 0.2f, LerpedFloat.Chaser.EXP);
             Flipper.chase(FlipperTarget, 0.2f, LerpedFloat.Chaser.EXP);
