@@ -13,7 +13,6 @@ import org.valkyrienskies.vsrnd.VSCreatePackets;
 
 import java.util.List;
 
-import static com.simibubi.create.foundation.utility.worldWrappers.WrappedClientWorld.mc;
 
 public class FishBlockEntity extends KineticBlockEntity {
 
