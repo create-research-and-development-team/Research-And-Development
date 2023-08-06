@@ -1,8 +1,14 @@
 {
-  "itemGroup.vscreate.base": "VS + Create Template",
-  "block.vscreate.propeller_bearing": "Propeller Bearing",
-  "item.vscreate.propeller_bearing": "Propeller Bearing",
-  "item.vscreate.titanium_ingot": "Titanium Ingot",
-  "item.vscreate.dented_titanium_ingot": "Dented Titanium Ingot",
-  "item.vscreate.titanium_sheet": "Titanium Sheet"
+  "itemGroup.vsrnd.base": "VS Research n Development",
+  "item.vsrnd.titanium_ingot": "Titanium Ingot",
+  "item.vsrnd.dented_titanium_ingot": "Dented Titanium Ingot",
+  "item.vsrnd.titanium_sheet": "Titanium Sheet",
+  "item.vsrnd.sodium" : "Sodium",
+  "item.vsrnd.rutile" : "Rutile",
+  "item.vsrnd.handheld_mechanical_drill" : "HandHeld Mechanical Drill",
+  "item.vsrnd.handheld_mechanical_saw" : "HandHeld Mechanical Saw",
+  "block.vsrnd.titanium_block" : "Block of Titanium",
+  "block.vsrnd.sculk_thruster" : "Sculk Thruster",
+  "block.vsrnd.titanium_tank" : "Titanium Tank",
+  "block.vsrnd.centrifugal_bearing" : "Centrifugal Bearing"
 }

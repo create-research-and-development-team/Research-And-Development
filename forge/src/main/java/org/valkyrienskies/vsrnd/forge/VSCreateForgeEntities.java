@@ -13,6 +13,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import org.valkyrienskies.vsrnd.VSCreateMod;
 
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
+
 public class VSCreateForgeEntities {
 
     private static <T extends Entity> CreateEntityBuilder<T, ?> contraption(String name, EntityType.EntityFactory<T> factory,
@@ -27,7 +29,7 @@ public class VSCreateForgeEntities {
                                                                          MobCategory group, int range, int updateFrequency, boolean sendVelocity, boolean immuneToFire,
                                                                          NonNullConsumer<EntityType.Builder<T>> propertyBuilder) {
         String id = Lang.asId(name);
-        return (CreateEntityBuilder<T, ?>) VSCreateMod.REGISTRATE
+        return (CreateEntityBuilder<T, ?>) REGISTRATE
                 .entity(id, factory, group)
                 .properties(b -> b.setTrackingRange(range)
                         .setUpdateInterval(updateFrequency)

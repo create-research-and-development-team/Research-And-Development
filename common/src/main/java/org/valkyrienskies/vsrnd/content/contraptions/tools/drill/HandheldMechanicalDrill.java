@@ -1,16 +1,21 @@
 package org.valkyrienskies.vsrnd.content.contraptions.tools.drill;
 
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
+import com.simibubi.create.foundation.item.CustomArmPoseItem;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,7 +28,7 @@ import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
 @NonnullDefault
-public class HandheldMechanicalDrill extends PickaxeItem {
+public class HandheldMechanicalDrill extends PickaxeItem implements CustomArmPoseItem {
     // Constants
     protected static final int MAX_DAMAGE = 2048;
     protected static final int MAX_BACKTANK_USES = 1000;
@@ -152,5 +157,19 @@ public class HandheldMechanicalDrill extends PickaxeItem {
     @ExpectPlatform
     public static <T extends LivingEntity> int getItemDamage(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
         return amount;
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.NONE;
+    }
+
+    @Override
+    @Nullable
+    public HumanoidModel.ArmPose getArmPose(ItemStack stack, AbstractClientPlayer player, InteractionHand hand) {
+        if (!player.swinging) {
+            return HumanoidModel.ArmPose.CROSSBOW_HOLD;
+        }
+        return null;
     }
 }

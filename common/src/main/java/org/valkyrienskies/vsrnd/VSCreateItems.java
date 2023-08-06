@@ -3,14 +3,16 @@ package org.valkyrienskies.vsrnd;
 
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
 import org.valkyrienskies.vsrnd.content.contraptions.tools.drill.HandheldMechanicalDrill;
 import org.valkyrienskies.vsrnd.content.contraptions.tools.saw.HandheldMechanicalSaw;
 
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
-
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
 
 public class VSCreateItems {
     static {
@@ -25,6 +27,14 @@ public class VSCreateItems {
     public static final ItemEntry<HandheldMechanicalDrill> HANDHELD_MECHANICAL_DRILL =
             REGISTRATE.item("handheld_mechanical_drill",
                             (p) -> new HandheldMechanicalDrill(Tiers.DIAMOND, 1, -2.8f, p))
+                    .recipe((c, p) -> {
+                        ShapedRecipeBuilder.shaped(c.get())
+                                .define()
+                                .pattern()
+                                .unlockedBy()
+                                .save(p, VSCreateMod.asResource("crafting/patterns/striped"));
+
+                    })
                     .register();
 
 

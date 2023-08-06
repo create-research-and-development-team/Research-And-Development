@@ -2,8 +2,8 @@ package org.valkyrienskies.vsrnd.platform.fabric;
 
 
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
-import com.simibubi.create.foundation.tileEntity.behaviour.BehaviourType;
-import com.simibubi.create.foundation.tileEntity.behaviour.fluid.SmartFluidTankBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
+import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import io.github.fabricators_of_create.porting_lib.entity.ExtraSpawnDataEntity;
 import io.github.fabricators_of_create.porting_lib.mixin.common.accessor.ServerGamePacketListenerImplAccessor;
 import net.fabricmc.loader.api.FabricLoader;
@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import org.valkyrienskies.vsrnd.util.fluid.VSCFluidTankBehaviour;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 
 public class PlatformUtilsImpl {
     public static double getReachDistance(Player player) {
@@ -115,7 +116,7 @@ public class PlatformUtilsImpl {
         tank.getPrimaryHandler().getFluid().shrink(amount);
     }
 
-    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmarBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
+    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
         return new FabricVSCFluidTankBehaviour(type, te, tanks, tankCapacity, enforceVariety);
     }
 

@@ -18,7 +18,7 @@ import org.valkyrienskies.vsrnd.foundation.AssetLookup;
 //import org.valkyrienskies.clockwork.forge.content.contraptions.combustion_engine.ForgeCombustionEngineBlock;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 public class VSCreateForgeBlocks {
 

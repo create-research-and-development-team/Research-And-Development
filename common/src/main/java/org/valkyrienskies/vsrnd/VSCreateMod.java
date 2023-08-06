@@ -22,9 +22,6 @@ public class VSCreateMod {
     public static final String NETWORK_VERSION_STR = String.valueOf(NETWORK_VERSION);
 
     public static final ResourceLocation NETWORK_CHANNEL = VSCreateMod.asResource("main");
-
-
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(VSCreateMod.MOD_ID);
     public static final CreativeModeTab BASE_CREATIVE_TAB = SharedValues.creativeTab();
     public static final Logger MIXIN_LOGGER = LoggerFactory.getLogger("VSCreateMixins");
     public static final Logger LOGGER = LogUtils.getLogger();

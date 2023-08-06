@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 
-import net.minecraft.world.level.material.MaterialColor;
+
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlock;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankGenerator;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
@@ -22,8 +22,8 @@ import org.valkyrienskies.vsrnd.content.Plants.Yeast;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
 
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 
 public class VSCreateBlocks {
@@ -60,13 +60,10 @@ public class VSCreateBlocks {
 //            .register();
 
     public static final BlockEntry<CocoonBlock> COCOON = REGISTRATE.block("cocoon", CocoonBlock::new)
-            .initialProperties(SharedProperties::stone)
-            .properties(p -> p.color(MaterialColor.METAL))
-            .transform(BlockStressDefaults.setImpact(1))
-            .blockstate(BlockStateGen.axisBlockProvider(false))
-            .onRegister(CreateRegistrate.blockModel(() -> BracketedKineticBlockModel::new))
             .simpleItem()
             .register();
+
+
     public static void register() {
     }
 }

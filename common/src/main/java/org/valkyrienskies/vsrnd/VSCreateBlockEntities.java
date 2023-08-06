@@ -9,15 +9,16 @@ import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlockEntity;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CacoonBlockEntityInstance;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlockEntityRenderer;
 
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
+
 public class VSCreateBlockEntities {
 
     // Kinetics
 
     public static final BlockEntityEntry<TitaniumTankBlockEntity> TITANIUM_TANK = REGISTRATE
             .blockEntity("titanium_tank", TitaniumTankBlockEntity::new)
-            .validBlocks(VSCreateBlocks.TITANIUM_TANK)
+            .validBlocks()
             .renderer(() -> TitaniumTankRenderer::new)
             .register();
 

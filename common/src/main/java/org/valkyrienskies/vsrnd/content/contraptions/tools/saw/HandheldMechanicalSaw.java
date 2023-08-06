@@ -1,17 +1,22 @@
 package org.valkyrienskies.vsrnd.content.contraptions.tools.saw;
 
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
+import com.simibubi.create.foundation.item.CustomArmPoseItem;
 import com.simibubi.create.foundation.utility.AbstractBlockBreakQueue;
 import com.simibubi.create.foundation.utility.TreeCutter;
 import com.simibubi.create.foundation.utility.VecHelper;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,11 +24,12 @@ import net.minecraft.world.phys.Vec3;
 import org.lwjgl.system.NonnullDefault;
 import org.valkyrienskies.vsrnd.util.SimpleBackTankHelper;
 
+import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.function.Consumer;
 
 @NonnullDefault
-public class HandheldMechanicalSaw extends AxeItem {
+public class HandheldMechanicalSaw extends AxeItem implements CustomArmPoseItem {
     public static final int MAX_DAMAGE = 2048;
     public static final int MAX_BACKTANK_USES = 1000;
 
@@ -77,5 +83,19 @@ public class HandheldMechanicalSaw extends AxeItem {
     @ExpectPlatform
     public static <T extends LivingEntity> int getItemDamage(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
         return amount;
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.NONE;
+    }
+
+    @Override
+    @Nullable
+    public HumanoidModel.ArmPose getArmPose(ItemStack stack, AbstractClientPlayer player, InteractionHand hand) {
+        if (!player.swinging) {
+            return HumanoidModel.ArmPose.CROSSBOW_HOLD;
+        }
+        return null;
     }
 }

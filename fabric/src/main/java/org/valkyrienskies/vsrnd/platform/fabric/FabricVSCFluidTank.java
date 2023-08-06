@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.material.Fluid;
 import org.valkyrienskies.vsrnd.util.fluid.VSCFluidTank;
 
+
 import java.util.function.Consumer;
 
 public class FabricVSCFluidTank extends SmartFluidTank implements VSCFluidTank {

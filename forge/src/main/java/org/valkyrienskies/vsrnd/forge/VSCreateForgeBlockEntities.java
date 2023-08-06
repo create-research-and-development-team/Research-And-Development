@@ -15,7 +15,7 @@ import org.valkyrienskies.vsrnd.forge.Fluid.FermentingTank.FermentingTankBlockEn
 import org.valkyrienskies.vsrnd.forge.Fluid.FermentingTank.FermentingTankBlock_FORGE;
 import org.valkyrienskies.vsrnd.forge.Fluid.TitaniumTank.TitaniumTankBlockEntity_FORGE;
 
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 public class VSCreateForgeBlockEntities {
 
@@ -23,11 +23,6 @@ public class VSCreateForgeBlockEntities {
 
     // Kinetics
 
-//    public static final BlockEntityEntry<ForgeCombustionEngineBlockEntity> COMBUSTION_ENGINE = REGISTRATE
-//            .tileEntity("combustion_engine", ForgeCombustionEngineBlockEntity::new)
-//            .validBlocks(ForgeClockworkBlocks.COMBUSTION_ENGINE)
-//            .renderer(() -> CombustionEngineRenderer::new)
-//            .register();
 
     public static final BlockEntityEntry<TitaniumTankBlockEntity_FORGE> TITANIUM_TANK = REGISTRATE
             .blockEntity("titanium_tank", TitaniumTankBlockEntity_FORGE::new)

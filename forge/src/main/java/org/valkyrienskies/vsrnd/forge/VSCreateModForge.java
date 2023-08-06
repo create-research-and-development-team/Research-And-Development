@@ -1,7 +1,6 @@
 package org.valkyrienskies.vsrnd.forge;
 
 import com.simibubi.create.AllParticleTypes;
-import com.simibubi.create.AllRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -57,7 +56,6 @@ public class VSCreateModForge {
         // TODO forge sounds
 
         VSCreateForgeParticles.init(modEventBus);
-        VSCreateForgeRecipes.register(modEventBus);
 
         VSCreateMod.init();
         VSCreatePackets.init();

@@ -7,7 +7,7 @@ license = "Apache-2.0"
 modId = "vsrnd"
 version = "${version}"
 displayName = "Create x Valkyrien Skies Template"
-authors = ["fluffy", "potato", "ewoudje"]
+authors = ["potato", "fern", "dacodia", "toni"]
 description = '''
 A template mod for Create x Valkyrien Skies mods.
 '''
