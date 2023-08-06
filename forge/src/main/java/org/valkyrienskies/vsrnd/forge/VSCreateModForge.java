@@ -16,7 +16,8 @@ import net.minecraftforge.fml.loading.FMLLoader;
 import org.valkyrienskies.vsrnd.*;
 import org.valkyrienskies.vsrnd.forge.integration.cc_tweaked.VSCreateForgePeripheralProviders;
 
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
+
 
 @Mod(VSCreateMod.MOD_ID)
 public class VSCreateModForge {

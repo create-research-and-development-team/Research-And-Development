@@ -27,14 +27,6 @@ public class VSCreateItems {
     public static final ItemEntry<HandheldMechanicalDrill> HANDHELD_MECHANICAL_DRILL =
             REGISTRATE.item("handheld_mechanical_drill",
                             (p) -> new HandheldMechanicalDrill(Tiers.DIAMOND, 1, -2.8f, p))
-                    .recipe((c, p) -> {
-                        ShapedRecipeBuilder.shaped(c.get())
-                                .define()
-                                .pattern()
-                                .unlockedBy()
-                                .save(p, VSCreateMod.asResource("crafting/patterns/striped"));
-
-                    })
                     .register();
 
 
