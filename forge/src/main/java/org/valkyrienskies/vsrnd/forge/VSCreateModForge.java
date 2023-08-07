@@ -53,6 +53,8 @@ public class VSCreateModForge {
         VSCreateFluids.register();
         VSCreateForgeFluids.register();
 
+        VSCreateForgeFeatures.register(modEventBus);
+
         VSCreateSounds.register();
         // TODO forge sounds
 
