@@ -20,6 +20,7 @@ import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
 import org.valkyrienskies.vsrnd.content.Plants.Yeast;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
+import org.valkyrienskies.vsrnd.content.sculk.blocks.Rutile.RutileClusterBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
 
@@ -33,7 +34,7 @@ public class VSCreateBlocks {
     }
 
     //they got rid of sections
-
+    //What the fuck is a section???
     public static final BlockEntry<Block> TITANIUM_BLOCK = REGISTRATE.block("titanium_block", Block::new)
             .simpleItem()
             .register();
@@ -46,6 +47,11 @@ public class VSCreateBlocks {
     public static final BlockEntry<Yeast> YEAST = REGISTRATE.block("yeast", Yeast::new)
             .simpleItem()
             .register();
+
+    public static final BlockEntry<RutileClusterBlock> RUTILE_CLUSTER = REGISTRATE.block("rutile_cluster", RutileClusterBlock::new)
+            .simpleItem()
+            .register();
+
 
 //    public static final BlockEntry<TitaniumTankBlock> TITANIUM_TANK = REGISTRATE.block("titanium_tank", TitaniumTankBlock::regular)
 //            .initialProperties(SharedProperties::copperMetal)

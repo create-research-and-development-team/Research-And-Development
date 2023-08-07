@@ -21,7 +21,7 @@ public class SharedValuesImpl {
         return CHANNEL;
     }
 
-    public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer<>> customRenderedRegisterer() {
+    public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer> customRenderedRegisterer() {
         return BuiltinItemRendererRegistry.INSTANCE::register;
     }
 
