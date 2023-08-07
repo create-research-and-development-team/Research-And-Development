@@ -41,20 +41,21 @@ public class RutileFeature extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel worldGenLevel = context.level();
         BlockPos blockPos = context.origin();
 
+        System.out.println("PLACING RUTILE AT");
+        System.out.println(blockPos);
         Random random = context.random();
         Stream<TagKey<Block>> StreamTags = worldGenLevel.getBlockState(blockPos).getTags();
         List<TagKey<Block>> Blocktags = StreamTags.toList();
-        if (Blocktags.contains(Tags.Blocks.STONE ) ){
 
-            for (Vec3i offset : offsets ) {
+        for (Vec3i offset : offsets ) {
 
-                if (worldGenLevel.getBlockState(blockPos.offset(offset)).isAir()) {
-                    worldGenLevel.setBlock(blockPos.offset(offset), VSCreateBlocks.RUTILE_CLUSTER.getDefaultState(),2);
-                    return true;
-                }
+            if (worldGenLevel.getBlockState(blockPos.offset(offset)).isAir()) {
+                worldGenLevel.setBlock(blockPos.offset(offset), VSCreateBlocks.RUTILE_CLUSTER.getDefaultState(),2);
+                return true;
             }
-            return true;
         }
+
+
         return false;
 
     }
