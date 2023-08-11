@@ -74,6 +74,7 @@ public class VSCreateModFabric implements ModInitializer {
 
             VSCreateParticles.initClient();
             VSCreateFabricParticles.initClient();
+            VSCreateFabricFeatures.init();
 
             registerClientEvents();
             registerClientEvents();
