@@ -59,6 +59,8 @@ public class VSCreateModForge {
 
         VSCreateForgeParticles.init(modEventBus);
         VSCreateForgeFeatures.register(modEventBus);
+        VSCreateForgeConfiguredFeatures.register(modEventBus);
+        VSCreateForgePlacedFeatures.register(modEventBus);
 
         VSCreateMod.init();
         VSCreatePackets.init();

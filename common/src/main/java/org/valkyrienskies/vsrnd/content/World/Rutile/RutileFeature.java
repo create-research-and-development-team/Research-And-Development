@@ -1,21 +1,16 @@
 package org.valkyrienskies.vsrnd.content.World.Rutile;
 
 import com.mojang.serialization.Codec;
-import me.alphamode.forgetags.Tags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ChorusFlowerBlock;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.valkyrienskies.vsrnd.VSCreateBlocks;
-import org.valkyrienskies.vsrnd.content.sculk.blocks.Rutile.RutileClusterBlock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +42,12 @@ public class RutileFeature extends Feature<NoneFeatureConfiguration> {
         Stream<TagKey<Block>> StreamTags = worldGenLevel.getBlockState(blockPos).getTags();
         List<TagKey<Block>> Blocktags = StreamTags.toList();
 
-        for (Vec3i offset : offsets ) {
+        if (worldGenLevel.getBlockState(blockPos).isAir())
+            return false;
 
-            if (worldGenLevel.getBlockState(blockPos.offset(offset)).isAir()) {
-                worldGenLevel.setBlock(blockPos.offset(offset), VSCreateBlocks.RUTILE_CLUSTER.getDefaultState(),2);
+        for (Direction direction : Direction.values()) {
+            if (worldGenLevel.getBlockState(blockPos.relative(direction)).isAir()) {
+                worldGenLevel.setBlock(blockPos.relative(direction), VSCreateBlocks.RUTILE_CLUSTER.getDefaultState(),2);
                 return true;
             }
         }
