@@ -4,9 +4,12 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -18,15 +21,9 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class RutileFeature extends Feature<NoneFeatureConfiguration> {
-    List<Vec3i> offsets = new ArrayList<Vec3i>();
     public RutileFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
-        offsets.add(new Vec3i(1,0,0));
-        offsets.add(new Vec3i(-1,0,0));
-        offsets.add(new Vec3i(0,1,0));
-        offsets.add(new Vec3i(0,-1,0));
-        offsets.add(new Vec3i(0,0,1));
-        offsets.add(new Vec3i(0,0,-1));
+
     }
 
 
@@ -39,15 +36,16 @@ public class RutileFeature extends Feature<NoneFeatureConfiguration> {
         System.out.println("PLACING RUTILE AT");
         System.out.println(blockPos);
         Random random = context.random();
-        Stream<TagKey<Block>> StreamTags = worldGenLevel.getBlockState(blockPos).getTags();
-        List<TagKey<Block>> Blocktags = StreamTags.toList();
 
-        if (worldGenLevel.getBlockState(blockPos).isAir())
+
+        if (!worldGenLevel.getBlockState(blockPos).is(BlockTags.BASE_STONE_OVERWORLD))
             return false;
 
         for (Direction direction : Direction.values()) {
             if (worldGenLevel.getBlockState(blockPos.relative(direction)).isAir()) {
-                worldGenLevel.setBlock(blockPos.relative(direction), VSCreateBlocks.RUTILE_CLUSTER.getDefaultState(),2);
+                BlockState block = VSCreateBlocks.RUTILE_CLUSTER.getDefaultState().setValue(BlockStateProperties.FACING,direction);
+
+                worldGenLevel.setBlock(blockPos.relative(direction), block,2);
                 return true;
             }
         }

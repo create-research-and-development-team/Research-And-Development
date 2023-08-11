@@ -49,6 +49,8 @@ public class VSCreateBlocks {
             .register();
 
     public static final BlockEntry<RutileClusterBlock> RUTILE_CLUSTER = REGISTRATE.block("rutile_cluster", RutileClusterBlock::new)
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .addLayer(() -> RenderType::cutoutMipped)
             .simpleItem()
             .register();
 
