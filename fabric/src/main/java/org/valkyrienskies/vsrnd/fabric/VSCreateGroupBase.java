@@ -1,6 +1,6 @@
 package org.valkyrienskies.vsrnd.fabric;
 
-import com.simibubi.create.content.AllSections;
+
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.github.fabricators_of_create.porting_lib.util.ItemGroupUtil;
 import net.fabricmc.api.EnvType;
@@ -12,7 +12,9 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
+import org.valkyrienskies.vsrnd.VSCreateBlocks;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.stream.Collectors;
@@ -60,42 +62,42 @@ public abstract class VSCreateGroupBase extends CreativeModeTab {
         }
     }
 
+    public static final CreativeModeTab GROUP = new CreativeModeTab(10, MOD_ID) {
+        @Override
+        public ItemStack makeIcon() {
+            return VSCreateBlocks.TITANIUM_BLOCK.asStack();
+        }
+
+        @Override
+        public void fillItemList(NonNullList<ItemStack> list) {
+            list.addAll(Arrays.asList(
+                    VSCreateBlocks.TITANIUM_BLOCK.asStack()
+            ));
+        }
+    };
+
+    public static void register() {
+        REGISTRATE.creativeModeTab(() -> GROUP, "Create: RnD");
+    }
     protected Collection<RegistryEntry<Block>> getBlocks() {
         return getSections().stream()
                 .flatMap(s -> REGISTRATE
-                        .getAll(s, Registry.BLOCK_REGISTRY)
+                        .getAll(Registry.BLOCK_REGISTRY)
                         .stream())
                 .collect(Collectors.toList());
     }
-
     protected Collection<RegistryEntry<Item>> getItems() {
         return getSections().stream()
                 .flatMap(s -> REGISTRATE
-                        .getAll(s, Registry.ITEM_REGISTRY)
+                        .getAll(Registry.ITEM_REGISTRY)
                         .stream())
                 .collect(Collectors.toList());
     }
 
-    protected EnumSet<AllSections> getSections() {
-        return EnumSet.allOf(AllSections.class);
-    }
+    protected EnumSet<AllSections> getSections() {return EnumSet.allOf(AllSections.class);}
 }
-//    public static final CreativeModeTab GROUP = new CreativeModeTab(MOD_ID) {
-//        @Override
-//        public ItemStack makeIcon() {
-//            return org.valkyrienskies.clockwork.AllClockworkBlocks.PROPELLOR_BEARING.asStack();
-//        }
-//
-//        @Override
-//        public void fillItemList(NonNullList<ItemStack> list) {
-//            list.addAll(Arrays.asList(
-//                    org.valkyrienskies.clockwork.AllClockworkBlocks.PROPELLOR_BEARING.asStack()
-//            ));
-//        }
-//    };
-//
-//    public static void register() {
-//        ClockWorkModFabric.REGISTRATE.creativeModeTab(() -> GROUP, "Valkyrien Clockwork");
-//    }
-//
-//}
+
+
+
+
+

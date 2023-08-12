@@ -45,7 +45,7 @@ public class TitaniumTankBlock_FORGE extends TitaniumTankBlock {
         return new TitaniumTankBlock_FORGE(p_i48440_1_, false);
     }
     protected TitaniumTankBlock_FORGE(Properties p_i48440_1_, boolean creative) {
-        super(p_i48440_1_);
+        super(p_i48440_1_, creative);
     }
 
     @Override

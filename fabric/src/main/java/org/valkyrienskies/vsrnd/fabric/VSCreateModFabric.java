@@ -15,6 +15,7 @@ import org.valkyrienskies.mod.fabric.common.ValkyrienSkiesModFabric;
 
 import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
+
 public class VSCreateModFabric implements ModInitializer {
 
     public static void init() {

@@ -1,6 +1,7 @@
 package org.valkyrienskies.vsrnd.fabric;
 
-import com.simibubi.create.content.contraptions.components.structureMovement.AbstractContraptionEntity;
+
+import com.simibubi.create.content.contraptions.AbstractContraptionEntity;
 import com.simibubi.create.foundation.data.CreateEntityBuilder;
 import com.simibubi.create.foundation.utility.Lang;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;

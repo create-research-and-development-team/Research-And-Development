@@ -11,9 +11,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.valkyrienskies.vsrnd.content.Fluids.BaseTankBlock;
 
 import java.util.function.Consumer;
@@ -22,7 +19,7 @@ import java.util.function.Consumer;
 public class TitaniumTankBlock extends BaseTankBlock implements IWrenchable, IBE<TitaniumTankBlockEntity> {
 
 
-    protected TitaniumTankBlock(Properties p_i48440_1_) {
+    protected TitaniumTankBlock(Properties p_i48440_1_, Properties creative) {
         super(p_i48440_1_);
     }
 
