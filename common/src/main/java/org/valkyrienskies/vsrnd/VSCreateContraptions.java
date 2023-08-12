@@ -2,7 +2,7 @@ package org.valkyrienskies.vsrnd;
 
 
 import com.simibubi.create.content.contraptions.ContraptionType;
-import org.valkyrienskies.vsrnd.content.contraptions.centrifuge.CentrifugeContraption;
+import org.valkyrienskies.vsrnd.content.machines.centrifuge.CentrifugeContraption;
 
 public class VSCreateContraptions {
     public static final ContraptionType

@@ -7,7 +7,8 @@ import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankRenderer
 import org.valkyrienskies.vsrnd.fabric.Fluid.TitaniumTankBlockEntity_FABRIC;
 import org.valkyrienskies.vsrnd.fabric.Fluid.TitaniumTankBlock_FABRIC;
 
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
+
 
 public class VSCreateFabricBlockEntities {
 

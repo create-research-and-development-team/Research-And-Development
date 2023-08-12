@@ -13,7 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 public class VSCreateFabricEntities {
 

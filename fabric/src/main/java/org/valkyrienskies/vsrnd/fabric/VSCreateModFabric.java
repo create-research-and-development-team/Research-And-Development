@@ -13,6 +13,8 @@ import org.valkyrienskies.vsrnd.fabric.integration.cc_restiched.VSCreateFabricPe
 import org.valkyrienskies.vsrnd.platform.fabric.FallbackFabricTransfer;
 import org.valkyrienskies.mod.fabric.common.ValkyrienSkiesModFabric;
 
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
+
 public class VSCreateModFabric implements ModInitializer {
 
     public static void init() {
@@ -54,7 +56,7 @@ public class VSCreateModFabric implements ModInitializer {
         VSCreateSounds.register();
         VSCreateFabricSounds.prepare();
 
-        VSCreateMod.REGISTRATE.register();
+        REGISTRATE.register();
 
         VSCreateMod.init();
         VSCreateModFabric.init();

@@ -12,5 +12,6 @@ import org.jetbrains.annotations.NotNull;
 public class VSCreateFabricPeripheralProviders {
 
 
-
+    public static void register() {
+    }
 }

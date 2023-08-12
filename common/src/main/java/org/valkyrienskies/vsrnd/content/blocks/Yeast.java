@@ -1,4 +1,4 @@
-package org.valkyrienskies.vsrnd.content.Plants;
+package org.valkyrienskies.vsrnd.content.blocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

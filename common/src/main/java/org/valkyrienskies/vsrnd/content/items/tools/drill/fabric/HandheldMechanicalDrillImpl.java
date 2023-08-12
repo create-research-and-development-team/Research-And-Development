@@ -1,16 +1,16 @@
-package org.valkyrienskies.vsrnd.content.contraptions.tools.saw.fabric;
+package org.valkyrienskies.vsrnd.content.items.tools.drill.fabric;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import org.lwjgl.system.NonnullDefault;
-import org.valkyrienskies.vsrnd.content.contraptions.tools.saw.HandheldMechanicalSaw;
+import org.valkyrienskies.vsrnd.content.items.tools.drill.HandheldMechanicalDrill;
 
 import java.util.function.Consumer;
 
 @NonnullDefault
-public class HandheldMechanicalSawImpl extends HandheldMechanicalSaw {
-    public HandheldMechanicalSawImpl(Tier tier, int attackBonus, float attackSpeedBonus, Properties properties) {
+public class HandheldMechanicalDrillImpl extends HandheldMechanicalDrill {
+    public HandheldMechanicalDrillImpl(Tier tier, int attackBonus, float attackSpeedBonus, Properties properties) {
         super(tier, attackBonus, attackSpeedBonus, properties);
     }
 

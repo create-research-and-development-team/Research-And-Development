@@ -1,28 +1,16 @@
 package org.valkyrienskies.vsrnd;
 
 
-import com.simibubi.create.content.kinetics.BlockStressDefaults;
-import com.simibubi.create.content.kinetics.simpleRelays.BracketedKineticBlockModel;
-import com.simibubi.create.foundation.data.BlockStateGen;
-import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.simibubi.create.foundation.data.SharedProperties;
-
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
+
+
 import net.minecraft.world.level.block.state.BlockBehaviour;
-
-
-
-import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlock;
-import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankGenerator;
-import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankItem;
-import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankModel;
-import org.valkyrienskies.vsrnd.content.Plants.Yeast;
+import org.valkyrienskies.vsrnd.content.blocks.Yeast;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Rutile.RutileClusterBlock;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.SculkThruster.SculkThrusterBlock;
-import org.valkyrienskies.vsrnd.foundation.AssetLookup;
 
 import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 

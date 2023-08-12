@@ -18,7 +18,7 @@ import java.util.EnumSet;
 import java.util.stream.Collectors;
 
 import static org.valkyrienskies.vsrnd.VSCreateMod.MOD_ID;
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 public abstract class VSCreateGroupBase extends CreativeModeTab {
 

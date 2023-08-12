@@ -1,4 +1,4 @@
-package org.valkyrienskies.vsrnd.content.contraptions.centrifuge;
+package org.valkyrienskies.vsrnd.content.machines.centrifuge;
 
 import com.jozufozu.flywheel.api.MaterialManager;
 import com.simibubi.create.content.kinetics.base.HalfShaftInstance;

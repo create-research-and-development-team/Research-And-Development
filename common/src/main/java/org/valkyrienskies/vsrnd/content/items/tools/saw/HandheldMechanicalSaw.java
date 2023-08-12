@@ -1,4 +1,4 @@
-package org.valkyrienskies.vsrnd.content.contraptions.tools.saw;
+package org.valkyrienskies.vsrnd.content.items.tools.saw;
 
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.item.CustomArmPoseItem;
