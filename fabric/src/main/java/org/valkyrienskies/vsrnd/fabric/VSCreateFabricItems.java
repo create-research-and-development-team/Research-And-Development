@@ -13,7 +13,7 @@ public class VSCreateFabricItems {
         REGISTRATE.creativeModeTab(() -> VSCreateMod.BASE_CREATIVE_TAB);
     }
 
-    \
+
 
 
     //Shortcuts
