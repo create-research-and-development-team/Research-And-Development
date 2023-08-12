@@ -11,7 +11,7 @@ import org.valkyrienskies.vsrnd.util.fluid.VirtualFluid;
 
 import static java.util.Map.entry;
 
-public abstract class RNDRegistrate extends AbstractRegistrate<RNDRegistrate>  {
+public class RNDRegistrate extends AbstractRegistrate<RNDRegistrate>  {
 
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(VSCreateMod.MOD_ID);
 

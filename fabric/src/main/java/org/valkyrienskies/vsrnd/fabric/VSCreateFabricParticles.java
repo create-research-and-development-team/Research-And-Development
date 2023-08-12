@@ -1,6 +1,7 @@
 package org.valkyrienskies.vsrnd.fabric;
 
-import com.simibubi.create.content.contraptions.particle.ICustomParticleData;
+
+import com.simibubi.create.foundation.particle.ICustomParticleData;
 import com.simibubi.create.foundation.utility.Lang;
 import io.github.fabricators_of_create.porting_lib.util.LazyRegistrar;
 import net.fabricmc.api.EnvType;

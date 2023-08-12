@@ -3,13 +3,10 @@ package org.valkyrienskies.vsrnd;
 
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tiers;
-import org.valkyrienskies.vsrnd.content.contraptions.tools.drill.HandheldMechanicalDrill;
-import org.valkyrienskies.vsrnd.content.contraptions.tools.saw.HandheldMechanicalSaw;
+import org.valkyrienskies.vsrnd.content.items.tools.drill.HandheldMechanicalDrill;
+import org.valkyrienskies.vsrnd.content.items.tools.saw.HandheldMechanicalSaw;
 
 import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 

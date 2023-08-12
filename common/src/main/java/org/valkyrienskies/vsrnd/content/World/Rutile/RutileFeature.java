@@ -1,6 +1,7 @@
 package org.valkyrienskies.vsrnd.content.World.Rutile;
 
 import com.mojang.serialization.Codec;
+import me.alphamode.forgetags.Tags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import org.valkyrienskies.vsrnd.VSCreateBlocks;
+import org.valkyrienskies.vsrnd.content.sculk.blocks.Rutile.RutileClusterBlock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class RutileFeature extends Feature<NoneFeatureConfiguration> {
+    List<Vec3i> offsets = new ArrayList<Vec3i>();
     public RutileFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
 

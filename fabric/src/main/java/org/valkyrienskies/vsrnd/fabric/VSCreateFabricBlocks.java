@@ -14,7 +14,7 @@ import org.valkyrienskies.vsrnd.fabric.Fluid.TitaniumTankItem_FABRIC;
 import org.valkyrienskies.vsrnd.foundation.AssetLookup;
 
 
-import static org.valkyrienskies.vsrnd.VSCreateMod.REGISTRATE;
+import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 public class VSCreateFabricBlocks {
 
