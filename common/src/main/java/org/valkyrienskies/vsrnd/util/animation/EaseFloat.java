@@ -10,6 +10,7 @@ public class EaseFloat {
     float current;
     float start;
     float eased;
+    boolean done;
     public EaseFloat(float speed, String type ) {
         this.type = type;
         this.speed = speed;
@@ -17,6 +18,7 @@ public class EaseFloat {
         this.current = 0;
         this.start = 0;
         this.eased = 0;
+        this.done = false;
     }
     public void tick() {
 
@@ -30,9 +32,10 @@ public class EaseFloat {
 
         }
         else {
+            done = true;
             return;
         }
-
+        done = false;
         float percent=current/mult;
 
         current+=speed;
@@ -62,12 +65,18 @@ public class EaseFloat {
     }
 
     public void setTarget(float target) {
+        done = false;
+
         this.target = target;
         this.start = this.current;
     }
 
     public void setSpeed(float speed) {
         this.speed = speed;
+    }
+    
+    public boolean isDone() {
+        return done;
     }
     public float getEased() {
         return eased;
