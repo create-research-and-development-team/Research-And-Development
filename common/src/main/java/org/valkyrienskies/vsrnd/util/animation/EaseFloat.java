@@ -42,24 +42,24 @@ public class EaseFloat {
         current+=speed;
 
         switch (type) {
-            case easeInSine: eased = EaseHelper.easeInSine(percent)*mult; break;
-            case easeOutSine: eased = EaseHelper.easeOutSine(percent)*mult; break;
-            case easeInOutSine: eased = EaseHelper.easeInOutSine(percent)*mult; break;
-            case easeInQuad: eased = EaseHelper.easeInQuad(percent)*mult; break;
-            case easeOutQuad: eased = EaseHelper.easeOutQuad(percent)*mult; break;
-            case easeInOutQuad: eased = EaseHelper.easeInOutQuad(percent)*mult; break;
-            case easeInExpo: eased = EaseHelper.easeInExpo(percent)*mult; break;
-            case easeOutExpo: eased = EaseHelper.easeOutExpo(percent)*mult; break;
-            case easeInOutExpo: eased = EaseHelper.easeInOutExpo(percent)*mult; break;
-            case easeInOvershoot: eased = EaseHelper.easeInOvershoot(percent)*mult; break;
-            case easeOutOvershoot: eased = EaseHelper.easeOutOvershoot(percent)*mult; break;
-            case easeInOutOvershoot: eased = EaseHelper.easeInOutOvershoot(percent)*mult; break;
-            case easeInElastic: eased = EaseHelper.easeInElastic(percent)*mult; break;
-            case easeOutElastic: eased = EaseHelper.easeOutElastic(percent)*mult; break;
-            case easeInOutElastic: eased = EaseHelper.easeInOutElastic(percent)*mult; break;
-            case easeInBounce: eased = EaseHelper.easeInBounce(percent)*mult; break;
-            case easeOutBounce: eased = EaseHelper.easeOutBounce(percent)*mult; break;
-            case easeInOutBounce: eased = EaseHelper.easeInOutBounce(percent)*mult; break;
+            case EASE_IN_SINE: eased = EaseHelper.easeInSine(percent)*mult; break;
+            case EASE_OUT_SINE: eased = EaseHelper.easeOutSine(percent)*mult; break;
+            case EASE_IN_OUT_SINE: eased = EaseHelper.easeInOutSine(percent)*mult; break;
+            case EASE_IN_QUAD: eased = EaseHelper.easeInQuad(percent)*mult; break;
+            case EASE_OUT_QUAD: eased = EaseHelper.easeOutQuad(percent)*mult; break;
+            case EASE_IN_OUT_QUAD: eased = EaseHelper.easeInOutQuad(percent)*mult; break;
+            case EASE_IN_EXPO: eased = EaseHelper.easeInExpo(percent)*mult; break;
+            case EASE_OUT_EXPO: eased = EaseHelper.easeOutExpo(percent)*mult; break;
+            case EASE_IN_OUT_EXPO: eased = EaseHelper.easeInOutExpo(percent)*mult; break;
+            case EASE_IN_OVERSHOOT: eased = EaseHelper.easeInOvershoot(percent)*mult; break;
+            case EASE_OUT_OVERSHOOT: eased = EaseHelper.easeOutOvershoot(percent)*mult; break;
+            case EASE_IN_OUT_OVERSHOOT: eased = EaseHelper.easeInOutOvershoot(percent)*mult; break;
+            case EASE_IN_ELASTIC: eased = EaseHelper.easeInElastic(percent)*mult; break;
+            case EASE_OUT_ELASTIC: eased = EaseHelper.easeOutElastic(percent)*mult; break;
+            case EASE_IN_OUT_ELASTIC: eased = EaseHelper.easeInOutElastic(percent)*mult; break;
+            case EASE_IN_BOUNCE: eased = EaseHelper.easeInBounce(percent)*mult; break;
+            case EASE_OUT_BOUNCE: eased = EaseHelper.easeOutBounce(percent)*mult; break;
+            case EASE_IN_OUT_BOUNCE: eased = EaseHelper.easeInOutBounce(percent)*mult; break;
             default: throw new RuntimeException();
         }
 
@@ -84,9 +84,9 @@ public class EaseFloat {
     }
 
     public enum EaseType {
-        easeInSine,easeOutSine,easeInOutSine,easeInQuad,easeOutQuad,
-        easeInOutQuad,easeInExpo,easeOutExpo,easeInOutExpo,easeInOvershoot,
-        easeOutOvershoot,easeInOutOvershoot,easeInElastic,easeOutElastic,easeInOutElastic,
-        easeInBounce,easeOutBounce,easeInOutBounce
+        EASE_IN_SINE,EASE_OUT_SINE,EASE_IN_OUT_SINE,EASE_IN_QUAD,EASE_OUT_QUAD,
+        EASE_IN_OUT_QUAD,EASE_IN_EXPO,EASE_OUT_EXPO,EASE_IN_OUT_EXPO,EASE_IN_OVERSHOOT,
+        EASE_OUT_OVERSHOOT,EASE_IN_OUT_OVERSHOOT,EASE_IN_ELASTIC,EASE_OUT_ELASTIC,EASE_IN_OUT_ELASTIC,
+        EASE_IN_BOUNCE,EASE_OUT_BOUNCE,EASE_IN_OUT_BOUNCE
     }
 }
