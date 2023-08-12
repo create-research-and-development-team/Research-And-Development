@@ -66,7 +66,10 @@ public class EaseFloat {
         this.start = this.current;
     }
 
-    public float GetEased() {
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+    public float getEased() {
         return eased;
     }
 }
