@@ -68,6 +68,13 @@ public class HandheldMechanicalSaw extends AxeItem implements CustomArmPoseItem 
         level.addFreshEntity(entity);
     }
 
+    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
+        Multimap<Attribute, AttributeModifier> attributes = super.getDefaultAttributeModifiers(slot);
+        Attribute distanceAttribute = PlatformUtils.getNewReachModifier();
+        attributes.put(distanceAttribute, new AttributeModifier("Reach", -3, AttributeModifier.Operation.ADDITION));
+        return attributes;
+    }
+
     @Override
     public boolean isBarVisible(ItemStack stack) {
         return BacktankUtil.isBarVisible(stack, MAX_BACKTANK_USES);

@@ -1,11 +1,15 @@
 package org.valkyrienskies.vsrnd.platform.forge;
 
+import com.google.common.collect.Multimap;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.NetworkHooks;
 import org.valkyrienskies.vsrnd.util.fluid.VSCFluidTankBehaviour;
@@ -129,5 +133,9 @@ public class PlatformUtilsImpl {
 
     public static boolean isModLoaded(String modId) {
         return ModList.get().isLoaded(modId);
+    }
+
+    public static Attribute getNewReachModifier() {
+        return ForgeMod.REACH_DISTANCE.get();
     }
 }

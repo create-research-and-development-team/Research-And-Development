@@ -6,7 +6,9 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
+
 import org.valkyrienskies.vsrnd.util.fluid.VSCFluidTankBehaviour;
 
 public class PlatformUtils {
@@ -26,5 +28,7 @@ public class PlatformUtils {
     @ExpectPlatform
     public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {throw new AssertionError();}
     @ExpectPlatform
-    public static boolean isModLoaded(String modId) {throw new AssertionError();}
+    public static boolean isModLoaded(String modId) { throw new AssertionError(); }
+    @ExpectPlatform
+    public static Attribute getNewReachModifier() { throw new AssertionError(); }
 }
