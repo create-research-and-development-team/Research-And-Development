@@ -1,8 +1,8 @@
 package org.valkyrienskies.vsrnd.content.items.tools.drill;
 
+import com.google.common.collect.Multimap;
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.item.CustomArmPoseItem;
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.BlockPos;
@@ -10,7 +10,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
@@ -21,6 +24,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import org.lwjgl.system.NonnullDefault;
+import org.valkyrienskies.vsrnd.platform.PlatformUtils;
 import org.valkyrienskies.vsrnd.util.BoundingBoxHelper;
 import org.valkyrienskies.vsrnd.util.SimpleBackTankHelper;
 
@@ -151,11 +155,9 @@ public class HandheldMechanicalDrill extends PickaxeItem implements CustomArmPos
     }
 
     public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
-        return getItemDamage(stack, amount, entity, onBroken);
-    }
-
-    @ExpectPlatform
-    public static <T extends LivingEntity> int getItemDamage(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        if(BacktankUtil.canAbsorbDamage(entity, MAX_BACKTANK_USES)) {
+            return 0;
+        }
         return amount;
     }
 

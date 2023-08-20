@@ -1,5 +1,6 @@
 package org.valkyrienskies.vsrnd.content.items.tools.saw;
 
+import com.google.common.collect.Multimap;
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.item.CustomArmPoseItem;
 import com.simibubi.create.foundation.utility.AbstractBlockBreakQueue;
@@ -10,7 +11,10 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
@@ -22,6 +26,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.lwjgl.system.NonnullDefault;
+import org.valkyrienskies.vsrnd.platform.PlatformUtils;
 import org.valkyrienskies.vsrnd.util.SimpleBackTankHelper;
 
 import javax.annotation.Nullable;
@@ -77,11 +82,9 @@ public class HandheldMechanicalSaw extends AxeItem implements CustomArmPoseItem 
     }
 
     public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
-        return getItemDamage(stack, amount, entity, onBroken);
-    }
-
-    @ExpectPlatform
-    public static <T extends LivingEntity> int getItemDamage(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+        if(BacktankUtil.canAbsorbDamage(entity, MAX_BACKTANK_USES)) {
+            return 0;
+        }
         return amount;
     }
 
