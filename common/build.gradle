@@ -21,9 +21,6 @@ repositories {
         maven { url = "https://maven.cafeteria.dev/releases" } // Fake Player API
         //maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
         maven { url = "https://jitpack.io/" } // Mixin Extras, Fabric ASM
-
-
-
     }
 }
 
@@ -51,17 +48,12 @@ dependencies {
     // CC Restitched
     modCompileOnly("curse.maven:cc-restitched-462672:3622561")
 
-
+    // Create: Big Cannons
     modCompileOnly("com.rbasamoyai:createbigcannons-fabric-${minecraft_version}:${createbigcannons_version}")
 
     // JUnit
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-
-
-
-
-
 }
 
 publishing {

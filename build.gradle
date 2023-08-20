@@ -32,15 +32,12 @@ subprojects {
 
     repositories {
         if (!block_external_repositories) {
+            // Based on the Create Multiloader Addon Template
             mavenCentral()
             maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
             maven { url = "https://maven.blamejared.com" } // JEI
             maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
             maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
-            maven {
-                name = 'Ladysnake Mods'
-                url = 'https://ladysnake.jfrog.io/artifactory/mods'
-            }
             maven { // Flywheel
                 url = "https://maven.tterrag.com/"
                 content {
@@ -48,14 +45,15 @@ subprojects {
                     includeGroup("com.jozufozu.flywheel")
                 }
             }
+
+            // Compat Testing Dependencies
+            // Create: Big Cannons
             maven {
-                url = "https://maven.realrobotix.me/createbigcannons/" // Create Big Cannons
+                url = "https://maven.realrobotix.me/createbigcannons/"
                 content {
                     includeGroup "com.rbasamoyai"
                 }
             }
-
-
         }
     }
 
