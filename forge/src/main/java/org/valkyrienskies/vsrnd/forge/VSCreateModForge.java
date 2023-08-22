@@ -12,7 +12,7 @@ import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 
 public class VSCreateModForge {
-    boolean happendClientSetup = false;
+    boolean happenedClientSetup = false;
 
     public VSCreateModForge() {
 
@@ -65,8 +65,8 @@ public class VSCreateModForge {
     }
 
     void clientSetup(final FMLClientSetupEvent event) {
-        if (happendClientSetup) return;
-        happendClientSetup = true;
+        if (happenedClientSetup) return;
+        happenedClientSetup = true;
 
         VSCreateMod.initClient();
     }
