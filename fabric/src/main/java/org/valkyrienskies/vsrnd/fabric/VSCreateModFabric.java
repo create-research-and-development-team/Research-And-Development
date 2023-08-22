@@ -7,7 +7,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import org.valkyrienskies.vsrnd.*;
 import org.valkyrienskies.vsrnd.fabric.integration.cc_restiched.VSCreateFabricPeripheralProviders;
 import org.valkyrienskies.vsrnd.platform.fabric.FallbackFabricTransfer;
@@ -26,10 +25,6 @@ public class VSCreateModFabric implements ModInitializer {
         FallbackFabricTransfer.init();
 
         //ClockworkCommonEvents.register();
-    }
-
-    public static void gatherData(FabricDataGenerator gen, ExistingFileHelper helper) {
-        gen.addProvider(VSCreateFabricSounds.provider(gen));
     }
 
     @Override
