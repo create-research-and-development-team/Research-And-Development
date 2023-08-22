@@ -6,29 +6,29 @@ import net.minecraft.world.level.material.Fluid;
 
 public interface VSCFluidTank {
 
-    int getTotalCapacity();
+	default int getSpaceLeft() {
+		return Math.max(0, getTotalCapacity() - getCurrentAmount());
+	}
 
-    int getCurrentAmount();
+	int getTotalCapacity();
 
-    default int getSpaceLeft() {
-        return Math.max(0, getTotalCapacity() - getCurrentAmount());
-    }
+	int getCurrentAmount();
 
-    Fluid getFluidType();
+	Fluid getFluidType();
 
-    default boolean isEmpty() {
-        return getCurrentAmount() <= 0;
-    }
+	default boolean isEmpty() {
+		return getCurrentAmount() <= 0;
+	}
 
-    CompoundTag store(CompoundTag tag);
+	CompoundTag store(CompoundTag tag);
 
-    void read(CompoundTag tag);
+	void read(CompoundTag tag);
 
-    void shrink(int drainAmount);
+	void shrink(int drainAmount);
 
-    void grow(int fillAmount);
+	void grow(int fillAmount);
 
-    default SmartFluidTank asSmartFluidTank() {
-        return (SmartFluidTank) this;
-    }
+	default SmartFluidTank asSmartFluidTank() {
+		return (SmartFluidTank) this;
+	}
 }

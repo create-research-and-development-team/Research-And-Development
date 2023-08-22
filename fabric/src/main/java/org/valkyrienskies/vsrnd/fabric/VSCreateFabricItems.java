@@ -9,20 +9,18 @@ import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 public class VSCreateFabricItems {
 
-    static {
-        REGISTRATE.creativeModeTab(() -> VSCreateMod.BASE_CREATIVE_TAB);
-    }
+	static {
+		REGISTRATE.creativeModeTab(() -> VSCreateMod.BASE_CREATIVE_TAB);
+	}
 
 
+	//Shortcuts
 
+	private static ItemEntry<Item> ingredient(String name) {
+		return REGISTRATE.item(name, Item::new)
+						 .register();
+	}
 
-    //Shortcuts
-
-    private static ItemEntry<Item> ingredient(String name) {
-        return REGISTRATE.item(name, Item::new)
-                .register();
-    }
-
-    public static void register() {
-    }
+	public static void register() {
+	}
 }

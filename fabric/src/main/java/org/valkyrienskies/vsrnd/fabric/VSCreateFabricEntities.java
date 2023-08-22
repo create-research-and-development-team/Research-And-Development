@@ -19,31 +19,32 @@ import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 public class VSCreateFabricEntities {
 
 
-    private static <T extends Entity> CreateEntityBuilder<T, ?> contraption(String name, EntityType.EntityFactory<T> factory,
-                                                                            NonNullSupplier<NonNullFunction<EntityRendererProvider.Context, EntityRenderer<? super T>>> renderer, int range,
-                                                                            int updateFrequency, boolean sendVelocity) {
-        return register(name, factory, renderer, MobCategory.MISC, range, updateFrequency, sendVelocity, true,
-                AbstractContraptionEntity::build);
-    }
+	private static <T extends Entity> CreateEntityBuilder<T, ?> contraption(String name, EntityType.EntityFactory<T> factory,
+																			NonNullSupplier<NonNullFunction<EntityRendererProvider.Context, EntityRenderer<? super T>>> renderer, int range,
+																			int updateFrequency, boolean sendVelocity) {
+		return register(name, factory, renderer, MobCategory.MISC, range, updateFrequency, sendVelocity, true,
+						AbstractContraptionEntity::build);
+	}
 
-    private static <T extends Entity> CreateEntityBuilder<T, ?> register(String name, EntityType.EntityFactory<T> factory,
-                                                                         NonNullSupplier<NonNullFunction<EntityRendererProvider.Context, EntityRenderer<? super T>>> renderer,
-                                                                         MobCategory group, int range, int updateFrequency, boolean sendVelocity, boolean immuneToFire,
-                                                                         NonNullConsumer<FabricEntityTypeBuilder<T>> propertyBuilder) {
-        String id = Lang.asId(name);
-        return (CreateEntityBuilder<T, ?>) REGISTRATE
-                .entity(id, factory, group)
-                .properties(b -> b.trackRangeChunks(range)
-                        .trackedUpdateRate(updateFrequency)
-                        .forceTrackedVelocityUpdates(sendVelocity))
-                .properties(propertyBuilder)
-                .properties(b -> {
-                    if (immuneToFire)
-                        b.fireImmune();
-                })
-                .renderer(renderer);
-    }
+	private static <T extends Entity> CreateEntityBuilder<T, ?> register(String name, EntityType.EntityFactory<T> factory,
+																		 NonNullSupplier<NonNullFunction<EntityRendererProvider.Context, EntityRenderer<? super T>>> renderer,
+																		 MobCategory group, int range, int updateFrequency, boolean sendVelocity, boolean immuneToFire,
+																		 NonNullConsumer<FabricEntityTypeBuilder<T>> propertyBuilder) {
+		String id = Lang.asId(name);
+		return (CreateEntityBuilder<T, ?>) REGISTRATE
+				.entity(id, factory, group)
+				.properties(b -> b.trackRangeChunks(range)
+								  .trackedUpdateRate(updateFrequency)
+								  .forceTrackedVelocityUpdates(sendVelocity))
+				.properties(propertyBuilder)
+				.properties(b -> {
+					if (immuneToFire) {
+						b.fireImmune();
+					}
+				})
+				.renderer(renderer);
+	}
 
-    public static void register() {
-    }
+	public static void register() {
+	}
 }

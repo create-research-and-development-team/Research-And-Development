@@ -8,15 +8,15 @@ public class VSCreatePartials {
 //
 //    ;
 
-    private static PartialModel block(String path) {
-        return new PartialModel(VSCreateMod.asResource("block/" + path));
-    }
+	private static PartialModel block(String path) {
+		return new PartialModel(VSCreateMod.asResource("block/" + path));
+	}
 
-    private static PartialModel entity(String path) {
-        return new PartialModel(VSCreateMod.asResource("entity/" + path));
-    }
+	private static PartialModel entity(String path) {
+		return new PartialModel(VSCreateMod.asResource("entity/" + path));
+	}
 
-    public static void init() {
-        // init static fields
-    }
+	public static void init() {
+		// init static fields
+	}
 }

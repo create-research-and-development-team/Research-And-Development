@@ -5,13 +5,13 @@ import org.valkyrienskies.vsrnd.platform.SmartFluidTankBlockEntity;
 
 public class FallbackFabricTransfer {
 
-    public static void init() {
-        FluidStorage.SIDED.registerFallback((world, pos, state, be, face) -> {
-            if (be instanceof SmartFluidTankBlockEntity t) {
-                return ((FabricVSCFluidTankBehaviour) t.getFluidTankBehaviour()).getCapability();
-            }
-            return null;
-        });
-    }
+	public static void init() {
+		FluidStorage.SIDED.registerFallback((world, pos, state, be, face) -> {
+			if (be instanceof SmartFluidTankBlockEntity t) {
+				return ((FabricVSCFluidTankBehaviour) t.getFluidTankBehaviour()).getCapability();
+			}
+			return null;
+		});
+	}
 
 }

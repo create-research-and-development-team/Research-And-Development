@@ -6,14 +6,13 @@ import org.valkyrienskies.vsrnd.VSCreateBlocks;
 
 public class VSCreateGroup extends VSCreateGroupBase {
 
-    public VSCreateGroup() {
-        super("base");
-    }
+	public VSCreateGroup() {
+		super("base");
+	}
 
 
-
-    @Override
-    public ItemStack makeIcon() {
-        return VSCreateBlocks.TITANIUM_BLOCK.asStack();
-    }
+	@Override
+	public ItemStack makeIcon() {
+		return VSCreateBlocks.TITANIUM_BLOCK.asStack();
+	}
 }

@@ -15,19 +15,19 @@ import org.valkyrienskies.vsrnd.platform.forge.ForgeVSCFluidTankBehaviour;
 @Mixin(BlockEntity.class)
 public class MixinBlockEntity extends CapabilityProvider<BlockEntity> {
 
-    protected MixinBlockEntity(Class<BlockEntity> baseClass) {
-        super(baseClass);
-    }
+	protected MixinBlockEntity(Class<BlockEntity> baseClass) {
+		super(baseClass);
+	}
 
 
-    @NotNull
-    @Override
-    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+	@NotNull
+	@Override
+	public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
 
-        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && this instanceof SmartFluidTankBlockEntity te) {
-            return ((ForgeVSCFluidTankBehaviour) te.getFluidTankBehaviour()).getCapability().cast();
-        }
+		if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && this instanceof SmartFluidTankBlockEntity te) {
+			return ((ForgeVSCFluidTankBehaviour) te.getFluidTankBehaviour()).getCapability().cast();
+		}
 
-        return super.getCapability(cap, side);
-    }
+		return super.getCapability(cap, side);
+	}
 }

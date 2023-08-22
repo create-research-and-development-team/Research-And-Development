@@ -5,88 +5,88 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.loader.api.FabricLoader;
+import org.valkyrienskies.mod.fabric.common.ValkyrienSkiesModFabric;
 import org.valkyrienskies.vsrnd.*;
 import org.valkyrienskies.vsrnd.fabric.integration.cc_restiched.VSCreateFabricPeripheralProviders;
 import org.valkyrienskies.vsrnd.platform.fabric.FallbackFabricTransfer;
-import org.valkyrienskies.mod.fabric.common.ValkyrienSkiesModFabric;
 
 import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 
 public class VSCreateModFabric implements ModInitializer {
 
-    public static void init() {
-        VSCreateParticles.init();
+	@Override
+	public void onInitialize() {
+		// force VS2 to load before eureka
+		new ValkyrienSkiesModFabric().onInitialize();
 
-        VSCreateFabricParticles.init();
-        VSCreateFabricSounds.init();
-        FallbackFabricTransfer.init();
+		VSCreateBlocks.register();
+		VSCreateFabricBlocks.register();
 
-        //ClockworkCommonEvents.register();
-    }
+		// TODO common items
+		VSCreateItems.register();
+		VSCreateFabricItems.register();
 
-    @Override
-    public void onInitialize() {
-        // force VS2 to load before eureka
-        new ValkyrienSkiesModFabric().onInitialize();
+		VSCreateBlockEntities.register();
+		VSCreateFabricBlockEntities.register();
 
-        VSCreateBlocks.register();
-        VSCreateFabricBlocks.register();
+		// TODO common entities
+		VSCreateEntities.register();
+		VSCreateFabricEntities.register();
 
-        // TODO common items
-        VSCreateItems.register();
-        VSCreateFabricItems.register();
+		VSCreateFluids.register();
+		VSCreateFabricFluids.register();
 
-        VSCreateBlockEntities.register();
-        VSCreateFabricBlockEntities.register();
+		VSCreateSounds.register();
+		VSCreateFabricSounds.prepare();
 
-        // TODO common entities
-        VSCreateEntities.register();
-        VSCreateFabricEntities.register();
+		REGISTRATE.register();
 
-        VSCreateFluids.register();
-        VSCreateFabricFluids.register();
+		VSCreateMod.init();
+		VSCreateModFabric.init();
 
-        VSCreateSounds.register();
-        VSCreateFabricSounds.prepare();
+		VSCreateFabricFeatures.init();
 
-        REGISTRATE.register();
-
-        VSCreateMod.init();
-        VSCreateModFabric.init();
-
-        VSCreateFabricFeatures.init();
-
-        if (FabricLoader.getInstance().isModLoaded("computercraft"))
+        if (FabricLoader.getInstance().isModLoaded("computercraft")) {
             VSCreateFabricPeripheralProviders.register();
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static class Client implements ClientModInitializer {
-        @Override
-        public void onInitializeClient() {
-            VSCreateMod.initClient();
-
-            VSCreatePartials.init();
-            VSCreateFabricPartials.init();
-
-            VSCreateParticles.initClient();
-            VSCreateFabricParticles.initClient();
-
-            registerClientEvents();
-            registerClientEvents();
-            ShaderLoader.init();
         }
+	}
 
-        public static void registerClientEvents() {
-        }
+	public static void init() {
+		VSCreateParticles.init();
 
-        public static void registerInputEvents() {
-        }
-    }
+		VSCreateFabricParticles.init();
+		VSCreateFabricSounds.init();
+		FallbackFabricTransfer.init();
 
-    public static class ModMenu implements ModMenuApi {
-    }
+		//ClockworkCommonEvents.register();
+	}
+
+	@Environment(EnvType.CLIENT)
+	public static class Client implements ClientModInitializer {
+		public static void registerInputEvents() {
+		}
+
+		@Override
+		public void onInitializeClient() {
+			VSCreateMod.initClient();
+
+			VSCreatePartials.init();
+			VSCreateFabricPartials.init();
+
+			VSCreateParticles.initClient();
+			VSCreateFabricParticles.initClient();
+
+			registerClientEvents();
+			registerClientEvents();
+			ShaderLoader.init();
+		}
+
+		public static void registerClientEvents() {
+		}
+	}
+
+	public static class ModMenu implements ModMenuApi {
+	}
 }

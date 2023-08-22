@@ -16,54 +16,56 @@ import java.util.function.Supplier;
 
 public enum VSCreateParticles {
 
-    PROP_STREAM(AirParticleData::new);
-    private final ParticleEntry<?> entry;
+	PROP_STREAM(AirParticleData::new);
+	private final ParticleEntry<?> entry;
 
-    <D extends ParticleOptions> VSCreateParticles(Supplier<? extends ICustomParticleData<D>> typeFactory) {
-        String name = Lang.asId(name());
-        entry = new ParticleEntry<>(name, typeFactory);
-    }
+	<D extends ParticleOptions> VSCreateParticles(Supplier<? extends ICustomParticleData<D>> typeFactory) {
+		String name = Lang.asId(name());
+		entry = new ParticleEntry<>(name, typeFactory);
+	}
 
-    public static void init() {
-        ParticleEntry.REGISTER.registerAll();
-    }
+	public static void init() {
+		ParticleEntry.REGISTER.registerAll();
+	}
 
-    @Environment(EnvType.CLIENT)
-    public static void initClient() {
-        ParticleEngine particles = Minecraft.getInstance().particleEngine;
-        for (VSCreateParticles particle : values())
-            particle.entry.registerFactory(particles);
-    }
+	@Environment(EnvType.CLIENT)
+	public static void initClient() {
+		ParticleEngine particles = Minecraft.getInstance().particleEngine;
+		for (VSCreateParticles particle : values()) {
+			particle.entry.registerFactory(particles);
+		}
+	}
 
-    public ParticleType<?> get() {
-        return entry.object;
-    }
+	public ParticleType<?> get() {
+		return entry.object;
+	}
 
-    public String parameter() {
-        return entry.name;
-    }
+	public String parameter() {
+		return entry.name;
+	}
 
-    private static class ParticleEntry<D extends ParticleOptions> {
-        private static final DeferredRegister<ParticleType<?>> REGISTER = DeferredRegister.create(Registry.PARTICLE_TYPE, VSCreateMod.MOD_ID);
+	private static class ParticleEntry<D extends ParticleOptions> {
+		private static final DeferredRegister<ParticleType<?>> REGISTER = DeferredRegister.create(Registry.PARTICLE_TYPE,
+																								  VSCreateMod.MOD_ID);
 
-        private final String name;
-        private final Supplier<? extends ICustomParticleData<D>> typeFactory;
-        private final ParticleType<D> object;
+		private final String name;
+		private final Supplier<? extends ICustomParticleData<D>> typeFactory;
+		private final ParticleType<D> object;
 
-        public ParticleEntry(String name, Supplier<? extends ICustomParticleData<D>> typeFactory) {
-            this.name = name;
-            this.typeFactory = typeFactory;
+		public ParticleEntry(String name, Supplier<? extends ICustomParticleData<D>> typeFactory) {
+			this.name = name;
+			this.typeFactory = typeFactory;
 
-            object = this.typeFactory.get().createType();
-            REGISTER.register(name, () -> object);
-        }
+			object = this.typeFactory.get().createType();
+			REGISTER.register(name, () -> object);
+		}
 
-        @Environment(EnvType.CLIENT)
-        public void registerFactory(ParticleEngine particles) {
-            typeFactory.get()
-                    .register(object, particles);
-        }
+		@Environment(EnvType.CLIENT)
+		public void registerFactory(ParticleEngine particles) {
+			typeFactory.get()
+					   .register(object, particles);
+		}
 
-    }
+	}
 
 }

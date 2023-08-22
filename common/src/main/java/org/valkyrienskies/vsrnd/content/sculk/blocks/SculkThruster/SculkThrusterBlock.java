@@ -12,44 +12,48 @@ import java.util.Random;
 
 public class SculkThrusterBlock extends Block {
 
-    public int cooldown = 0;
+	public int cooldown = 0;
 
-    public SculkThrusterBlock(Properties properties) {
+	public SculkThrusterBlock(Properties properties) {
 
-        super(properties);
+		super(properties);
 
-    }
+	}
 
+	// TODO: Make Cooldown less shit
+	// I refuse to believe this is the best way to make a cooldown.
+	// Ticking shit bad for lag and all that
+	@Override
+	public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
 
-    // stepOn is dogshit, but it's gonna use sculk shit eventually anyway
-    // so it doesn't matter
-    @Override
-    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+		if (cooldown > 0) {
+			cooldown -= 1;
+		}
 
-        if (cooldown <= 0) {
-            cooldown = 10;
-            Vec3 startPos = entity.position();
-            for (int i = 0; i < 180; i += 2) {
-                level.addParticle(ParticleTypes.END_ROD, startPos.x, startPos.y - 0.1, startPos.z, Math.cos(i) * 0.2 * Math.random(), 0.1, Math.sin(i) * 0.2 * Math.random());
-            }
+		super.animateTick(state, level, pos, random);
+	}
 
-            entity.push(0, 2, 0);
+	// stepOn is dogshit, but it's gonna use sculk shit eventually anyway
+	// so it doesn't matter
+	@Override
+	public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
 
-        }
-        super.stepOn(level, pos, state, entity);
-    }
+		if (cooldown <= 0) {
+			cooldown = 10;
+			Vec3 startPos = entity.position();
+			for (int i = 0; i < 180; i += 2) {
+				level.addParticle(ParticleTypes.END_ROD,
+								  startPos.x,
+								  startPos.y - 0.1,
+								  startPos.z,
+								  Math.cos(i) * 0.2 * Math.random(),
+								  0.1,
+								  Math.sin(i) * 0.2 * Math.random());
+			}
 
+			entity.push(0, 2, 0);
 
-    // TODO: Make Cooldown less shit
-    // I refuse to believe this is the best way to make a cooldown.
-    // Ticking shit bad for lag and all that
-    @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
-
-        if (cooldown > 0) {
-            cooldown -= 1;
-        }
-
-        super.animateTick(state, level, pos, random);
-    }
+		}
+		super.stepOn(level, pos, state, entity);
+	}
 }

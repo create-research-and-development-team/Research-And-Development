@@ -1,11 +1,10 @@
 package org.valkyrienskies.vsrnd.platform.fabric;
 
 
-import com.google.common.collect.Multimap;
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
-import com.simibubi.create.foundation.utility.fabric.ReachUtil;
 import io.github.fabricators_of_create.porting_lib.entity.ExtraSpawnDataEntity;
 import io.github.fabricators_of_create.porting_lib.mixin.common.accessor.ServerGamePacketListenerImplAccessor;
 import net.fabricmc.loader.api.FabricLoader;
@@ -13,23 +12,21 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import org.valkyrienskies.vsrnd.util.fluid.VSCFluidTankBehaviour;
-import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 
 public class PlatformUtilsImpl {
-    public static double getReachDistance(Player player) {
-        return ReachEntityAttributes.getReachDistance(player, player.isCreative() ? 5.0 : 4.5);
-    }
+	public static double getReachDistance(Player player) {
+		return ReachEntityAttributes.getReachDistance(player, player.isCreative() ? 5.0 : 4.5);
+	}
 
-    public static Packet<?> createExtraDataSpawnPacket(Entity entity) {
-        return ExtraSpawnDataEntity.createExtraDataSpawnPacket(entity);
-    }
+	public static Packet<?> createExtraDataSpawnPacket(Entity entity) {
+		return ExtraSpawnDataEntity.createExtraDataSpawnPacket(entity);
+	}
 
-    public static void setAboveGroundTicks(ServerPlayer player, int ticks) {
-        ((ServerGamePacketListenerImplAccessor) player.connection).port_lib$setAboveGroundTickCount(0);
-    }
+	public static void setAboveGroundTicks(ServerPlayer player, int ticks) {
+		((ServerGamePacketListenerImplAccessor) player.connection).port_lib$setAboveGroundTickCount(0);
+	}
 
 //    public static InteractionResultHolder<ItemStack> tryInsert(BlockState state, Level world, BlockPos pos,
 //                                                               ItemStack stack, boolean doNotConsume, boolean forceOverflow, boolean simulate) {
@@ -112,23 +109,23 @@ public class PlatformUtilsImpl {
 //        return true;
 //    }
 
-    public static int maxBalloonRange() {
-        return 0;
-    }
+	public static int maxBalloonRange() {
+		return 0;
+	}
 
-    public static void drainTank(SmartFluidTankBehaviour tank, int amount) {
-        tank.getPrimaryHandler().getFluid().shrink(amount);
-    }
+	public static void drainTank(SmartFluidTankBehaviour tank, int amount) {
+		tank.getPrimaryHandler().getFluid().shrink(amount);
+	}
 
-    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
-        return new FabricVSCFluidTankBehaviour(type, te, tanks, tankCapacity, enforceVariety);
-    }
+	public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
+		return new FabricVSCFluidTankBehaviour(type, te, tanks, tankCapacity, enforceVariety);
+	}
 
-    public static boolean isModLoaded(String modId) {
-        return FabricLoader.getInstance().isModLoaded(modId);
-    }
+	public static boolean isModLoaded(String modId) {
+		return FabricLoader.getInstance().isModLoaded(modId);
+	}
 
-    public static Attribute getReachModifier() {
-        return ReachEntityAttributes.REACH;
-    }
+	public static Attribute getReachModifier() {
+		return ReachEntityAttributes.REACH;
+	}
 }

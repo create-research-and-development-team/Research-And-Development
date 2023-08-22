@@ -13,51 +13,54 @@ import org.valkyrienskies.vsrnd.util.fluid.VSCFluidTankBehaviour;
 import java.util.function.Consumer;
 
 public class FabricVSCFluidTankBehaviour extends VSCFluidTankBehaviour {
-    private InternalFluidHandler capability;
+	private InternalFluidHandler capability;
 
-    protected FabricVSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
-        super(type, te, tanks, tankCapacity, enforceVariety);
-        Storage<FluidVariant>[] handlers = new Storage[tanks];
-        for (int i = 0; i < tanks; i++) {
-            handlers[i] = (FabricVSCFluidTank) this.tanks[i].getTank();
-        }
+	protected FabricVSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
+		super(type, te, tanks, tankCapacity, enforceVariety);
+		Storage<FluidVariant>[] handlers = new Storage[tanks];
+		for (int i = 0; i < tanks; i++) {
+			handlers[i] = (FabricVSCFluidTank) this.tanks[i].getTank();
+		}
 
-        capability = new InternalFluidHandler(handlers, enforceVariety);
-    }
+		capability = new InternalFluidHandler(handlers, enforceVariety);
+	}
 
-    @Override
-    protected FabricVSCFluidTank makeFluidTank(long capacity, Consumer<Fluid> updateCallback) {
-        return new FabricVSCFluidTank(capacity, f -> updateCallback.accept(f.getFluid()));
-    }
+	@Override
+	protected FabricVSCFluidTank makeFluidTank(long capacity, Consumer<Fluid> updateCallback) {
+		return new FabricVSCFluidTank(capacity, f -> updateCallback.accept(f.getFluid()));
+	}
 
-    public Storage<FluidVariant> getCapability() {
-        return capability;
-    }
+	public Storage<FluidVariant> getCapability() {
+		return capability;
+	}
 
-    public class InternalFluidHandler extends CombinedTankWrapper {
+	public class InternalFluidHandler extends CombinedTankWrapper {
 
-        public InternalFluidHandler(Storage<FluidVariant>[] handlers, boolean enforceVariety) {
-            super(handlers);
-            if (enforceVariety)
-                enforceVariety();
-        }
+		public InternalFluidHandler(Storage<FluidVariant>[] handlers, boolean enforceVariety) {
+			super(handlers);
+			if (enforceVariety) {
+				enforceVariety();
+			}
+		}
 
-        @Override
-        public long insert(FluidVariant resource, long maxAmount, TransactionContext transaction) {
-            if (!insertionAllowed)
-                return 0;
-            return super.insert(resource, maxAmount, transaction);
-        }
+		@Override
+		public long insert(FluidVariant resource, long maxAmount, TransactionContext transaction) {
+			if (!insertionAllowed) {
+				return 0;
+			}
+			return super.insert(resource, maxAmount, transaction);
+		}
 
-        public long forceFill(FluidStack resource, TransactionContext ctx) {
-            return super.insert(resource.getType(), resource.getAmount(), ctx);
-        }
+		public long forceFill(FluidStack resource, TransactionContext ctx) {
+			return super.insert(resource.getType(), resource.getAmount(), ctx);
+		}
 
-        @Override
-        public long extract(FluidVariant resource, long maxAmount, TransactionContext transaction) {
-            if (!extractionAllowed)
-                return 0;
-            return super.extract(resource, maxAmount, transaction);
-        }
-    }
+		@Override
+		public long extract(FluidVariant resource, long maxAmount, TransactionContext transaction) {
+			if (!extractionAllowed) {
+				return 0;
+			}
+			return super.extract(resource, maxAmount, transaction);
+		}
+	}
 }

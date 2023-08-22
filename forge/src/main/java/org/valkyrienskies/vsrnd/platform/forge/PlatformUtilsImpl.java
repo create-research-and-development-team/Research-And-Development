@@ -1,13 +1,11 @@
 package org.valkyrienskies.vsrnd.platform.forge;
 
-import com.google.common.collect.Multimap;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BehaviourType;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fml.ModList;
@@ -15,17 +13,17 @@ import net.minecraftforge.network.NetworkHooks;
 import org.valkyrienskies.vsrnd.util.fluid.VSCFluidTankBehaviour;
 
 public class PlatformUtilsImpl {
-    public static double getReachDistance(Player player) {
-        return player.getReachDistance();
-    }
+	public static double getReachDistance(Player player) {
+		return player.getReachDistance();
+	}
 
-    public static Packet<?> createExtraDataSpawnPacket(Entity entity) {
-        return NetworkHooks.getEntitySpawningPacket(entity);
-    }
+	public static Packet<?> createExtraDataSpawnPacket(Entity entity) {
+		return NetworkHooks.getEntitySpawningPacket(entity);
+	}
 
-    public static void setAboveGroundTicks(ServerPlayer player, int ticks) {
-        // todo
-    }
+	public static void setAboveGroundTicks(ServerPlayer player, int ticks) {
+		// todo
+	}
 
 //    public static InteractionResultHolder<ItemStack> tryInsert(BlockState state, Level world, BlockPos pos,
 //                                                               ItemStack stack, boolean doNotConsume, boolean forceOverflow, boolean simulate) {
@@ -55,7 +53,7 @@ public class PlatformUtilsImpl {
 //        return InteractionResultHolder.success(ItemStack.EMPTY);
 //    }
 
-//    public static boolean tryUpdateFuel(ItemStack itemStack, boolean forceOverflow, boolean simulate, BalloonerBlockEntity blockEntity) {
+	//    public static boolean tryUpdateFuel(ItemStack itemStack, boolean forceOverflow, boolean simulate, BalloonerBlockEntity blockEntity) {
 //        if (blockEntity.isCreative())
 //            return false;
 //
@@ -115,9 +113,9 @@ public class PlatformUtilsImpl {
 //
 //        return true;
 //    }
-    public static int maxBalloonRange() {
-        return 0;
-    }
+	public static int maxBalloonRange() {
+		return 0;
+	}
 
 
 //    public static Class<?> getCombustionEngineTileEntityClass() {
@@ -127,15 +125,15 @@ public class PlatformUtilsImpl {
 //    public static BlockEntityType<? extends CombustionEngineBlockEntity> getCombustionEngineTileEntityType() {throw new AssertionError();}
 
 
-    public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
-        return new ForgeVSCFluidTankBehaviour(type, te, tanks, tankCapacity, enforceVariety);
-    }
+	public static VSCFluidTankBehaviour cwFluidTank(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
+		return new ForgeVSCFluidTankBehaviour(type, te, tanks, tankCapacity, enforceVariety);
+	}
 
-    public static boolean isModLoaded(String modId) {
-        return ModList.get().isLoaded(modId);
-    }
+	public static boolean isModLoaded(String modId) {
+		return ModList.get().isLoaded(modId);
+	}
 
-    public static Attribute getReachModifier() {
-        return ForgeMod.REACH_DISTANCE.get();
-    }
+	public static Attribute getReachModifier() {
+		return ForgeMod.REACH_DISTANCE.get();
+	}
 }

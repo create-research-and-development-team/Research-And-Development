@@ -9,10 +9,14 @@ import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 public class VSCreateFabricFluids {
 
-    public static FluidBuilder<SimpleFlowableFluid.Flowing, CreateRegistrate> frostingFluid(String name) {
-        return REGISTRATE.fluid(name, VSCreateMod.asResource("fluid/" + name + "_still"), VSCreateMod.asResource("fluid/" + name + "_flow"));
-    }
-    public static void register() {}
+	public static FluidBuilder<SimpleFlowableFluid.Flowing, CreateRegistrate> frostingFluid(String name) {
+		return REGISTRATE.fluid(name,
+								VSCreateMod.asResource("fluid/" + name + "_still"),
+								VSCreateMod.asResource("fluid/" + name + "_flow"));
+	}
+
+	public static void register() {
+	}
 
 //    public static FluidBuilder<SimpleFlowableFluid.Flowing, CreateRegistrate> frostingFluid(String name) {
 //        return ClockWorkMod.REGISTRATE.fluid(name, Create.asResource("fluid/frosting_still"), Create.asResource("fluid/frosting_flow"));

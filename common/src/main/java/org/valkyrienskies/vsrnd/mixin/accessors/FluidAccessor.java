@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(Fluid.class)
 public interface FluidAccessor {
 
-    @Invoker("isEmpty")
-    boolean getIfEmpty();
+	@Invoker("isEmpty")
+	boolean getIfEmpty();
 
 }

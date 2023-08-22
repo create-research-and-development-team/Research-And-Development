@@ -16,51 +16,54 @@ import java.util.Collection;
 
 public abstract class VSCreateGroupBase extends CreativeModeTab {
 
-    public VSCreateGroupBase(String id) {
-        super(VSCreateMod.MOD_ID + "." + id);
-    }
+	public VSCreateGroupBase(String id) {
+		super(VSCreateMod.MOD_ID + "." + id);
+	}
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void fillItemList(NonNullList<ItemStack> items) {
-        addItems(items, true);
-        addBlocks(items);
-        addItems(items, false);
-    }
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public void fillItemList(NonNullList<ItemStack> items) {
+		addItems(items, true);
+		addBlocks(items);
+		addItems(items, false);
+	}
 
-    @OnlyIn(Dist.CLIENT)
-    public void addBlocks(NonNullList<ItemStack> items) {
-        for (RegistryEntry<? extends Block> entry : getBlocks()) {
-            Block def = entry.get();
-            Item item = def.asItem();
-            if (item != Items.AIR)
-                def.fillItemCategory(this, items);
-        }
-    }
+	@OnlyIn(Dist.CLIENT)
+	public void addItems(NonNullList<ItemStack> items, boolean specialItems) {
+		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 
-    @OnlyIn(Dist.CLIENT)
-    public void addItems(NonNullList<ItemStack> items, boolean specialItems) {
-        ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+		for (RegistryEntry<? extends Item> entry : getItems()) {
+			Item item = entry.get();
+			if (item instanceof BlockItem) {
+				continue;
+			}
+			ItemStack stack = new ItemStack(item);
+			BakedModel model = itemRenderer.getModel(stack, null, null, 0);
+			if (model.isGui3d() != specialItems) {
+				continue;
+			}
+			item.fillItemCategory(this, items);
+		}
+	}
 
-        for (RegistryEntry<? extends Item> entry : getItems()) {
-            Item item = entry.get();
-            if (item instanceof BlockItem)
-                continue;
-            ItemStack stack = new ItemStack(item);
-            BakedModel model = itemRenderer.getModel(stack, null, null, 0);
-            if (model.isGui3d() != specialItems)
-                continue;
-            item.fillItemCategory(this, items);
-        }
-    }
+	@OnlyIn(Dist.CLIENT)
+	public void addBlocks(NonNullList<ItemStack> items) {
+		for (RegistryEntry<? extends Block> entry : getBlocks()) {
+			Block def = entry.get();
+			Item item = def.asItem();
+			if (item != Items.AIR) {
+				def.fillItemCategory(this, items);
+			}
+		}
+	}
 
-    protected Collection<RegistryEntry<Block>> getBlocks() {
-        return null;
-    }
+	protected Collection<RegistryEntry<Item>> getItems() {
+		return null;
+	}
 
-    protected Collection<RegistryEntry<Item>> getItems() {
-        return null;
-    }
+	protected Collection<RegistryEntry<Block>> getBlocks() {
+		return null;
+	}
 
 }
 //    public static final CreativeModeTab GROUP = new CreativeModeTab(MOD_ID) {

@@ -11,19 +11,20 @@ import org.valkyrienskies.vsrnd.platform.api.network.PacketChannel;
 import java.util.function.BiConsumer;
 
 public class SharedValuesImpl {
-    private static final CreativeModeTab TAB = new VSCreateGroup();
-    private static final PacketChannel CHANNEL = new PacketChannelImpl();
+	private static final CreativeModeTab TAB = new VSCreateGroup();
+	private static final PacketChannel CHANNEL = new PacketChannelImpl();
 
-    public static CreativeModeTab creativeTab() {
-        return TAB;
-    }
+	public static CreativeModeTab creativeTab() {
+		return TAB;
+	}
 
-    public static PacketChannel getPacketChannel() {
-        return CHANNEL;
-    }
+	public static PacketChannel getPacketChannel() {
+		return CHANNEL;
+	}
 
-    public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer> customRenderedRegisterer() {
-        return (item, renderer) -> ((ItemAccessor) item).setRenderProperties(SimpleCustomRenderer.create(item, renderer));
-    }
+	public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer> customRenderedRegisterer() {
+		return (item, renderer) -> ((ItemAccessor) item).setRenderProperties(SimpleCustomRenderer.create(item,
+																										 renderer));
+	}
 
 }

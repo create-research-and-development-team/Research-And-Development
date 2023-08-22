@@ -10,16 +10,16 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 
 public class VSCreateForgePeripheralProviders {
-    public static void register() {
-        ComputerCraftAPI.registerPeripheralProvider(new ClockworkPeripheralProvider());
-    }
+	public static void register() {
+		ComputerCraftAPI.registerPeripheralProvider(new ClockworkPeripheralProvider());
+	}
 
-    public static class ClockworkPeripheralProvider implements IPeripheralProvider {
+	public static class ClockworkPeripheralProvider implements IPeripheralProvider {
 
-        @NotNull
-        @Override
-        public LazyOptional<IPeripheral> getPeripheral(@NotNull Level level, @NotNull BlockPos blockPos, @NotNull Direction direction) {
-            return null;
-        }
-    }
+		@NotNull
+		@Override
+		public LazyOptional<IPeripheral> getPeripheral(@NotNull Level level, @NotNull BlockPos blockPos, @NotNull Direction direction) {
+			return null;
+		}
+	}
 }

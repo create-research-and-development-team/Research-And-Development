@@ -4,8 +4,6 @@ package org.valkyrienskies.vsrnd;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
-
-
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.valkyrienskies.vsrnd.content.blocks.Yeast;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlock;
@@ -17,30 +15,27 @@ import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 public class VSCreateBlocks {
 
-    static {
-        REGISTRATE.creativeModeTab(() -> VSCreateMod.BASE_CREATIVE_TAB);
-    }
-
-    //they got rid of sections
-    //What the fuck is a section???
-    public static final BlockEntry<Block> TITANIUM_BLOCK = REGISTRATE.block("titanium_block", Block::new)
-            .simpleItem()
-            .register();
-
-    public static final BlockEntry<SculkThrusterBlock> SCULK_THRUSTER = REGISTRATE.block("sculk_thruster", SculkThrusterBlock::new)
-            .simpleItem()
-            .register();
-
-
-    public static final BlockEntry<Yeast> YEAST = REGISTRATE.block("yeast", Yeast::new)
-            .simpleItem()
-            .register();
-
-    public static final BlockEntry<RutileClusterBlock> RUTILE_CLUSTER = REGISTRATE.block("rutile_cluster", RutileClusterBlock::new)
-            .properties(BlockBehaviour.Properties::noOcclusion)
-            .addLayer(() -> RenderType::cutoutMipped)
-            .simpleItem()
-            .register();
+	//they got rid of sections
+	//What the fuck is a section???
+	public static final BlockEntry<Block> TITANIUM_BLOCK = REGISTRATE.block("titanium_block", Block::new)
+																	 .simpleItem()
+																	 .register();
+	public static final BlockEntry<SculkThrusterBlock> SCULK_THRUSTER = REGISTRATE.block("sculk_thruster",
+																						 SculkThrusterBlock::new)
+																				  .simpleItem()
+																				  .register();
+	public static final BlockEntry<Yeast> YEAST = REGISTRATE.block("yeast", Yeast::new)
+															.simpleItem()
+															.register();
+	public static final BlockEntry<RutileClusterBlock> RUTILE_CLUSTER = REGISTRATE.block("rutile_cluster",
+																						 RutileClusterBlock::new)
+																				  .properties(BlockBehaviour.Properties::noOcclusion)
+																				  .addLayer(() -> RenderType::cutoutMipped)
+																				  .simpleItem()
+																				  .register();
+	public static final BlockEntry<CocoonBlock> COCOON = REGISTRATE.block("cocoon", CocoonBlock::new)
+																   .simpleItem()
+																   .register();
 
 
 //    public static final BlockEntry<TitaniumTankBlock> TITANIUM_TANK = REGISTRATE.block("titanium_tank", TitaniumTankBlock::regular)
@@ -55,11 +50,10 @@ public class VSCreateBlocks {
 //            .build()
 //            .register();
 
-    public static final BlockEntry<CocoonBlock> COCOON = REGISTRATE.block("cocoon", CocoonBlock::new)
-            .simpleItem()
-            .register();
+	static {
+		REGISTRATE.creativeModeTab(() -> VSCreateMod.BASE_CREATIVE_TAB);
+	}
 
-
-    public static void register() {
-    }
+	public static void register() {
+	}
 }

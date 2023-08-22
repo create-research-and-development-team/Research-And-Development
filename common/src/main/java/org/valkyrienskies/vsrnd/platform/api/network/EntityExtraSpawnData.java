@@ -4,8 +4,8 @@ import net.minecraft.network.FriendlyByteBuf;
 
 public interface EntityExtraSpawnData {
 
-    void writeSpawnData(FriendlyByteBuf arg);
+	void writeSpawnData(FriendlyByteBuf arg);
 
-    void readSpawnData(FriendlyByteBuf arg);
+	void readSpawnData(FriendlyByteBuf arg);
 
 }

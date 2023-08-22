@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(Item.class)
 public interface ItemAccessor {
 
-    @Accessor
-    void setRenderProperties(Object renderProperties);
+	@Accessor
+	void setRenderProperties(Object renderProperties);
 
 }

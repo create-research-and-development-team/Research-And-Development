@@ -10,23 +10,24 @@ import net.minecraft.world.item.ItemStack;
 import java.util.function.Consumer;
 
 public class SimpleBackTankHelperImpl {
-    public static Item.Properties getProperties(Item.Properties properties, int maxDamage, int maxBackTankUses) {
-        return ((FabricItemSettings)properties)
-                .maxDamage(maxDamage)
-                .customDamage(new BackTankDamageHandler(maxBackTankUses));
-    }
+	public static Item.Properties getProperties(Item.Properties properties, int maxDamage, int maxBackTankUses) {
+		return ((FabricItemSettings) properties)
+				.maxDamage(maxDamage)
+				.customDamage(new BackTankDamageHandler(maxBackTankUses));
+	}
 
-    private static class BackTankDamageHandler implements CustomDamageHandler {
-        private final int maxBacktankUses;
-        public BackTankDamageHandler(int maxBacktankUses) {
-            this.maxBacktankUses = maxBacktankUses;
-        }
+	private static class BackTankDamageHandler implements CustomDamageHandler {
+		private final int maxBacktankUses;
 
-        @Override
-        public int damage(ItemStack stack, int amount, LivingEntity entity, Consumer<LivingEntity> breakCallback) {
-            if(BacktankUtil.canAbsorbDamage(entity, this.maxBacktankUses)) return 0;
-            return amount;
-        }
-    }
+		public BackTankDamageHandler(int maxBacktankUses) {
+			this.maxBacktankUses = maxBacktankUses;
+		}
+
+		@Override
+		public int damage(ItemStack stack, int amount, LivingEntity entity, Consumer<LivingEntity> breakCallback) {
+			if (BacktankUtil.canAbsorbDamage(entity, this.maxBacktankUses)) return 0;
+			return amount;
+		}
+	}
 
 }

@@ -33,146 +33,159 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.valkyrienskies.vsrnd.content.Fluids.FermentingTank.FermentingTankBlock;
-import org.valkyrienskies.vsrnd.content.Fluids.FermentingTank.FermentingTankBlockEntity;
 import org.valkyrienskies.vsrnd.forge.VSCreateForgeBlockEntities;
 
 public class FermentingTankBlock_FORGE extends FermentingTankBlock {
 
 
-    public static FermentingTankBlock_FORGE regular(Properties p_i48440_1_) {
-        return new FermentingTankBlock_FORGE(p_i48440_1_, false);
-    }
-    protected FermentingTankBlock_FORGE(Properties p_i48440_1_, boolean creative) {
-        super(p_i48440_1_);
-    }
+	public static final SoundType SILENCED_METAL =
+			new ForgeSoundType(0.1F, 1.5F, () -> SoundEvents.WOOD_BREAK, () -> SoundEvents.WOOD_STEP,
+							   () -> SoundEvents.WOOD_PLACE, () -> SoundEvents.WOOD_HIT, () -> SoundEvents.WOOD_FALL);
 
-    @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
-                                 BlockHitResult ray) {
-        ItemStack heldItem = player.getItemInHand(hand);
-        boolean onClient = world.isClientSide;
+	protected FermentingTankBlock_FORGE(Properties p_i48440_1_, boolean creative) {
+		super(p_i48440_1_);
+	}
 
-        if (heldItem.isEmpty())
-            return InteractionResult.PASS;
+	public static FermentingTankBlock_FORGE regular(Properties p_i48440_1_) {
+		return new FermentingTankBlock_FORGE(p_i48440_1_, false);
+	}
 
-        FluidExchange exchange = null;
-        FermentingTankBlockEntity_FORGE be = ConnectivityHandler.partAt(getBlockEntityType(), world, pos);
-        if (be == null)
-            return InteractionResult.FAIL;
+	public static boolean isTank(BlockState state) {
+		return state.getBlock() instanceof FermentingTankBlock_FORGE;
+	}
 
-        LazyOptional<IFluidHandler> tankCapability = be.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY);
-        if (!tankCapability.isPresent())
-            return InteractionResult.PASS;
-        IFluidHandler fluidTank = tankCapability.orElse(null);
-        FluidStack prevFluidInTank = fluidTank.getFluidInTank(0)
-                .copy();
+	@Override
+	public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
+								 BlockHitResult ray) {
+		ItemStack heldItem = player.getItemInHand(hand);
+		boolean onClient = world.isClientSide;
 
-        if (FluidHelper.tryEmptyItemIntoBE(world, player, hand, heldItem, be))
-            exchange = FluidExchange.ITEM_TO_TANK;
-        else if (FluidHelper.tryFillItemFromBE(world, player, hand, heldItem, be))
-            exchange = FluidExchange.TANK_TO_ITEM;
+		if (heldItem.isEmpty()) {
+			return InteractionResult.PASS;
+		}
 
-        if (exchange == null) {
-            if (GenericItemEmptying.canItemBeEmptied(world, heldItem)
-                    || GenericItemFilling.canItemBeFilled(world, heldItem))
-                return InteractionResult.SUCCESS;
-            return InteractionResult.PASS;
-        }
+		FluidExchange exchange = null;
+		FermentingTankBlockEntity_FORGE be = ConnectivityHandler.partAt(getBlockEntityType(), world, pos);
+		if (be == null) {
+			return InteractionResult.FAIL;
+		}
 
-        SoundEvent soundevent = null;
-        BlockState fluidState = null;
-        FluidStack fluidInTank = tankCapability.map(fh -> fh.getFluidInTank(0))
-                .orElse(FluidStack.EMPTY);
+		LazyOptional<IFluidHandler> tankCapability = be.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY);
+		if (!tankCapability.isPresent()) {
+			return InteractionResult.PASS;
+		}
+		IFluidHandler fluidTank = tankCapability.orElse(null);
+		FluidStack prevFluidInTank = fluidTank.getFluidInTank(0)
+											  .copy();
 
-        if (exchange == FluidExchange.ITEM_TO_TANK) {
+		if (FluidHelper.tryEmptyItemIntoBE(world, player, hand, heldItem, be)) {
+			exchange = FluidExchange.ITEM_TO_TANK;
+		} else if (FluidHelper.tryFillItemFromBE(world, player, hand, heldItem, be)) {
+			exchange = FluidExchange.TANK_TO_ITEM;
+		}
 
-            Fluid fluid = fluidInTank.getFluid();
-            fluidState = fluid.defaultFluidState()
-                    .createLegacyBlock();
-            FluidAttributes attributes = fluid.getAttributes();
-            soundevent = attributes.getEmptySound();
-            if (soundevent == null)
-                soundevent =
-                        FluidHelper.isTag(fluid, FluidTags.LAVA) ? SoundEvents.BUCKET_EMPTY_LAVA : SoundEvents.BUCKET_EMPTY;
-        }
+		if (exchange == null) {
+			if (GenericItemEmptying.canItemBeEmptied(world, heldItem)
+				|| GenericItemFilling.canItemBeFilled(world, heldItem)) {
+				return InteractionResult.SUCCESS;
+			}
+			return InteractionResult.PASS;
+		}
 
-        if (exchange == FluidExchange.TANK_TO_ITEM) {
+		SoundEvent soundevent = null;
+		BlockState fluidState = null;
+		FluidStack fluidInTank = tankCapability.map(fh -> fh.getFluidInTank(0))
+											   .orElse(FluidStack.EMPTY);
 
+		if (exchange == FluidExchange.ITEM_TO_TANK) {
 
-            Fluid fluid = prevFluidInTank.getFluid();
-            fluidState = fluid.defaultFluidState()
-                    .createLegacyBlock();
-            soundevent = fluid.getAttributes()
-                    .getFillSound();
-            if (soundevent == null)
-                soundevent =
-                        FluidHelper.isTag(fluid, FluidTags.LAVA) ? SoundEvents.BUCKET_FILL_LAVA : SoundEvents.BUCKET_FILL;
-        }
+			Fluid fluid = fluidInTank.getFluid();
+			fluidState = fluid.defaultFluidState()
+							  .createLegacyBlock();
+			FluidAttributes attributes = fluid.getAttributes();
+			soundevent = attributes.getEmptySound();
+			if (soundevent == null) {
+				soundevent =
+						FluidHelper.isTag(fluid,
+										  FluidTags.LAVA) ? SoundEvents.BUCKET_EMPTY_LAVA : SoundEvents.BUCKET_EMPTY;
+			}
+		}
 
-        if (soundevent != null && !onClient) {
-            float pitch = Mth
-                    .clamp(1 - (1f * fluidInTank.getAmount() / (FermentingTankBlockEntity_FORGE.getCapacityMultiplier() * 16)), 0, 1);
-            pitch /= 1.5f;
-            pitch += .5f;
-            pitch += (world.random.nextFloat() - .5f) / 4f;
-            world.playSound(null, pos, soundevent, SoundSource.BLOCKS, .5f, pitch);
-        }
-
-        if (!fluidInTank.isFluidStackIdentical(prevFluidInTank)) {
-            if (be instanceof FermentingTankBlockEntity_FORGE) {
-                FermentingTankBlockEntity_FORGE controllerBE = ((FermentingTankBlockEntity_FORGE) be).getControllerBE();
-                if (controllerBE != null) {
-                    if (fluidState != null && onClient) {
-                        BlockParticleOption blockParticleData =
-                                new BlockParticleOption(ParticleTypes.BLOCK, fluidState);
-                        float level = (float) fluidInTank.getAmount() / fluidTank.getTankCapacity(0);
-
-                        boolean reversed = fluidInTank.getFluid()
-                                .getAttributes()
-                                .isLighterThanAir();
-                        if (reversed)
-                            level = 1 - level;
-
-                        Vec3 vec = ray.getLocation();
-                        vec = new Vec3(vec.x, controllerBE.getBlockPos()
-                                .getY() + level * (controllerBE.getHeight() - .5f) + .25f, vec.z);
-                        Vec3 motion = player.position()
-                                .subtract(vec)
-                                .scale(1 / 20f);
-                        vec = vec.add(motion);
-                        world.addParticle(blockParticleData, vec.x, vec.y, vec.z, motion.x, motion.y, motion.z);
-                        return InteractionResult.SUCCESS;
-                    }
-
-                    controllerBE.sendDataImmediately();
-                    controllerBE.setChanged();
-                }
-            }
-        }
-
-        return InteractionResult.SUCCESS;
-    }
-
-    @Override
-    public BlockEntityType<? extends FermentingTankBlockEntity_FORGE> getBlockEntityType() {
-        return VSCreateForgeBlockEntities.FERMENTING_TANK.get();
-    }
+		if (exchange == FluidExchange.TANK_TO_ITEM) {
 
 
-    public static final SoundType SILENCED_METAL =
-            new ForgeSoundType(0.1F, 1.5F, () -> SoundEvents.WOOD_BREAK, () -> SoundEvents.WOOD_STEP,
-                    () -> SoundEvents.WOOD_PLACE, () -> SoundEvents.WOOD_HIT, () -> SoundEvents.WOOD_FALL);
+			Fluid fluid = prevFluidInTank.getFluid();
+			fluidState = fluid.defaultFluidState()
+							  .createLegacyBlock();
+			soundevent = fluid.getAttributes()
+							  .getFillSound();
+			if (soundevent == null) {
+				soundevent =
+						FluidHelper.isTag(fluid,
+										  FluidTags.LAVA) ? SoundEvents.BUCKET_FILL_LAVA : SoundEvents.BUCKET_FILL;
+			}
+		}
 
-    @Override
-    public SoundType getSoundType(BlockState state, LevelReader world, BlockPos pos, Entity entity) {
-        SoundType soundType = super.getSoundType(state, world, pos, entity);
-        if (entity != null && entity.getPersistentData()
-                .contains("SilenceTankSound"))
-            return SILENCED_METAL;
-        return soundType;
-    }
+		if (soundevent != null && !onClient) {
+			float pitch = Mth
+					.clamp(1 - (1f * fluidInTank.getAmount() /
+								(FermentingTankBlockEntity_FORGE.getCapacityMultiplier() * 16)), 0, 1);
+			pitch /= 1.5f;
+			pitch += .5f;
+			pitch += (world.random.nextFloat() - .5f) / 4f;
+			world.playSound(null, pos, soundevent, SoundSource.BLOCKS, .5f, pitch);
+		}
 
-    public static boolean isTank(BlockState state) {
-        return state.getBlock() instanceof FermentingTankBlock_FORGE;
-    }
+		if (!fluidInTank.isFluidStackIdentical(prevFluidInTank)) {
+			if (be instanceof FermentingTankBlockEntity_FORGE) {
+				FermentingTankBlockEntity_FORGE controllerBE = ((FermentingTankBlockEntity_FORGE) be).getControllerBE();
+				if (controllerBE != null) {
+					if (fluidState != null && onClient) {
+						BlockParticleOption blockParticleData =
+								new BlockParticleOption(ParticleTypes.BLOCK, fluidState);
+						float level = (float) fluidInTank.getAmount() / fluidTank.getTankCapacity(0);
+
+						boolean reversed = fluidInTank.getFluid()
+													  .getAttributes()
+													  .isLighterThanAir();
+						if (reversed) {
+							level = 1 - level;
+						}
+
+						Vec3 vec = ray.getLocation();
+						vec = new Vec3(vec.x,
+									   controllerBE.getBlockPos()
+												   .getY() + level * (controllerBE.getHeight() - .5f) + .25f,
+									   vec.z);
+						Vec3 motion = player.position()
+											.subtract(vec)
+											.scale(1 / 20f);
+						vec = vec.add(motion);
+						world.addParticle(blockParticleData, vec.x, vec.y, vec.z, motion.x, motion.y, motion.z);
+						return InteractionResult.SUCCESS;
+					}
+
+					controllerBE.sendDataImmediately();
+					controllerBE.setChanged();
+				}
+			}
+		}
+
+		return InteractionResult.SUCCESS;
+	}
+
+	@Override
+	public BlockEntityType<? extends FermentingTankBlockEntity_FORGE> getBlockEntityType() {
+		return VSCreateForgeBlockEntities.FERMENTING_TANK.get();
+	}
+
+	@Override
+	public SoundType getSoundType(BlockState state, LevelReader world, BlockPos pos, Entity entity) {
+		SoundType soundType = super.getSoundType(state, world, pos, entity);
+		if (entity != null && entity.getPersistentData()
+									.contains("SilenceTankSound")) {
+			return SILENCED_METAL;
+		}
+		return soundType;
+	}
 }

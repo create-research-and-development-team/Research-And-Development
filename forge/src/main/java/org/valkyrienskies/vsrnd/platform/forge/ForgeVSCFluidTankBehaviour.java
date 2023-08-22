@@ -13,54 +13,53 @@ import org.valkyrienskies.vsrnd.util.fluid.VSCFluidTankBehaviour;
 import java.util.function.Consumer;
 
 public class ForgeVSCFluidTankBehaviour extends VSCFluidTankBehaviour {
-    private LazyOptional<? extends IFluidHandler> capability;
+	private LazyOptional<? extends IFluidHandler> capability;
 
-    protected ForgeVSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
-        super(type, te, tanks, tankCapacity, enforceVariety);
+	protected ForgeVSCFluidTankBehaviour(BehaviourType<VSCFluidTankBehaviour> type, SmartBlockEntity te, int tanks, long tankCapacity, boolean enforceVariety) {
+		super(type, te, tanks, tankCapacity, enforceVariety);
 
-        IFluidHandler[] handlers = new IFluidHandler[tanks];
+		IFluidHandler[] handlers = new IFluidHandler[tanks];
 
-        for(int i = 0; i < tanks; ++i) {
-            handlers[i] = (ForgeVSCFluidTank) this.tanks[i].getTank();
-        }
+		for (int i = 0; i < tanks; ++i) {
+			handlers[i] = (ForgeVSCFluidTank) this.tanks[i].getTank();
+		}
 
-        this.capability = LazyOptional.of(() -> new InternalFluidHandler(handlers, enforceVariety));
-    }
+		this.capability = LazyOptional.of(() -> new InternalFluidHandler(handlers, enforceVariety));
+	}
 
 
+	@Override
+	protected VSCFluidTank makeFluidTank(long capacity, Consumer<Fluid> updateCallback) {
+		return new ForgeVSCFluidTank((int) capacity, f -> updateCallback.accept(f.getFluid()));
+	}
 
-    @Override
-    protected VSCFluidTank makeFluidTank(long capacity, Consumer<Fluid> updateCallback) {
-        return new ForgeVSCFluidTank((int) capacity, f -> updateCallback.accept(f.getFluid()));
-    }
+	public LazyOptional<? extends IFluidHandler> getCapability() {
+		return capability;
+	}
 
-    public LazyOptional<? extends IFluidHandler> getCapability() {
-        return capability;
-    }
+	private class InternalFluidHandler extends CombinedTankWrapper {
+		public InternalFluidHandler(IFluidHandler[] handlers, boolean enforceVariety) {
+			super(handlers);
+			if (enforceVariety) {
+				this.enforceVariety();
+			}
 
-    private class InternalFluidHandler extends CombinedTankWrapper {
-        public InternalFluidHandler(IFluidHandler[] handlers, boolean enforceVariety) {
-            super(handlers);
-            if (enforceVariety) {
-                this.enforceVariety();
-            }
+		}
 
-        }
+		public int fill(FluidStack resource, IFluidHandler.FluidAction action) {
+			return !insertionAllowed ? 0 : super.fill(resource, action);
+		}
 
-        public int fill(FluidStack resource, IFluidHandler.FluidAction action) {
-            return !insertionAllowed ? 0 : super.fill(resource, action);
-        }
+		public FluidStack drain(FluidStack resource, IFluidHandler.FluidAction action) {
+			return !extractionAllowed ? FluidStack.EMPTY : super.drain(resource, action);
+		}
 
-        public int forceFill(FluidStack resource, IFluidHandler.FluidAction action) {
-            return super.fill(resource, action);
-        }
+		public FluidStack drain(int maxDrain, IFluidHandler.FluidAction action) {
+			return !extractionAllowed ? FluidStack.EMPTY : super.drain(maxDrain, action);
+		}
 
-        public FluidStack drain(FluidStack resource, IFluidHandler.FluidAction action) {
-            return !extractionAllowed ? FluidStack.EMPTY : super.drain(resource, action);
-        }
-
-        public FluidStack drain(int maxDrain, IFluidHandler.FluidAction action) {
-            return !extractionAllowed ? FluidStack.EMPTY : super.drain(maxDrain, action);
-        }
-    }
+		public int forceFill(FluidStack resource, IFluidHandler.FluidAction action) {
+			return super.fill(resource, action);
+		}
+	}
 }

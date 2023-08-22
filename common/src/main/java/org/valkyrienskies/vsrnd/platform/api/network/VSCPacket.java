@@ -4,6 +4,6 @@ import net.minecraft.network.FriendlyByteBuf;
 
 public interface VSCPacket {
 
-    void write(FriendlyByteBuf buffer);
+	void write(FriendlyByteBuf buffer);
 
 }

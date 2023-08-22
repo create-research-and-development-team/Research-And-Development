@@ -9,18 +9,18 @@ import org.valkyrienskies.vsrnd.VSCreateMod;
 
 public class ShaderLoader {
 
-    public static void init() {
-        final ResourceManagerHelper manager = ResourceManagerHelper.get(PackType.CLIENT_RESOURCES);
-        manager.registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-            @Override
-            public ResourceLocation getFabricId() {
-                return VSCreateMod.asResource("shaders");
-            }
+	public static void init() {
+		final ResourceManagerHelper manager = ResourceManagerHelper.get(PackType.CLIENT_RESOURCES);
+		manager.registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+			@Override
+			public ResourceLocation getFabricId() {
+				return VSCreateMod.asResource("shaders");
+			}
 
-            @Override
-            public void onResourceManagerReload(ResourceManager resourceManager) {
-            }
-        });
-    }
+			@Override
+			public void onResourceManagerReload(ResourceManager resourceManager) {
+			}
+		});
+	}
 
 }

@@ -18,31 +18,34 @@ import java.util.List;
 import java.util.Random;
 
 public class RutileFeature extends Feature<NoneFeatureConfiguration> {
-    List<Vec3i> offsets = new ArrayList<Vec3i>();
-    public RutileFeature(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
-    }
+	List<Vec3i> offsets = new ArrayList<Vec3i>();
 
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+	public RutileFeature(Codec<NoneFeatureConfiguration> codec) {
+		super(codec);
+	}
 
-        WorldGenLevel worldGenLevel = context.level();
-        BlockPos blockPos = context.origin();
+	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
 
-        System.out.println("PLACING RUTILE AT");
-        System.out.println(blockPos);
-        Random random = context.random();
+		WorldGenLevel worldGenLevel = context.level();
+		BlockPos blockPos = context.origin();
 
-        if (!worldGenLevel.getBlockState(blockPos).is(BlockTags.BASE_STONE_OVERWORLD))
-            return false;
+		System.out.println("PLACING RUTILE AT");
+		System.out.println(blockPos);
+		Random random = context.random();
 
-        for (Direction direction : Direction.values()) {
-            if (worldGenLevel.getBlockState(blockPos.relative(direction)).isAir()) {
-                BlockState block = VSCreateBlocks.RUTILE_CLUSTER.getDefaultState().setValue(BlockStateProperties.FACING,direction);
+		if (!worldGenLevel.getBlockState(blockPos).is(BlockTags.BASE_STONE_OVERWORLD)) {
+			return false;
+		}
 
-                worldGenLevel.setBlock(blockPos.relative(direction), block,2);
-                return true;
-            }
-        }
-        return false;
-    }
+		for (Direction direction : Direction.values()) {
+			if (worldGenLevel.getBlockState(blockPos.relative(direction)).isAir()) {
+				BlockState block = VSCreateBlocks.RUTILE_CLUSTER.getDefaultState()
+																.setValue(BlockStateProperties.FACING, direction);
+
+				worldGenLevel.setBlock(blockPos.relative(direction), block, 2);
+				return true;
+			}
+		}
+		return false;
+	}
 }

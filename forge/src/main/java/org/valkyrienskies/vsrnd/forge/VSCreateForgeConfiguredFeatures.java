@@ -1,4 +1,5 @@
 package org.valkyrienskies.vsrnd.forge;
+
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -11,7 +12,8 @@ public class VSCreateForgeConfiguredFeatures {
 	public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES = DeferredRegister.create(
 			Registry.CONFIGURED_FEATURE_REGISTRY, VSCreateMod.MOD_ID);
 
-	public static final RegistryObject<ConfiguredFeature<?, ?>> RUTILE_CLUSTER = CONFIGURED_FEATURES.register("rutile_cluster",
+	public static final RegistryObject<ConfiguredFeature<?, ?>> RUTILE_CLUSTER = CONFIGURED_FEATURES.register(
+			"rutile_cluster",
 			() -> new ConfiguredFeature<>(VSCreateForgeFeatures.RUTILE_CLUSTER.get(), new NoneFeatureConfiguration()));
 
 	public static void register(IEventBus eventBus) {

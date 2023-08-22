@@ -21,57 +21,59 @@ import java.util.function.Supplier;
 
 // Why all and not forge? cus it also loads the common thus all of them
 public enum VSCreateForgeParticles {
-    ;
+	;
 
-    private final ParticleEntry<?> entry;
+	private final ParticleEntry<?> entry;
 
-    <D extends ParticleOptions> VSCreateForgeParticles(Supplier<? extends ICustomParticleData<D>> typeFactory) {
-        String name = Lang.asId(name());
-        entry = new ParticleEntry<>(name, typeFactory);
-    }
+	<D extends ParticleOptions> VSCreateForgeParticles(Supplier<? extends ICustomParticleData<D>> typeFactory) {
+		String name = Lang.asId(name());
+		entry = new ParticleEntry<>(name, typeFactory);
+	}
 
-    public static void init(IEventBus modEventBus) {
-        VSCreateParticles.init();
-        ParticleEntry.REGISTER.register(modEventBus);
-    }
+	public static void init(IEventBus modEventBus) {
+		VSCreateParticles.init();
+		ParticleEntry.REGISTER.register(modEventBus);
+	}
 
-    @OnlyIn(Dist.CLIENT)
-    public static void register(ParticleFactoryRegisterEvent event) {
-        VSCreateParticles.initClient();
+	@OnlyIn(Dist.CLIENT)
+	public static void register(ParticleFactoryRegisterEvent event) {
+		VSCreateParticles.initClient();
 
-        ParticleEngine particles = Minecraft.getInstance().particleEngine;
-        for (VSCreateForgeParticles particle : values())
-            particle.entry.registerFactory(particles);
-    }
+		ParticleEngine particles = Minecraft.getInstance().particleEngine;
+		for (VSCreateForgeParticles particle : values()) {
+			particle.entry.registerFactory(particles);
+		}
+	}
 
-    public ParticleType<?> get() {
-        return entry.object.get();
-    }
+	public ParticleType<?> get() {
+		return entry.object.get();
+	}
 
-    public String parameter() {
-        return entry.name;
-    }
+	public String parameter() {
+		return entry.name;
+	}
 
-    private static class ParticleEntry<D extends ParticleOptions> {
-        private static final DeferredRegister<ParticleType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, VSCreateMod.MOD_ID);
+	private static class ParticleEntry<D extends ParticleOptions> {
+		private static final DeferredRegister<ParticleType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES,
+																								  VSCreateMod.MOD_ID);
 
-        private final String name;
-        private final Supplier<? extends ICustomParticleData<D>> typeFactory;
-        private final RegistryObject<ParticleType<D>> object;
+		private final String name;
+		private final Supplier<? extends ICustomParticleData<D>> typeFactory;
+		private final RegistryObject<ParticleType<D>> object;
 
-        public ParticleEntry(String name, Supplier<? extends ICustomParticleData<D>> typeFactory) {
-            this.name = name;
-            this.typeFactory = typeFactory;
+		public ParticleEntry(String name, Supplier<? extends ICustomParticleData<D>> typeFactory) {
+			this.name = name;
+			this.typeFactory = typeFactory;
 
-            object = REGISTER.register(name, () -> this.typeFactory.get().createType());
-        }
+			object = REGISTER.register(name, () -> this.typeFactory.get().createType());
+		}
 
-        @OnlyIn(Dist.CLIENT)
-        public void registerFactory(ParticleEngine particles) {
-            typeFactory.get()
-                    .register(object.get(), particles);
-        }
+		@OnlyIn(Dist.CLIENT)
+		public void registerFactory(ParticleEngine particles) {
+			typeFactory.get()
+					   .register(object.get(), particles);
+		}
 
-    }
+	}
 
 }

@@ -5,8 +5,8 @@ import com.simibubi.create.Create;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankBlockEntity;
 import org.valkyrienskies.vsrnd.content.Fluids.TitaniumTank.TitaniumTankRenderer;
-import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlockEntity;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CacoonBlockEntityInstance;
+import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlockEntity;
 import org.valkyrienskies.vsrnd.content.sculk.blocks.Cocoon.CocoonBlockEntityRenderer;
 
 import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
@@ -14,20 +14,21 @@ import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 public class VSCreateBlockEntities {
 
-    // Kinetics
+	// Kinetics
 
-    public static final BlockEntityEntry<TitaniumTankBlockEntity> TITANIUM_TANK = REGISTRATE
-            .blockEntity("titanium_tank", TitaniumTankBlockEntity::new)
-            .validBlocks()
-            .renderer(() -> TitaniumTankRenderer::new)
-            .register();
+	public static final BlockEntityEntry<TitaniumTankBlockEntity> TITANIUM_TANK = REGISTRATE
+			.blockEntity("titanium_tank", TitaniumTankBlockEntity::new)
+			.validBlocks()
+			.renderer(() -> TitaniumTankRenderer::new)
+			.register();
 
-    public static final BlockEntityEntry<CocoonBlockEntity> COCOON_BLOCK_ENTITY = Create.REGISTRATE
-            .blockEntity("cocoon_entity", CocoonBlockEntity::new)
-            .instance(() -> CacoonBlockEntityInstance::new, false)
-            .validBlocks(VSCreateBlocks.COCOON)
-            .renderer(() -> CocoonBlockEntityRenderer::new)
-            .register();
-    public static void register() {
-    }
+	public static final BlockEntityEntry<CocoonBlockEntity> COCOON_BLOCK_ENTITY = Create.REGISTRATE
+			.blockEntity("cocoon_entity", CocoonBlockEntity::new)
+			.instance(() -> CacoonBlockEntityInstance::new, false)
+			.validBlocks(VSCreateBlocks.COCOON)
+			.renderer(() -> CocoonBlockEntityRenderer::new)
+			.register();
+
+	public static void register() {
+	}
 }

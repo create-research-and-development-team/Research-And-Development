@@ -35,78 +35,86 @@ import java.util.function.Consumer;
 
 @NonnullDefault
 public class HandheldMechanicalSaw extends AxeItem implements CustomArmPoseItem {
-    public static final int MAX_DAMAGE = 2048;
-    public static final int MAX_BACKTANK_USES = 1000;
+	public static final int MAX_DAMAGE = 2048;
+	public static final int MAX_BACKTANK_USES = 1000;
 
-    public HandheldMechanicalSaw(Tier tier, float attackBonus, float attackSpeedBonus, Properties properties) {
-        super(tier, attackBonus, attackSpeedBonus, SimpleBackTankHelper.getProperties(properties, MAX_DAMAGE, MAX_BACKTANK_USES));
-    }
+	public HandheldMechanicalSaw(Tier tier, float attackBonus, float attackSpeedBonus, Properties properties) {
+		super(tier,
+			  attackBonus,
+			  attackSpeedBonus,
+			  SimpleBackTankHelper.getProperties(properties, MAX_DAMAGE, MAX_BACKTANK_USES));
+	}
 
-    @Override
-    public boolean mineBlock(ItemStack tool, Level level, BlockState block, BlockPos pos, LivingEntity livingEntity) {
-        boolean ret = super.mineBlock(tool, level, block, pos, livingEntity);
+	@Override
+	public boolean mineBlock(ItemStack tool, Level level, BlockState block, BlockPos pos, LivingEntity livingEntity) {
+		boolean ret = super.mineBlock(tool, level, block, pos, livingEntity);
 
-        if(livingEntity.isCrouching()) return ret;
+		if (livingEntity.isCrouching()) return ret;
 
-        level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+		level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
 
-        Optional<AbstractBlockBreakQueue> dynamicTree = TreeCutter.findDynamicTree(block.getBlock(), pos);
-        if (dynamicTree.isPresent()) {
-            dynamicTree.get()
-                    .destroyBlocks(level, livingEntity, (blockPos, stack) -> dropItemFromCutTree(level, blockPos, stack));
-            return true;
-        }
+		Optional<AbstractBlockBreakQueue> dynamicTree = TreeCutter.findDynamicTree(block.getBlock(), pos);
+		if (dynamicTree.isPresent()) {
+			dynamicTree.get()
+					   .destroyBlocks(level,
+									  livingEntity,
+									  (blockPos, stack) -> dropItemFromCutTree(level, blockPos, stack));
+			return true;
+		}
 
-        Player player = (livingEntity instanceof Player) ? (Player) livingEntity : null;
-        TreeCutter.findTree(level, pos).destroyBlocks(level, tool, player, (blockPos, drop) -> dropItemFromCutTree(level, blockPos, drop));
-        return ret;
-    }
+		Player player = (livingEntity instanceof Player) ? (Player) livingEntity : null;
+		TreeCutter.findTree(level, pos)
+				  .destroyBlocks(level, tool, player, (blockPos, drop) -> dropItemFromCutTree(level, blockPos, drop));
+		return ret;
+	}
 
-    public void dropItemFromCutTree(Level level, BlockPos blockPos, ItemStack drop) {
-        Vec3 dropPos = VecHelper.getCenterOf(blockPos);
-        ItemEntity entity = new ItemEntity(level, dropPos.x, dropPos.y, dropPos.z, drop);
-        level.addFreshEntity(entity);
-    }
+	public void dropItemFromCutTree(Level level, BlockPos blockPos, ItemStack drop) {
+		Vec3 dropPos = VecHelper.getCenterOf(blockPos);
+		ItemEntity entity = new ItemEntity(level, dropPos.x, dropPos.y, dropPos.z, drop);
+		level.addFreshEntity(entity);
+	}
 
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> attributes = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
-        Attribute distanceAttribute = PlatformUtils.getReachModifier();
-        attributes.putAll(super.getDefaultAttributeModifiers(slot));
-        attributes.put(distanceAttribute, new AttributeModifier("Reach", -3, AttributeModifier.Operation.ADDITION));
-        return attributes.build();
-    }
+	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
+		ImmutableMultimap.Builder<Attribute, AttributeModifier> attributes = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
+		Attribute distanceAttribute = PlatformUtils.getReachModifier();
+		attributes.putAll(super.getDefaultAttributeModifiers(slot));
+		attributes.put(distanceAttribute, new AttributeModifier("Reach", -3, AttributeModifier.Operation.ADDITION));
+		return attributes.build();
+	}
 
-    @Override
-    public boolean isBarVisible(ItemStack stack) {
-        return BacktankUtil.isBarVisible(stack, MAX_BACKTANK_USES);
-    }
-    @Override
-    public int getBarWidth(ItemStack stack) {
-        return BacktankUtil.getBarWidth(stack, MAX_BACKTANK_USES);
-    }
-    @Override
-    public int getBarColor(ItemStack stack) {
-        return BacktankUtil.getBarColor(stack, MAX_BACKTANK_USES);
-    }
+	@Override
+	public boolean isBarVisible(ItemStack stack) {
+		return BacktankUtil.isBarVisible(stack, MAX_BACKTANK_USES);
+	}
 
-    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
-        if(BacktankUtil.canAbsorbDamage(entity, MAX_BACKTANK_USES)) {
-            return 0;
-        }
-        return amount;
-    }
+	@Override
+	public int getBarWidth(ItemStack stack) {
+		return BacktankUtil.getBarWidth(stack, MAX_BACKTANK_USES);
+	}
 
-    @Override
-    public UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.NONE;
-    }
+	@Override
+	public int getBarColor(ItemStack stack) {
+		return BacktankUtil.getBarColor(stack, MAX_BACKTANK_USES);
+	}
 
-    @Override
-    @Nullable
-    public HumanoidModel.ArmPose getArmPose(ItemStack stack, AbstractClientPlayer player, InteractionHand hand) {
-        if (!player.swinging) {
-            return HumanoidModel.ArmPose.CROSSBOW_HOLD;
-        }
-        return null;
-    }
+	@Override
+	public UseAnim getUseAnimation(ItemStack stack) {
+		return UseAnim.NONE;
+	}
+
+	public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<T> onBroken) {
+		if (BacktankUtil.canAbsorbDamage(entity, MAX_BACKTANK_USES)) {
+			return 0;
+		}
+		return amount;
+	}
+
+	@Override
+	@Nullable
+	public HumanoidModel.ArmPose getArmPose(ItemStack stack, AbstractClientPlayer player, InteractionHand hand) {
+		if (!player.swinging) {
+			return HumanoidModel.ArmPose.CROSSBOW_HOLD;
+		}
+		return null;
+	}
 }

@@ -7,12 +7,12 @@ import java.util.function.Supplier;
 
 public interface DeferredRegister<T> {
 
-    @ExpectPlatform
-    static <T> DeferredRegister<T> create(Registry<T> registry, String mod_id) {
-        throw new AssertionError();
-    }
+	@ExpectPlatform
+	static <T> DeferredRegister<T> create(Registry<T> registry, String mod_id) {
+		throw new AssertionError();
+	}
 
-    void register(String id, Supplier<T> value);
+	void register(String id, Supplier<T> value);
 
-    void registerAll();
+	void registerAll();
 }

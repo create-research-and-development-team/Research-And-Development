@@ -9,16 +9,18 @@ import java.util.function.BiConsumer;
 
 public class SharedValues {
 
-    @ExpectPlatform
-    public static CreativeModeTab creativeTab() {
-        throw new AssertionError();
-    }
+	@ExpectPlatform
+	public static CreativeModeTab creativeTab() {
+		throw new AssertionError();
+	}
 
-    @ExpectPlatform
-    public static PacketChannel getPacketChannel() {
-        throw new AssertionError();
-    }
+	@ExpectPlatform
+	public static PacketChannel getPacketChannel() {
+		throw new AssertionError();
+	}
 
-    @ExpectPlatform
-    public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer> customRenderedRegisterer() {throw new AssertionError();}
+	@ExpectPlatform
+	public static BiConsumer<VSCItem, CustomRenderedItemModelRenderer> customRenderedRegisterer() {
+		throw new AssertionError();
+	}
 }

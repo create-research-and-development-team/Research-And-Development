@@ -13,29 +13,29 @@ import java.util.concurrent.Executor;
 
 public class ShaderLoader {
 
-    public static void init(IEventBus bus) {
-        bus.addListener(ShaderLoader::registerReloadListener);
-    }
+	public static void init(IEventBus bus) {
+		bus.addListener(ShaderLoader::registerReloadListener);
+	}
 
-    private static void registerReloadListener(RegisterClientReloadListenersEvent event) {
-        event.registerReloadListener(new PreparableReloadListener() {
-            @Override
-            public @NotNull CompletableFuture<Void> reload(
-                    @NotNull PreparationBarrier preparationBarrier,
-                    @NotNull ResourceManager resourceManager,
-                    @NotNull ProfilerFiller preparationsProfiler,
-                    @NotNull ProfilerFiller reloadProfiler,
-                    @NotNull Executor backgroundExecutor,
-                    @NotNull Executor gameExecutor) {
-                return CompletableFuture.completedFuture(null).thenCompose(preparationBarrier::wait).thenAccept((i -> {
-                }));
-            }
+	private static void registerReloadListener(RegisterClientReloadListenersEvent event) {
+		event.registerReloadListener(new PreparableReloadListener() {
+			@Override
+			public @NotNull CompletableFuture<Void> reload(
+					@NotNull PreparationBarrier preparationBarrier,
+					@NotNull ResourceManager resourceManager,
+					@NotNull ProfilerFiller preparationsProfiler,
+					@NotNull ProfilerFiller reloadProfiler,
+					@NotNull Executor backgroundExecutor,
+					@NotNull Executor gameExecutor) {
+				return CompletableFuture.completedFuture(null).thenCompose(preparationBarrier::wait).thenAccept((i -> {
+				}));
+			}
 
-            @Override
-            public @NotNull String getName() {
-                return VSCreateMod.asResource("shaders").toString();
-            }
-        });
-    }
+			@Override
+			public @NotNull String getName() {
+				return VSCreateMod.asResource("shaders").toString();
+			}
+		});
+	}
 
 }

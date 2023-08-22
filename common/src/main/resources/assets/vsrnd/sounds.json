@@ -69,34 +69,34 @@
     ],
     "subtitle": "vsrnd.subtitle.thick_fluid_empty"
   },
-    "welder_weld": {
-        "sounds": [
-        {
-            "name": "vsrnd:welder_weld",
-            "type": "file",
-            "attenuation_distance": 16
-        }
-        ],
-        "subtitle": "vsrnd.subtitle.welder_weld"
-    },
-    "welder_whirr": {
-        "sounds": [
-        {
-            "name": "vsrnd:welder_whirr",
-            "type": "file",
-            "attenuation_distance": 16
-        }
-        ],
-        "subtitle": "vsrnd.subtitle.welder_whirr"
-    },
-    "supersonic": {
-      "sounds": [
-        {
-          "name": "vsrnd:egg_reverie",
-          "type": "file",
-          "attenuation_distance": 32
-        }
-        ],
-        "subtitle": "vsrnd.subtitle.supersonic"
-    }
+  "welder_weld": {
+    "sounds": [
+      {
+        "name": "vsrnd:welder_weld",
+        "type": "file",
+        "attenuation_distance": 16
+      }
+    ],
+    "subtitle": "vsrnd.subtitle.welder_weld"
+  },
+  "welder_whirr": {
+    "sounds": [
+      {
+        "name": "vsrnd:welder_whirr",
+        "type": "file",
+        "attenuation_distance": 16
+      }
+    ],
+    "subtitle": "vsrnd.subtitle.welder_whirr"
+  },
+  "supersonic": {
+    "sounds": [
+      {
+        "name": "vsrnd:egg_reverie",
+        "type": "file",
+        "attenuation_distance": 32
+      }
+    ],
+    "subtitle": "vsrnd.subtitle.supersonic"
+  }
 }

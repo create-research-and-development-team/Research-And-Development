@@ -1,4 +1,5 @@
 package org.valkyrienskies.vsrnd.forge;
+
 import com.simibubi.create.AllParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -13,71 +14,72 @@ import org.valkyrienskies.vsrnd.*;
 import org.valkyrienskies.vsrnd.forge.integration.cc_tweaked.VSCreateForgePeripheralProviders;
 
 public class VSCreateModForge {
-    boolean happenedClientSetup = false;
+	boolean happenedClientSetup = false;
 
-    public VSCreateModForge() {
+	public VSCreateModForge() {
 
-        VSCreateBlocks.register();
-        VSCreateForgeBlocks.register();
+		VSCreateBlocks.register();
+		VSCreateForgeBlocks.register();
 
-        // ForgeClockWorkTags.init();
+		// ForgeClockWorkTags.init();
 
-        VSCreateItems.register();
-        VSCreateForgeItems.register();
+		VSCreateItems.register();
+		VSCreateForgeItems.register();
 
-        VSCreateBlockEntities.register();
-        VSCreateForgeBlockEntities.register();
+		VSCreateBlockEntities.register();
+		VSCreateForgeBlockEntities.register();
 
-        VSCreateEntities.register();
-        VSCreateForgeEntities.register();
+		VSCreateEntities.register();
+		VSCreateForgeEntities.register();
 
-        VSCreateFluids.register();
-        VSCreateForgeFluids.register();
+		VSCreateFluids.register();
+		VSCreateForgeFluids.register();
 
 
-        VSCreateSounds.register();
-        // TODO forge sounds
+		VSCreateSounds.register();
+		// TODO forge sounds
 
-        //VSCreateForgeParticles.init(modEventBus);
-        //VSCreateForgeFeatures.register(modEventBus);
+		//VSCreateForgeParticles.init(modEventBus);
+		//VSCreateForgeFeatures.register(modEventBus);
 
-        VSCreateMod.init();
-        VSCreatePackets.init();
+		VSCreateMod.init();
+		VSCreatePackets.init();
 
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            IEventBus modEventBus = FMLJavaModLoadingContext.get()
-                    .getModEventBus();
-            modEventBus.addListener(VSCreateForgeParticles::register);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+			IEventBus modEventBus = FMLJavaModLoadingContext.get()
+															.getModEventBus();
+			modEventBus.addListener(VSCreateForgeParticles::register);
 
-            // In create itself they do it FMLClientSetupEvent this does not work (what a scam)
-            // It prob gets staticly loaded earlier and well yhea...
-            VSCreatePartials.init();
-            modEventBus.addListener(AllParticleTypes::registerFactories);
-            // TODO forge partials
+			// In create itself they do it FMLClientSetupEvent this does not work (what a scam)
+			// It prob gets staticly loaded earlier and well yhea...
+			VSCreatePartials.init();
+			modEventBus.addListener(AllParticleTypes::registerFactories);
+			// TODO forge partials
 
-            ShaderLoader.init(modEventBus);
-        });
+			ShaderLoader.init(modEventBus);
+		});
 
-        if (FMLLoader.getLoadingModList().getModFileById("computercraft") != null)
+        if (FMLLoader.getLoadingModList().getModFileById("computercraft") != null) {
             VSCreateForgePeripheralProviders.register();
-    }
+        }
+	}
 
-    public static ResourceLocation asResource(String path) {
-        return new ResourceLocation(VSCreateMod.MOD_ID, path);
-    }
+	public static ResourceLocation asResource(String path) {
+		return new ResourceLocation(VSCreateMod.MOD_ID, path);
+	}
 
-    void clientSetup(final FMLClientSetupEvent event) {
-        if (happenedClientSetup) return;
-        happenedClientSetup = true;
+	void clientSetup(final FMLClientSetupEvent event) {
+		if (happenedClientSetup) return;
+		happenedClientSetup = true;
 
-        VSCreateMod.initClient();
-    }
+		VSCreateMod.initClient();
+	}
 
-    void entityRenderers(final EntityRenderersEvent.RegisterRenderers event) {
+	void entityRenderers(final EntityRenderersEvent.RegisterRenderers event) {
 
-    }
+	}
 
-    void onModelRegistry(final ModelRegistryEvent event) {
+	void onModelRegistry(final ModelRegistryEvent event) {
 
-    }
+	}
 }

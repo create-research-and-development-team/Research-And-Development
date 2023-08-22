@@ -9,37 +9,37 @@ import net.minecraft.world.level.material.FluidState;
 import org.jetbrains.annotations.NotNull;
 
 public class VirtualFluid extends RNDFlowingFluid {
-    public VirtualFluid(Properties properties) {
-        super(properties);
-    }
+	public VirtualFluid(Properties properties) {
+		super(properties);
+	}
 
-    @Override
-    public @NotNull Fluid getSource() {
-        return super.getSource();
-    }
+	@Override
+	public @NotNull Fluid getFlowing() {
+		return this;
+	}
 
-    @Override
-    public @NotNull Fluid getFlowing() {
-        return this;
-    }
+	@Override
+	public @NotNull Fluid getSource() {
+		return super.getSource();
+	}
 
-    @Override
-    public Item getBucket() {
-        return Items.AIR;
-    }
+	@Override
+	public Item getBucket() {
+		return Items.AIR;
+	}
 
-    @Override
-    protected BlockState createLegacyBlock(FluidState state) {
-        return Blocks.AIR.defaultBlockState();
-    }
+	@Override
+	protected BlockState createLegacyBlock(FluidState state) {
+		return Blocks.AIR.defaultBlockState();
+	}
 
-    @Override
-    public boolean isSource(@NotNull FluidState fluidState) {
-        return false;
-    }
+	@Override
+	public boolean isSource(@NotNull FluidState fluidState) {
+		return false;
+	}
 
-    @Override
-    public int getAmount(@NotNull FluidState fluidState) {
-        return 0;
-    }
+	@Override
+	public int getAmount(@NotNull FluidState fluidState) {
+		return 0;
+	}
 }

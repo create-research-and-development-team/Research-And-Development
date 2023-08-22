@@ -7,12 +7,11 @@ import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
 
 
 public class VSCreateForgeItems {
-    static {
-        REGISTRATE.creativeModeTab(() -> VSCreateMod.BASE_CREATIVE_TAB);
-    }
+	static {
+		REGISTRATE.creativeModeTab(() -> VSCreateMod.BASE_CREATIVE_TAB);
+	}
 
 
-
-    public static void register() {
-    }
+	public static void register() {
+	}
 }

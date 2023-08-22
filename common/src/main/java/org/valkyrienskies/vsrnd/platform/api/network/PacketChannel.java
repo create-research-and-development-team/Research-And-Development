@@ -10,13 +10,13 @@ import java.util.function.Function;
 
 public interface PacketChannel {
 
-    <T extends VSCPacket> void registerPacket(Class<T> clazz, Function<FriendlyByteBuf, T> decode);
+	<T extends VSCPacket> void registerPacket(Class<T> clazz, Function<FriendlyByteBuf, T> decode);
 
-    void sendToNear(Level world, BlockPos pos, int range, S2CCWPacket message);
+	void sendToNear(Level world, BlockPos pos, int range, S2CCWPacket message);
 
-    void sendToServer(C2SVSCPacket packet);
+	void sendToServer(C2SVSCPacket packet);
 
-    void sendToClientsTracking(S2CCWPacket packet, Entity entity);
+	void sendToClientsTracking(S2CCWPacket packet, Entity entity);
 
-    void sendToClientsTrackingAndSelf(S2CCWPacket packet, ServerPlayer player);
+	void sendToClientsTrackingAndSelf(S2CCWPacket packet, ServerPlayer player);
 }

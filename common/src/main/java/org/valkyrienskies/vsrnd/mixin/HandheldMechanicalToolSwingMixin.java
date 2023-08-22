@@ -12,13 +12,13 @@ import org.valkyrienskies.vsrnd.VSCreateMod;
 
 @Mixin(LivingEntity.class)
 public abstract class HandheldMechanicalToolSwingMixin {
-    @Shadow
-    public abstract ItemStack getMainHandItem();
+	@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"), cancellable = true)
+	public void onSwing(InteractionHand hand, boolean updateSelf, CallbackInfo ci) {
+		if (VSCreateMod.getSkipSwingItems().contains(getMainHandItem().getItem())) {
+			ci.cancel();
+		}
+	}
 
-    @Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"), cancellable = true)
-    public void onSwing(InteractionHand hand, boolean updateSelf, CallbackInfo ci) {
-        if (VSCreateMod.getSkipSwingItems().contains(getMainHandItem().getItem())) {
-            ci.cancel();
-        }
-    }
+	@Shadow
+	public abstract ItemStack getMainHandItem();
 }

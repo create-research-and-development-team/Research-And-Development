@@ -9,21 +9,21 @@ import net.minecraft.world.level.Level;
 
 import static com.simibubi.create.content.contraptions.ContraptionType.BEARING;
 
-public class  CentrifugeContraption extends Contraption {
+public class CentrifugeContraption extends Contraption {
 
 
-    @Override
-    public boolean assemble(Level world, BlockPos pos) throws AssemblyException {
-        return false;
-    }
+	@Override
+	public boolean assemble(Level world, BlockPos pos) throws AssemblyException {
+		return false;
+	}
 
-    @Override
-    public boolean canBeStabilized(Direction facing, BlockPos localPos) {
-        return false;
-    }
+	@Override
+	public boolean canBeStabilized(Direction facing, BlockPos localPos) {
+		return false;
+	}
 
-    @Override
-    public ContraptionType getType() {
-        return BEARING;
-    }
+	@Override
+	public ContraptionType getType() {
+		return BEARING;
+	}
 }
