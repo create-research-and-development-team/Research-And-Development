@@ -38,10 +38,6 @@ repositories {
 
         maven { url = "https://cursemaven.com" }
     }
-
-    flatDir { // REMOVE IF CBC HAS BEEN UPDATED
-        dirs 'mods'
-    }
 }
 
 dependencies {
@@ -62,7 +58,7 @@ dependencies {
     modLocalRuntime("mezz.jei:jei-${minecraft_version}:${jei_forge_version}")
 
     //Create big cannons
-    // modLocalRuntime('curse.maven:create-big-cannons-646668:4033862') is create .5.0.e not g
+    modLocalRuntime('curse.maven:create-big-cannons-646668:4712325')
 
     // JOML
     compileOnly("org.joml:joml:1.10.4")
@@ -70,7 +66,6 @@ dependencies {
 
     // Add Kotlin for Forge.
     implementation(forgeRuntimeLibrary('curse.maven:kotlinforforge-351264:3925887'))
-
 
     // JEI
     modCompileOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}:api")
