@@ -1,6 +1,6 @@
 package org.valkyrienskies.vsrnd.fabric;
 
-
+import com.simibubi.create.AllBlocks;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import io.github.fabricators_of_create.porting_lib.util.ItemGroupUtil;
 import net.fabricmc.api.EnvType;
@@ -79,25 +79,14 @@ public abstract class VSCreateGroupBase extends CreativeModeTab {
     public static void register() {
         REGISTRATE.creativeModeTab(() -> GROUP, "Create: RnD");
     }
+
     protected Collection<RegistryEntry<Block>> getBlocks() {
-        return getSections().stream()
-                .flatMap(s -> REGISTRATE
-                        .getAll(Registry.BLOCK_REGISTRY)
-                        .stream())
-                .collect(Collectors.toList());
+        return REGISTRATE
+                .getAll(Registry.BLOCK_REGISTRY);
     }
+
     protected Collection<RegistryEntry<Item>> getItems() {
-        return getSections().stream()
-                .flatMap(s -> REGISTRATE
-                        .getAll(Registry.ITEM_REGISTRY)
-                        .stream())
-                .collect(Collectors.toList());
+        return REGISTRATE
+                .getAll(Registry.ITEM_REGISTRY);
     }
-
-    protected EnumSet<AllSections> getSections() {return EnumSet.allOf(AllSections.class);}
 }
-
-
-
-
-
