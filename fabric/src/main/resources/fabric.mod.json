@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "vscreate",
+  "id": "vsrnd",
   "version": "${version}",
   "name": "Create x Valkyrien Skies Template",
   "description": "Create VS addon template",
@@ -18,25 +18,25 @@
     "sources": "https://github.com/ValkyrienSkies/VSCreate"
   },
   "license": "Apache-2.0",
-  "icon": "assets/vscreate/icon.png",
+  "icon": "assets/vsrnd/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.valkyrienskies.vscreate.fabric.VSCreateModFabric"
+      "org.valkyrienskies.vsrnd.fabric.VSCreateModFabric"
     ],
     "client": [
-      "org.valkyrienskies.vscreate.fabric.VSCreateModFabric${'$'}Client"
+      "org.valkyrienskies.vsrnd.fabric.VSCreateModFabric${'$'}Client"
     ],
     "preLaunch": [
-      "org.valkyrienskies.vscreate.fabric.ValkyrienPreLaunch"
+      "org.valkyrienskies.vsrnd.fabric.ValkyrienPreLaunch"
     ],
     "modmenu": [
-      "org.valkyrienskies.vscreate.fabric.VSCreateModFabric${'$'}ModMenu"
+      "org.valkyrienskies.vsrnd.fabric.VSCreateModFabric${'$'}ModMenu"
     ]
   },
   "mixins": [
-    "vscreate-common.mixins.json",
-    "vscreate.mixins.json"
+    "vsrnd-common.mixins.json",
+    "vsrnd.mixins.json"
   ],
   "depends": {
     "minecraft": ">=1.18.2",

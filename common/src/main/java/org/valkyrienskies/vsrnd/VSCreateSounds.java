@@ -87,7 +87,7 @@ public class VSCreateSounds {
             Gson GSON = (new GsonBuilder()).setPrettyPrinting()
                     .disableHtmlEscaping()
                     .create();
-            path = path.resolve("assets/vscreate");
+            path = path.resolve("assets/vsrnd");
 
             try {
                 JsonObject json = new JsonObject();

@@ -23,7 +23,7 @@ public class VSCreateMod {
 
     public static final ResourceLocation NETWORK_CHANNEL = VSCreateMod.asResource("main");
     public static final CreativeModeTab BASE_CREATIVE_TAB = SharedValues.creativeTab();
-    public static final Logger MIXIN_LOGGER = LoggerFactory.getLogger("VSCreateMixins");
+    public static final Logger MIXIN_LOGGER = LoggerFactory.getLogger("VSRndMixins");
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static void init() {

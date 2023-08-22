@@ -5,8 +5,8 @@
     32
   ],
   "textures": {
-    "0": "vscreate:block/propbearingbasepull",
-    "particle": "vscreate:block/propbearingbasepull"
+    "0": "vsrnd:block/propbearingbasepull",
+    "particle": "vsrnd:block/propbearingbasepull"
   },
   "elements": [
     {

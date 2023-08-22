@@ -82,7 +82,7 @@ processResources {
             "version", version,
             "forge_version", forge_version.split("\\.")[0], // only specify major version of forge
             "minecraft_version", minecraft_version,
-            "create_version", create_forge_version.split("-")[0] // cut off build number
+            "create_forge_version", create_forge_version.split("-")[0] // cut off build number
     )
     properties.forEach((k, v) -> inputs.property(k, v))
 
@@ -94,8 +94,8 @@ processResources {
 loom {
     forge {
         mixinConfig(
-                "vscreate-common.mixins.json",
-                "vscreate.mixins.json"
+                "vsrnd-common.mixins.json",
+                "vsrnd.mixins.json"
         )
     }
 }
