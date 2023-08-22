@@ -157,7 +157,7 @@ publishing {
         maven {
             // location of the maven that hosts JEI files
             name = "Progwml6maven"
-            url = "https://dvs1.progwml6.com/files/maven/"
+            url = "https://maven.blamejared.com"
         }
         maven {
             // location of a maven mirror for JEI files, as a fallback
