@@ -57,6 +57,8 @@ public class VSCreateModFabric implements ModInitializer {
         VSCreateMod.init();
         VSCreateModFabric.init();
 
+        VSCreateFabricFeatures.init();
+
         if (FabricLoader.getInstance().isModLoaded("computercraft"))
             VSCreateFabricPeripheralProviders.register();
     }
@@ -72,7 +74,6 @@ public class VSCreateModFabric implements ModInitializer {
 
             VSCreateParticles.initClient();
             VSCreateFabricParticles.initClient();
-            VSCreateFabricFeatures.init();
 
             registerClientEvents();
             registerClientEvents();
