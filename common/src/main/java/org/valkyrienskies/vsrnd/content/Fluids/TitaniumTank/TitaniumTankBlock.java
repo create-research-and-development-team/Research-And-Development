@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 public class TitaniumTankBlock extends BaseTankBlock implements IWrenchable, IBE<TitaniumTankBlockEntity> {
 
 
-    protected TitaniumTankBlock(Properties p_i48440_1_, Properties creative) {
+    protected TitaniumTankBlock(Properties p_i48440_1_) {
         super(p_i48440_1_);
     }
 

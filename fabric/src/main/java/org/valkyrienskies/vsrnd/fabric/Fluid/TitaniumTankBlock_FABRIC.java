@@ -41,10 +41,10 @@ public class TitaniumTankBlock_FABRIC extends TitaniumTankBlock implements Custo
 
 
     public static TitaniumTankBlock_FABRIC regular(Properties p_i48440_1_) {
-        return new TitaniumTankBlock_FABRIC(p_i48440_1_, false);
+        return new TitaniumTankBlock_FABRIC(p_i48440_1_);
     }
-    protected TitaniumTankBlock_FABRIC(Properties p_i48440_1_, boolean creative) {
-        super(p_i48440_1_, creative);
+    protected TitaniumTankBlock_FABRIC(Properties p_i48440_1_) {
+        super(p_i48440_1_);
     }
 
 

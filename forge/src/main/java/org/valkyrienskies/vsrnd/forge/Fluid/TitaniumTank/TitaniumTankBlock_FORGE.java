@@ -41,11 +41,11 @@ import org.valkyrienskies.vsrnd.forge.VSCreateForgeBlockEntities;
 public class TitaniumTankBlock_FORGE extends TitaniumTankBlock {
 
 
-    public static TitaniumTankBlock_FORGE regular(Properties p_i48440_1_) {
-        return new TitaniumTankBlock_FORGE(p_i48440_1_, false);
+    public static TitaniumTankBlock_FORGE regular(Properties properties) {
+        return new TitaniumTankBlock_FORGE(properties);
     }
-    protected TitaniumTankBlock_FORGE(Properties p_i48440_1_, boolean creative) {
-        super(p_i48440_1_, creative);
+    protected TitaniumTankBlock_FORGE(Properties properties) {
+        super(properties);
     }
 
     @Override
