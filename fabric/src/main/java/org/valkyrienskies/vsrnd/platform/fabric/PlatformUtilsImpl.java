@@ -128,7 +128,7 @@ public class PlatformUtilsImpl {
         return FabricLoader.getInstance().isModLoaded(modId);
     }
 
-    public static Attribute getNewReachModifier() {
+    public static Attribute getReachModifier() {
         return ReachEntityAttributes.REACH;
     }
 }

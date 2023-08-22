@@ -30,5 +30,5 @@ public class PlatformUtils {
     @ExpectPlatform
     public static boolean isModLoaded(String modId) { throw new AssertionError(); }
     @ExpectPlatform
-    public static Attribute getNewReachModifier() { throw new AssertionError(); }
+    public static Attribute getReachModifier() { throw new AssertionError(); }
 }

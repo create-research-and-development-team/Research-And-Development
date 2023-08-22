@@ -1,5 +1,6 @@
 package org.valkyrienskies.vsrnd.content.items.tools.drill;
 
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.item.CustomArmPoseItem;
@@ -142,10 +143,11 @@ public class HandheldMechanicalDrill extends PickaxeItem implements CustomArmPos
     }
 
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        Multimap<Attribute, AttributeModifier> attributes = super.getDefaultAttributeModifiers(slot);
-        Attribute distanceAttribute = PlatformUtils.getNewReachModifier();
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> attributes = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
+        Attribute distanceAttribute = PlatformUtils.getReachModifier();
+        attributes.putAll(super.getDefaultAttributeModifiers(slot));
         attributes.put(distanceAttribute, new AttributeModifier("Reach", -3, AttributeModifier.Operation.ADDITION));
-        return attributes;
+        return attributes.build();
     }
 
     @Override

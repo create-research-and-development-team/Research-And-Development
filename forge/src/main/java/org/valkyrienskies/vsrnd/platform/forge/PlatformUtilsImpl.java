@@ -135,7 +135,7 @@ public class PlatformUtilsImpl {
         return ModList.get().isLoaded(modId);
     }
 
-    public static Attribute getNewReachModifier() {
+    public static Attribute getReachModifier() {
         return ForgeMod.REACH_DISTANCE.get();
     }
 }

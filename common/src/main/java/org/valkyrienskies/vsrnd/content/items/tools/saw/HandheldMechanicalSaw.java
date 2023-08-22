@@ -1,12 +1,12 @@
 package org.valkyrienskies.vsrnd.content.items.tools.saw;
 
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.item.CustomArmPoseItem;
 import com.simibubi.create.foundation.utility.AbstractBlockBreakQueue;
 import com.simibubi.create.foundation.utility.TreeCutter;
 import com.simibubi.create.foundation.utility.VecHelper;
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.core.BlockPos;
@@ -69,10 +69,11 @@ public class HandheldMechanicalSaw extends AxeItem implements CustomArmPoseItem 
     }
 
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
-        Multimap<Attribute, AttributeModifier> attributes = super.getDefaultAttributeModifiers(slot);
-        Attribute distanceAttribute = PlatformUtils.getNewReachModifier();
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> attributes = new ImmutableMultimap.Builder<Attribute, AttributeModifier>();
+        Attribute distanceAttribute = PlatformUtils.getReachModifier();
+        attributes.putAll(super.getDefaultAttributeModifiers(slot));
         attributes.put(distanceAttribute, new AttributeModifier("Reach", -3, AttributeModifier.Operation.ADDITION));
-        return attributes;
+        return attributes.build();
     }
 
     @Override
