@@ -32,6 +32,11 @@ jobs:
       - name: Setup Gradle & Caches
         uses: "./.github/actions/setup-gradle"
 
+      - name: Run Gradle Verification
+        uses: "./.github/actions/verify-project"
+        with:
+          serverType: ${{ matrix.serverType }}
+
       - name: Test Server
         uses: ValkyrienSkies/Minecraft-Architectury-Testing@v1.9
         with:
