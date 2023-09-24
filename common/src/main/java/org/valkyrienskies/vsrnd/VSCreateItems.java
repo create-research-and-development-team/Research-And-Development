@@ -6,6 +6,7 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
 import org.valkyrienskies.vsrnd.content.items.tools.drill.HandheldMechanicalDrill;
+import org.valkyrienskies.vsrnd.content.items.tools.oar.OarItem;
 import org.valkyrienskies.vsrnd.content.items.tools.saw.HandheldMechanicalSaw;
 
 import static org.valkyrienskies.vsrnd.RNDRegistrate.REGISTRATE;
@@ -30,6 +31,9 @@ public class VSCreateItems {
 																	.register();
 	private static final ItemEntry<Item> TITANIUM_SHEET = REGISTRATE.item("titanium_sheet", Item::new)
 																	.register();
+
+	private static final ItemEntry<OarItem> OAR = REGISTRATE.item("oar", OarItem::new)
+			.register();
 
 	static {
 		REGISTRATE.creativeModeTab(() -> VSCreateMod.BASE_CREATIVE_TAB);
