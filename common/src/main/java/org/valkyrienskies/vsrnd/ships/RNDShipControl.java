@@ -32,29 +32,29 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
     @JsonIgnore
     ServerShip ship;
     @JsonIgnore
-    private ArrayList<ArrayList<Vec3>> forces;
-    @JsonIgnore
-    private ArrayList<ArrayList<Vec3>> newforces;
+    private ArrayList<ArrayList<Vector3d>> forces;
+
 
     public RNDShipControl() {
-        forces = new ArrayList<ArrayList<Vec3>>();
-        newforces =  new ArrayList<ArrayList<Vec3>>();
+        forces = new ArrayList<ArrayList<Vector3d>>();
+
     }
     @Override
     public void applyForces(@NotNull PhysShip physShip) {
         PhysShipImpl Impl = (PhysShipImpl) physShip;
-        if (newforces.isEmpty() && forces.isEmpty()) return;
+        if (forces.isEmpty()) return;
         System.out.println(forces);
-        for (ArrayList<Vec3> force : forces) {
-            Vector3d Pos = new Vector3d(force.get(0).x,force.get(0).y,force.get(0).z);
-            Vector3d Dir = new Vector3d(force.get(1).x,force.get(1).y,force.get(1).z);
+        for (ArrayList<Vector3d> force : forces) {
 
 
-            Impl.applyInvariantForceToPos(Dir,Pos);
-            forces.remove(force);
+            Vector3d Pos = force.get(0).sub(Impl.getTransform().getPositionInShip());
+            Vector3d Dir = Impl.getTransform().transformDirectionNoScalingFromWorldToShip(force.get(1), Pos).mul(10);
+
+
+            Impl.applyRotDependentForceToPos(Dir,Pos);
+
         }
-        forces = newforces;
-        newforces.clear();
+        forces.clear();
     }
 
 
@@ -69,10 +69,10 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
     }
 
     public void addForce(Vec3 Pos, Vec3 Dir) {
-        ArrayList<Vec3> list = new ArrayList<Vec3>();
-        list.add(0,Pos);
-        list.add(1,Dir);
-        newforces.add(list);
+        ArrayList<Vector3d> list = new ArrayList<Vector3d>();
+        list.add(0,new Vector3d(Pos.x,Pos.y,Pos.z) );
+        list.add(1,new Vector3d(Dir.x,Dir.y,Dir.z));
+        forces.add(list);
     }
     @Nullable
     @Override
