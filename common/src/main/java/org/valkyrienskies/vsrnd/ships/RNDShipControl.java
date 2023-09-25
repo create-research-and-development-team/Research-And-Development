@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonAutoDetect(
+@JsonAutoDetect( // I don't know what this does, neither does techtastic. But my shit breaks without fasterxml bullshit so...
         fieldVisibility = JsonAutoDetect.Visibility.ANY,
         getterVisibility = JsonAutoDetect.Visibility.NONE,
         isGetterVisibility = JsonAutoDetect.Visibility.NONE,
@@ -47,12 +47,11 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
         for (ArrayList<Vector3d> force : forces) {
 
 
-            Vector3d Pos = force.get(0).sub(Impl.getTransform().getPositionInShip());
-            Vector3d Dir = Impl.getTransform().transformDirectionNoScalingFromWorldToShip(force.get(1), Pos).mul(10);
+            Vector3d Pos = force.get(0).sub(Impl.getTransform().getPositionInShip()); // Offset position so it was in ship space
+            Vector3d Dir = Impl.getTransform().transformDirectionNoScalingFromWorldToShip(force.get(1), Pos).mul(10); // Offset direction so it was in ship space and mult it, because for some reason it normalizes it
 
 
-            Impl.applyRotDependentForceToPos(Dir,Pos);
-
+            Impl.applyRotDependentForceToPos(Dir,Pos); // no I don't know what difference between this and applyInvariantForceToPos is
         }
         forces.clear();
     }
@@ -69,7 +68,7 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
     }
 
     public void addForce(Vec3 Pos, Vec3 Dir) {
-        ArrayList<Vector3d> list = new ArrayList<Vector3d>();
+        ArrayList<Vector3d> list = new ArrayList<Vector3d>(); // I have to convert Vec3 to Vector3D because Vec3 is mc and doesn't use JOML shit because fuck you
         list.add(0,new Vector3d(Pos.x,Pos.y,Pos.z) );
         list.add(1,new Vector3d(Dir.x,Dir.y,Dir.z));
         forces.add(list);
