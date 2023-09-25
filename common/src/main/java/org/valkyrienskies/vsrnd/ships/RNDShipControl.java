@@ -48,7 +48,7 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
 
 
             Vector3d Pos = force.get(0).sub(Impl.getTransform().getPositionInShip()); // Offset position so it was in ship space
-            Vector3d Dir = Impl.getTransform().transformDirectionNoScalingFromWorldToShip(force.get(1), Pos).mul(10); // Offset direction so it was in ship space and mult it, because for some reason it normalizes it
+            Vector3d Dir = Impl.getTransform().transformDirectionNoScalingFromWorldToShip(force.get(1), Pos); // Offset direction so it was in ship space and mult it, because for some reason it normalizes it
 
 
             Impl.applyRotDependentForceToPos(Dir,Pos); // no I don't know what difference between this and applyInvariantForceToPos is
