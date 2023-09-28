@@ -30,7 +30,7 @@ public class OarItem extends Item {
         System.out.println(ship==null);
         if (ship==null) return InteractionResult.PASS;
         RNDShipControl control = RNDShipControl.getOrCreate( (ServerShip) ship);
-        control.addForce(context.getPlayer().position(),context.getPlayer().getForward().multiply(100000,0,100000));
+        control.addForce(context.getPlayer().position(),context.getPlayer().getForward().multiply(300000,300000,300000));
         return InteractionResult.SUCCESS;
     }
 

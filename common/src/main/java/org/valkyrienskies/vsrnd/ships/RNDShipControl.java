@@ -52,7 +52,7 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
 
 
             Impl.applyRotDependentForceToPos(Dir,Pos); // This force moves the ship
-
+            //Impl.applyRotDependentTorque(Dir);
 
         }
         forces.clear();
