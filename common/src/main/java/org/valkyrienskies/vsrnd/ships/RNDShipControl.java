@@ -70,9 +70,11 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
     }
 
     public void addForce(Vec3 Pos, Vec3 Dir) {
-        ArrayList<Vector3d> list = new ArrayList<Vector3d>(); // I have to convert Vec3 to Vector3D because Vec3 is mc and doesn't use JOML shit because fuck you
+        ArrayList<Vector3d> list = new ArrayList<Vector3d>(); // I have to convert Vec3 to Vector3D because Vec3 is mc (mc uses Vec3 instead Vector3D because fuck you)
         list.add(0,new Vector3d(Pos.x,Pos.y,Pos.z) );
         list.add(1,new Vector3d(Dir.x,Dir.y,Dir.z));
+
+        System.out.println("ADDING FORCE");
         forces.add(list);
     }
     @Nullable

@@ -27,19 +27,19 @@ public class OarItem extends Item {
         if (ship == null) {
             ship = GetShipAtFeet(context.getLevel(), context.getPlayer());
         }
-        System.out.println(ship==null);
+
         if (ship==null) return InteractionResult.PASS;
         RNDShipControl control = RNDShipControl.getOrCreate( (ServerShip) ship);
-        control.addForce(context.getPlayer().position(),context.getPlayer().getForward().multiply(300000,300000,300000));
+        control.addForce(context.getPlayer().position(),context.getPlayer().getForward().multiply(100000,100000,100000));
         return InteractionResult.SUCCESS;
     }
 
 
     private Ship GetShipAtFeet(Level level, Player player) {
-        Vec3 feet = player.getPosition(0).subtract(new Vec3(0,1.5,0));
-        Vec3 offset = new Vec3(0.5,0.5,0.5);
+        Vec3 feet = player.getPosition(0).subtract(new Vec3(0,1,0));
+        Vec3 offset = new Vec3(0.1,0.1,0.1);
         Iterable<Ship> ships = VSGameUtilsKt.getShipsIntersecting(level,new AABB(feet.subtract(offset),feet.add(offset)));
-        System.out.println(ships);
+
         if (ships.iterator().hasNext()) {
             return (Ship) ships.iterator().next();
         }
