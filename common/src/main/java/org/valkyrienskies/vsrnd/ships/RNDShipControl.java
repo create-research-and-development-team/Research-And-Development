@@ -4,6 +4,7 @@ package org.valkyrienskies.vsrnd.ships;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.simibubi.create.foundation.utility.Pair;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3d;
@@ -32,30 +33,41 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
     @JsonIgnore
     ServerShip ship;
     @JsonIgnore
-    private ArrayList<ArrayList<Vector3d>> forces;
+    private ArrayList<Pair<ArrayList<Vector3d>,Integer>> forces;
 
 
     public RNDShipControl() {
-        forces = new ArrayList<ArrayList<Vector3d>>();
+        forces = new ArrayList<>();
 
     }
     @Override
     public void applyForces(@NotNull PhysShip physShip) {
         PhysShipImpl Impl = (PhysShipImpl) physShip;
         if (forces.isEmpty()) return;
-        System.out.println(forces);
-        for (ArrayList<Vector3d> force : forces) {
 
+        ArrayList<Pair<ArrayList<Vector3d>,Integer>> remove = new ArrayList<>();
+
+        for (Pair<ArrayList<Vector3d>,Integer> pair : forces) {
+            ArrayList<Vector3d> force = pair.getFirst();
 
             Vector3d Pos = force.get(0).sub(Impl.getTransform().getPositionInShip()); // Offset position so it was in ship space
             Vector3d Dir = Impl.getTransform().transformDirectionNoScalingFromWorldToShip(force.get(1), Pos); // Offset direction so it was in ship space (Direction isn't global ig???)
 
 
             Impl.applyRotDependentForceToPos(Dir,Pos); // This force moves the ship
-            //Impl.applyRotDependentTorque(Dir);
+
+            if (pair.getSecond()<=0) {
+                remove.add(pair);
+            } else {
+                pair.setSecond(pair.getSecond()-1);
+            }
+
 
         }
-        forces.clear();
+
+        for (Pair<ArrayList<Vector3d>,Integer> pair : remove) {
+            forces.remove(pair);
+        }
     }
 
 
@@ -74,8 +86,9 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
         list.add(0,new Vector3d(Pos.x,Pos.y,Pos.z) );
         list.add(1,new Vector3d(Dir.x,Dir.y,Dir.z));
 
-        System.out.println("ADDING FORCE");
-        forces.add(list);
+        System.out.println(list);
+        Pair< ArrayList<Vector3d>,Integer> pair =  Pair.of(list,5);
+        forces.add(pair);
     }
     @Nullable
     @Override
