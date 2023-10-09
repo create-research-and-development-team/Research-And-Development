@@ -60,7 +60,7 @@ public class OarItem extends Item {
 
             if (ship==null) return  InteractionResultHolder.pass(stack);
             RNDShipControl control = RNDShipControl.getOrCreate( (ServerShip) ship);
-            control.addForce(new Vec3( blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ()),player.getForward().multiply(150000,0,150000));
+            control.addForce(new Vec3( blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ()),player.getForward().multiply(0.001,0,0.001));
             return InteractionResultHolder.success(stack);
         };
         return super.use(level,player,usedHand);

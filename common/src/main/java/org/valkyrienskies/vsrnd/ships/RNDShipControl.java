@@ -51,7 +51,7 @@ public class RNDShipControl implements ShipForcesInducer, ServerShipUser {
             ArrayList<Vector3d> force = pair.getFirst();
 
             Vector3d Pos = force.get(0).sub(Impl.getTransform().getPositionInShip()); // Offset position so it was in ship space
-            Vector3d Dir = Impl.getTransform().transformDirectionNoScalingFromWorldToShip(force.get(1), Pos); // Offset direction so it was in ship space (Direction isn't global ig???)
+            Vector3d Dir = Impl.getTransform().transformDirectionNoScalingFromWorldToShip(force.get(1), new Vector3d()); // Offset direction so it was in ship space (Direction isn't global ig???)
 
 
             Impl.applyRotDependentForceToPos(Dir,Pos); // This force moves the ship
