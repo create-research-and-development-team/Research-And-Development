@@ -45,6 +45,10 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.21"
     api "org.jetbrains.kotlin:kotlin-reflect:1.7.21"
 
+    // JOML
+    compileOnlyApi("org.joml:joml:1.10.4")
+    compileOnlyApi("org.joml:joml-primitives:1.10.0")
+
     // CC Restitched
     modCompileOnly("curse.maven:cc-restitched-462672:3622561")
 
