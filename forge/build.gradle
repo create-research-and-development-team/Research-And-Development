@@ -58,11 +58,7 @@ dependencies {
     modLocalRuntime("mezz.jei:jei-${minecraft_version}:${jei_forge_version}")
 
     //Create big cannons
-    modLocalRuntime('curse.maven:create-big-cannons-646668:4712325')
-
-    // JOML
-    compileOnly("org.joml:joml:1.10.4")
-    compileOnly("org.joml:joml-primitives:1.10.0")
+    modApi("com.rbasamoyai:createbigcannons-forge-${minecraft_version}:${createbigcannons_version}")
 
     // Add Kotlin for Forge.
     implementation(forgeRuntimeLibrary('curse.maven:kotlinforforge-351264:3925887'))
