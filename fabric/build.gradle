@@ -39,7 +39,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive = false }
 
     // dependencies
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
+    modApi("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}")
 
     //VS2
     modApi("org.valkyrienskies:valkyrienskies-118-fabric:${vs2_version}") { transitive = false }
