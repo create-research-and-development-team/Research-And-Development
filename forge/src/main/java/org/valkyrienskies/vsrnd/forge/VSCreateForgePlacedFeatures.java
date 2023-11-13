@@ -19,7 +19,7 @@ import java.util.List;
 public class VSCreateForgePlacedFeatures {
 	public static final DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(
 			Registry.PLACED_FEATURE_REGISTRY, VSCreateMod.MOD_ID);
-
+/*
 	public static final RegistryObject<PlacedFeature> RUTILE_CLUSTER_PLACED = PLACED_FEATURES.register(
 			"rutile_cluster_placed",
 			() -> new PlacedFeature(VSCreateForgeConfiguredFeatures.RUTILE_CLUSTER.getHolder().get(),
@@ -31,7 +31,7 @@ public class VSCreateForgePlacedFeatures {
 													VerticalAnchor.bottom()
 																		 ),
 											BiomeFilter.biome()
-										   )));
+										   )));*/
 
 	public static void register(IEventBus eventBus) {
 		PLACED_FEATURES.register(eventBus);
@@ -39,10 +39,10 @@ public class VSCreateForgePlacedFeatures {
 
 
 	@SubscribeEvent
-	public static void onBiomeLoadingEvent(BiomeLoadingEvent event) {
+	public static void onBiomeLoadingEvent(BiomeLoadingEvent event) {/*
 		if (event.getCategory() != Biome.BiomeCategory.NETHER && event.getCategory() != Biome.BiomeCategory.THEEND) {
 			event.getGeneration()
 				 .addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, RUTILE_CLUSTER_PLACED.getHolder().get());
-		}
+		}*/
 	}
 }
