@@ -19,6 +19,8 @@ public class VSCreateModForge {
 	boolean happenedClientSetup = false;
 
 	public VSCreateModForge() {
+		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		RNDRegistrate.REGISTRATE.registerEventListeners(modEventBus);
 
 		VSCreateBlocks.register();
 		VSCreateForgeBlocks.register();
@@ -48,8 +50,6 @@ public class VSCreateModForge {
 		VSCreatePackets.init();
 
 		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-			IEventBus modEventBus = FMLJavaModLoadingContext.get()
-															.getModEventBus();
 			modEventBus.addListener(VSCreateForgeParticles::register);
 
 			// In create itself they do it FMLClientSetupEvent this does not work (what a scam)
