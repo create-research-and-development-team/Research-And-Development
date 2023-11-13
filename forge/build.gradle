@@ -13,6 +13,9 @@ loom {
     forge {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
+
+        mixinConfig "vsrnd-common.mixins.json"
+        mixinConfig "vsrnd.mixins.json"
     }
 }
 
@@ -84,15 +87,6 @@ processResources {
 
     filesMatching("META-INF/mods.toml") {
         expand properties
-    }
-}
-
-loom {
-    forge {
-        mixinConfig(
-                "vsrnd-common.mixins.json",
-                "vsrnd.mixins.json"
-        )
     }
 }
 
