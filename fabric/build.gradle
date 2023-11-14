@@ -59,6 +59,8 @@ dependencies {
 
     modImplementation("com.terraformersmc:modmenu:${modmenu_version}")
 
+    modImplementation("net.minecraftforge:forgeconfigapiport-fabric:3.2.4")
+
     // Development QOL
     modLocalRuntime("maven.modrinth:lazydfu:${lazydfu_version}")
 
