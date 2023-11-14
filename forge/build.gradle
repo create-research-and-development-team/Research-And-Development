@@ -72,6 +72,7 @@ dependencies {
 
     // CC Tweaked
     modCompileOnly("curse.maven:cctweaked-282001:4061947")
+    modLocalRuntime("curse.maven:cctweaked-282001:4061947")
 }
 
 processResources {
