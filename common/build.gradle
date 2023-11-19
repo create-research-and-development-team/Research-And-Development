@@ -38,7 +38,7 @@ dependencies {
             { exclude group: 'com.github.AlphaMode', module: 'fakeconfigtoml' }
 
     // VS2
-    modApi("org.valkyrienskies:valkyrienskies-118-common:${vs2_version}")
+    modApi("org.valkyrienskies:valkyrienskies-118-common:${vs2_version}") { transitive = false }
     implementation("org.valkyrienskies.core:api:1.1.0+2b2f93f793") { transitive = false }
 
     // Kotlin
@@ -53,7 +53,7 @@ dependencies {
     modCompileOnly("curse.maven:cc-restitched-462672:3622561")
 
     // Create: Big Cannons
-    modCompileOnly("com.rbasamoyai:createbigcannons-fabric-${minecraft_version}:${createbigcannons_version}")
+    modCompileOnly("com.rbasamoyai:createbigcannons-fabric-${minecraft_version}:${createbigcannons_version}") { transitive = false }
 
     // JUnit
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
