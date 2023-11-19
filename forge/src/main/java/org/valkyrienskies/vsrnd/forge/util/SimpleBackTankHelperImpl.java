@@ -1,4 +1,4 @@
-package org.valkyrienskies.vsrnd.util.forge;
+package org.valkyrienskies.vsrnd.forge.util;
 
 import net.minecraft.world.item.Item;
 
