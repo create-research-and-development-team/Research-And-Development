@@ -54,7 +54,7 @@ dependencies {
 
     // Create and its dependencies
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_forge_version}:slim") { transitive = false }
-    modImplementation("com.tterrag.registrate:Registrate:${registrate_forge_version}")
+    implementation("com.tterrag.registrate:Registrate:${registrate_forge_version}")
     modImplementation("com.jozufozu.flywheel:flywheel-forge-${flywheel_forge_minecraft_version}:${flywheel_forge_version}")
 
     // Development QOL
@@ -67,11 +67,12 @@ dependencies {
     implementation(forgeRuntimeLibrary('curse.maven:kotlinforforge-351264:3925887'))
 
     // JEI
-    modCompileOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}:api")
-    runtimeOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}:${jei_forge_version}:api")
+    modLocalRuntime("mezz.jei:jei-${minecraft_version}:${jei_forge_version}")
 
     // CC Tweaked
     modCompileOnly("curse.maven:cctweaked-282001:4061947")
+    modLocalRuntime("curse.maven:cctweaked-282001:4061947")
 }
 
 processResources {

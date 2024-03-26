@@ -50,7 +50,7 @@ dependencies {
     compileOnlyApi("org.joml:joml-primitives:1.10.0")
 
     // CC Restitched
-    modCompileOnly("curse.maven:cc-restitched-462672:3622561")
+    modCompileOnly("curse.maven:cc-restitched-462672:3838648")
 
     // Create: Big Cannons
     modCompileOnly("com.rbasamoyai:createbigcannons-fabric-${minecraft_version}:${createbigcannons_version}")
